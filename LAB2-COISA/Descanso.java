@@ -8,9 +8,13 @@ package lab2;
  *
  */
 public class Descanso {
-	//Número inteiro de horas de descanso no total.
+	/**
+	 * Horas de descanso no total.
+	 */
 	private int horasDescanso;
-	//Número inteiro de semanas no total.
+	/**
+	 * Semanas no total.
+	 */
 	private int numSemanas;
 	/**
 	 * Número em ponto flutuante resultante da divisão de horas de descanso
