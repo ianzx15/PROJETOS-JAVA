@@ -1,7 +1,7 @@
 package lab2;
 
 public class Disciplina {
-
+//a
 	private String nomeDisciplina;
 	private int horasEstudo;
 	private double[] notas = new double[4];
