@@ -47,7 +47,7 @@ public class Coisa {
       System.out.println(prog2.toString());
   }
   private static void registrarResumos() {
-      Resumos meusResumos = new RegistroResumos(100);  // 100 resumos
+      RegistroResumos meusResumos = new RegistroResumos(100);
      
       meusResumos.adiciona("Classes", "Classes definem um tipo e a base de código para criação de objetos.");
       meusResumos.adiciona("Tipo", "Identifica a semântica (operações e significados) de um conjunto de dados.");
@@ -65,3 +65,7 @@ public class Coisa {
       System.out.println(meusResumos.temResumo("Objetos"));
   }
 }
+
+
+
+
