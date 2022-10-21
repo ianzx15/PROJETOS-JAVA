@@ -35,8 +35,6 @@ public class Disciplina {
 	
 	public String toString() {
 		return nomeDisciplina + " " + horasEstudo + " " + media + " " +Arrays.toString(notas);
-<<<<<<< HEAD
-=======
 	}
 	public static void main(String[] args) {
 		Disciplina prog2 = new Disciplina("PROGRAMACAO 2");
@@ -48,7 +46,6 @@ public class Disciplina {
 	      prog2.cadastraNota(4, 10.0);
 	      System.out.println(prog2.aprovado());
 	      System.out.println(prog2.toString());
->>>>>>> 594d54d90a957ad12bbed10f44225275ea474b34
 	}
 	
 }

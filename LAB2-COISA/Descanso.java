@@ -8,24 +8,28 @@ package lab2;
  *
  */
 public class Descanso {
+	
 	/**
 	 * Horas de descanso no total.
 	 */
 	private int horasDescanso;
+	
 	/**
 	 * Semanas no total.
 	 */
 	private int numSemanas;
+	
 	/**
 	 * Número resultante da divisão de horas de descanso
 	 * pelo número de semanas, quando o número de semanas não for zero.
 	 */
 	private double descansoPorSemana;
-<<<<<<< HEAD
-=======
-	//Status relacionado à condição do aluno.
->>>>>>> 594d54d90a957ad12bbed10f44225275ea474b34
+	
+	/**
+	 * Status relacionado à condição do aluno.
+	 */
 	private String status = "cansado";
+	
 	/**
 	 * Atribui o número de horas de descanso definido pelo usuário
 	 * ao atributo horasDescanso.
@@ -34,6 +38,7 @@ public class Descanso {
 	public void defineHorasDescanso(int horasDescanso) {
 		this.horasDescanso = horasDescanso;
 	}
+	
 	/**
 	 * Atribui o número de semanas definidas pelo usuário
 	 * ao atribudo numSemanas.
@@ -42,6 +47,7 @@ public class Descanso {
 	public void defineNumeroSemanas(int numSemanas) {
 		this.numSemanas = numSemanas;
 	}
+	
 	/**
 	 * Retorna a String que representa a condição do aluno. Podendo assumir
 	 * o valor "cansado" ou "descansado".
