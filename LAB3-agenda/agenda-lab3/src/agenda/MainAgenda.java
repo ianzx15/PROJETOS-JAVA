@@ -90,7 +90,7 @@ public class MainAgenda {
 		String[] contatos = agenda.getContatos();
 		for (int i = 0; i < contatos.length; i++) {
 			if (contatos[i] != null) {
-				System.out.println(formataContato(i, contatos[i]));
+				System.out.println(formataContato(i, contatos[i].split("/")[0]));
 			}
 		}
 	}
@@ -105,7 +105,11 @@ public class MainAgenda {
 		System.out.print("\nQual contato> ");
 		int posicao = scanner.nextInt();
 		String contato = agenda.getContato(posicao);
-		System.out.println("Dados do contato:\n" + contato);
+		String nome = contato.split("/")[0];
+		String sobrenome = contato.split("/")[1];
+		String telefone = contato.split("/")[2];
+		System.out.println("Dados do contato:\n" + nome + " " + sobrenome + "\n"
+				+ telefone);
 	}
 
 	/**
@@ -128,17 +132,26 @@ public class MainAgenda {
 	private static void cadastraContato(Agenda agenda, Scanner scanner) {
 		System.out.print("\nPosição na agenda> ");
 		int posicao = scanner.nextInt();
-		if ( posicao < 0 || posicao > 101  ) {
-			System.out.println("POSIÇÃO INVÁLIDA");
-			menu(scanner);
-		}
+		if (posicao > 0 & posicao < 101) {
+		
 		System.out.print("\nNome> ");
 		String nome = scanner.next();
 		System.out.print("\nSobrenome> ");
 		String sobrenome = scanner.next();
+		if (agenda.equals(nome,sobrenome)) {
+			System.out.println("CONTATO JÁ CADASTRADO");
+		}
 		System.out.print("\nTelefone> ");
+		//não aceita no formato "83 8828822"
 		String telefone = scanner.next();
+
 		agenda.cadastraContato(posicao, nome, sobrenome, telefone);
+		System.out.println("CADASTRO REALIZADO");
+		}
+		
+		else {
+			System.out.println("POSICÃO INVÁLIDA");
+		}
 	}
 
 	/**

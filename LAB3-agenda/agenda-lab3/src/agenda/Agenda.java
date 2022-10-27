@@ -44,7 +44,15 @@ public class Agenda {
 	 * @param telefone Telefone do contato.
 	 */
 	public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
-		this.contatos[posicao] = nome;
+			this.contatos[posicao] = nome + "/" + sobrenome + "/" + telefone;
 	}
 
+	public  boolean equals(String nome, String sobrenome) {
+		for (int i = 0; i <= contatos.length; i++) {
+			if (contatos != null & nome.equals(contatos[0].split("/")) & sobrenome.equals(contatos[1].split("/"))){
+				return true;
+			}
+		}
+		return false;
+	}
 }

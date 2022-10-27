@@ -12,8 +12,4 @@ public class Contato {
 		this.telefone = telefone;
 	}
 	
-	public boolean equals(Contato contato) {
-		
-	}
-
 }
