@@ -130,28 +130,41 @@ public class MainAgenda {
 	 * @param scanner Scanner para pedir informações do contato.
 	 */
 	private static void cadastraContato(Agenda agenda, Scanner scanner) {
-		System.out.print("\nPosição na agenda> ");
-		int posicao = scanner.nextInt();
-		if (posicao > 0 & posicao < 101) {
+		while (true){
+			System.out.print("\nPosição na agenda> ");
+			int posicao = scanner.nextInt();
+			if (posicao > 0 & posicao <= 101) {
+				System.out.print("\nNome> ");
+				String nome = scanner.next();
+				//não funciona pq não aceita espaço em branco na entrada
+				if (nome.isEmpty()) {
+					System.out.println("CONTATO INVALIDO");
+				} else {
+					System.out.print("\nSobrenome> ");
+					String sobrenome = scanner.next();
+					if (sobrenome.isEmpty()) {
+						System.out.println("CONTATO INVALIDO");
+					} else {
+						boolean iguais = agenda.equals(nome,sobrenome);
+						if (iguais) {
+							System.out.println("CONTATO JÁ CADASTRADO");
+						} else {
+							System.out.print("\nTelefone> ");
+							String telefone = scanner.next();
+							String DDD = scanner.next();
+							telefone += " " + DDD;
+							System.out.println("CADASTRO REALIZADO");
+							agenda.cadastraContato(posicao, nome, sobrenome, telefone);
+							break;
+						}
+					}
+				}
+			 
+			} else {
+				System.out.println("POSICÃO INVÁLIDA");
+			}
 		
-		System.out.print("\nNome> ");
-		String nome = scanner.next();
-		System.out.print("\nSobrenome> ");
-		String sobrenome = scanner.next();
-		if (agenda.equals(nome,sobrenome)) {
-			System.out.println("CONTATO JÁ CADASTRADO");
-		}
-		System.out.print("\nTelefone> ");
-		//não aceita no formato "83 8828822"
-		String telefone = scanner.next();
-
-		agenda.cadastraContato(posicao, nome, sobrenome, telefone);
-		System.out.println("CADASTRO REALIZADO");
-		}
-		
-		else {
-			System.out.println("POSICÃO INVÁLIDA");
-		}
+			}
 	}
 
 	/**

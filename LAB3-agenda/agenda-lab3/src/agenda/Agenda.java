@@ -8,7 +8,7 @@ package agenda;
  */
 public class Agenda {
 	
-	private static final int TAMANHO_AGENDA = 100;
+	private static final int TAMANHO_AGENDA = 102;
 	
 	private String[] contatos; //apenas uma simplificacao de contato
 
@@ -48,11 +48,13 @@ public class Agenda {
 	}
 
 	public  boolean equals(String nome, String sobrenome) {
-		for (int i = 0; i <= contatos.length; i++) {
-			if (contatos != null & nome.equals(contatos[0].split("/")) & sobrenome.equals(contatos[1].split("/"))){
-				return true;
-			}
-		}
+		for (int i = 1; i < contatos.length; i++) {
+			if (contatos[i] != null) {
+					if(nome.equals(contatos[i].split("/")[0]) &  sobrenome.equals(contatos[i].split("/")[1])){
+						return true;
+					}
+				   }
+				}
 		return false;
 	}
 }
