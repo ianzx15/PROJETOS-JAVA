@@ -8,7 +8,7 @@ package agenda;
  */
 public class Agenda {
 	
-	private static final int TAMANHO_AGENDA = 102;
+	private static final int TAMANHO_AGENDA = 101;
 	
 	private String[] contatos; //apenas uma simplificacao de contato
 
