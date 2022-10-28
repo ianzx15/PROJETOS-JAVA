@@ -133,7 +133,7 @@ public class MainAgenda {
 		while (true){
 			System.out.print("\nPosição na agenda> ");
 			int posicao = scanner.nextInt();
-			if (posicao > 0 & posicao <= 101) {
+			if (posicao > 0 & posicao < 101) {
 				System.out.print("\nNome> ");
 				String nome = scanner.next();
 				//não funciona pq não aceita espaço em branco na entrada
