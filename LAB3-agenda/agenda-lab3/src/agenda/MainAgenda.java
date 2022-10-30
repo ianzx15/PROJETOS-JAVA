@@ -87,12 +87,8 @@ public class MainAgenda {
 	 */
 	private static void listaContatos(Agenda agenda) {
 		System.out.println("\nLista de contatos: ");
-		String[] contatos = agenda.getContatos();
-		for (int i = 0; i < contatos.length; i++) {
-			if (contatos[i] != null) {
-				System.out.println(formataContato(i, contatos[i].split("/")[0]));
-			}
-		}
+		System.out.println(agenda.toString(agenda));
+		
 	}
 
 	/**
@@ -102,25 +98,20 @@ public class MainAgenda {
 	 * @param scanner Scanner para capturar qual contato.
 	 */
 	private static void exibeContato(Agenda agenda, Scanner scanner) {
+		while(true) {
 		System.out.print("\nQual contato> ");
 		int posicao = scanner.nextInt();
-		String contato = agenda.getContato(posicao);
-		String nome = contato.split("/")[0];
-		String sobrenome = contato.split("/")[1];
-		String telefone = contato.split("/")[2];
-		System.out.println("Dados do contato:\n" + nome + " " + sobrenome + "\n"
-				+ telefone);
-	}
-
-	/**
-	 * Formata um contato para impressão na interface. 
-	 * 
-	 * @param posicao A posição do contato (que é exibida)/
-	 * @param contato O contato a ser impresso.
-	 * @return A String formatada.
-	 */
-	private static String formataContato(int posicao, String contato) {
-		return posicao + " - " + contato;
+		if (posicao > 100 || posicao < 1) {
+			System.out.println("POSIÇÃO INVÀLIDA");
+		
+		} else if (agenda.getListaContatos(posicao) == null) {
+			System.out.println("POSIÇÃO INVÀLIDA!");
+		} else {
+			System.out.println(agenda.imprimeContato(posicao));
+			break;
+		
+		}
+		}
 	}
 
 	/**
@@ -133,17 +124,17 @@ public class MainAgenda {
 		while (true){
 			System.out.print("\nPosição na agenda> ");
 			int posicao = scanner.nextInt();
-			if (posicao > 0 & posicao <= 101) {
+			if (posicao > 0 & posicao < 101) {
 				System.out.print("\nNome> ");
 				String nome = scanner.next();
 				//não funciona pq não aceita espaço em branco na entrada
 				if (nome.isEmpty()) {
-					System.out.println("CONTATO INVALIDO");
+					System.out.println("CONTATO INVÁLIDO");
 				} else {
 					System.out.print("\nSobrenome> ");
 					String sobrenome = scanner.next();
 					if (sobrenome.isEmpty()) {
-						System.out.println("CONTATO INVALIDO");
+						System.out.println("CONTATO INVÁLIDO");
 					} else {
 						boolean iguais = agenda.equals(nome,sobrenome);
 						if (iguais) {
@@ -151,8 +142,8 @@ public class MainAgenda {
 						} else {
 							System.out.print("\nTelefone> ");
 							String telefone = scanner.next();
-							String DDD = scanner.next();
-							telefone += " " + DDD;
+							String numero = scanner.next();
+							telefone += " " + numero;
 							System.out.println("CADASTRO REALIZADO");
 							agenda.cadastraContato(posicao, nome, sobrenome, telefone);
 							break;
@@ -161,7 +152,7 @@ public class MainAgenda {
 				}
 			 
 			} else {
-				System.out.println("POSICÃO INVÁLIDA");
+				System.out.println("POSIÇÃO INVÁLIDA");
 			}
 		
 			}
