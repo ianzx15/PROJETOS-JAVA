@@ -10,13 +10,13 @@ public class Agenda {
 	
 	private static final int TAMANHO_AGENDA = 101;
 	
-	private String[] ListaContatos; //apenas uma simplificacao de contato
+	private Contato[] ListaContatos; //apenas uma simplificacao de contato
 
 	/**
 	 * Cria uma agenda.
 	 */
 	public Agenda() {
-		this.ListaContatos = new String[TAMANHO_AGENDA];
+		this.ListaContatos = new Contato[TAMANHO_AGENDA];
 	}
 	
 	/**
@@ -29,8 +29,8 @@ public class Agenda {
 	 * @param posicao Posição do contato na agenda.
 	 * @return Dados do contato. Null se não há contato na posição.
 	 */
-	public String getListaContatos(int posicao) {
-		return ListaContatos[posicao];
+	public Contato getContatos(int posicao) {
+		return this.ListaContatos[posicao];
 	}
 
 	/**
@@ -42,13 +42,13 @@ public class Agenda {
 	 */
 	public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
 			Contato contato = new Contato(nome, sobrenome, telefone);
-		this.ListaContatos[posicao] = contato.getNome() + "/" + contato.getSobrenome()+ "/" + contato.getTelefone();
+			this.ListaContatos[posicao] = contato;
 	}
-
+	
 	public  boolean equals(String nome, String sobrenome) {
 		for (int i = 1; i < this.ListaContatos.length; i++) {
 			if (this.ListaContatos[i] != null) {
-					if(nome.equals(this.ListaContatos[i].split("/")[0]) &  sobrenome.equals(this.ListaContatos[i].split("/")[1])){
+					if(nome.equals(this.ListaContatos[i].getNome()) &  sobrenome.equals(this.ListaContatos[i].getSobrenome())){
 						return true;
 					}
 				  }
@@ -57,18 +57,18 @@ public class Agenda {
 	}
 	
 	public String imprimeContato(int posicao) {
-		String[] contato = this.ListaContatos[posicao].split("/");
-		
-		return "\nDados do contato:\n\n" + contato[0] + " " + contato[1] + "\n" + contato[2] ;
+		return "\nDados do contato:\n\n" + this.ListaContatos[posicao].getNome() 
+				+ " " + this.ListaContatos[posicao].getSobrenome() + "\n" + this.ListaContatos[posicao].getTelefone() ;
 	}
 	
 	public String toString(Agenda agenda) {
-		String contato = "";
 		String contatoFormatado = "";
+		Contato contato;
 		for (int i = 0; i < 101; i++) {
-		contato = agenda.getListaContatos(i);
+			contato = agenda.getContatos(i);
+			System.out.println(contato);
 			if (contato != null) {
-				contatoFormatado += "\n" + i + " - " + contato.split("/")[0] + contato.split("/")[1];
+				contatoFormatado += "\n" + i + " - " + contato.getNome() + " " + contato.getSobrenome();
 			}
 	}
 		return contatoFormatado;

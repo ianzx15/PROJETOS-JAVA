@@ -24,4 +24,17 @@ public class Contato {
 		return this.telefone;
 	}
 	
+	public  boolean equals(Contato contato) {
+		Agenda agenda;
+		for (int i = 1; i < 101; i++) {
+			contato = agenda.getContatos(i);
+			if (agenda.getContatos(i) != null) {
+					if(nome.equals(this.get[i].getNome()) &  sobrenome.equals(this.ListaContatos[i].getSobrenome())){
+						return true;
+					}
+				  }
+				}
+		return false;
+	}
+	
 }

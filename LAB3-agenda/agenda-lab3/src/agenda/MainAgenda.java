@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Interface com menus texto para manipular uma agenda de contatos.
  * 
- * @author nazarenoandrade
+ * @author Ian Evangelista Rodrigues
  *
  */
 public class MainAgenda {
@@ -104,7 +104,7 @@ public class MainAgenda {
 		if (posicao > 100 || posicao < 1) {
 			System.out.println("POSIÇÃO INVÀLIDA");
 		
-		} else if (agenda.getListaContatos(posicao) == null) {
+		} else if (agenda.getContatos(posicao) == null) {
 			System.out.println("POSIÇÃO INVÀLIDA!");
 		} else {
 			System.out.println(agenda.imprimeContato(posicao));
@@ -125,9 +125,9 @@ public class MainAgenda {
 			System.out.print("\nPosição na agenda> ");
 			int posicao = scanner.nextInt();
 			if (posicao > 0 & posicao < 101) {
+				
 				System.out.print("\nNome> ");
 				String nome = scanner.next();
-				//não funciona pq não aceita espaço em branco na entrada
 				if (nome.isEmpty()) {
 					System.out.println("CONTATO INVÁLIDO");
 				} else {
