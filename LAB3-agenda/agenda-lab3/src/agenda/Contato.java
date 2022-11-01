@@ -5,6 +5,9 @@ public class Contato {
 	private String sobrenome;
 	private String telefone;
 	
+	public Contato() {
+		
+	}
 	
 	public Contato(String nome, String sobrenome, String telefone) {
 		this.nome = nome;
@@ -25,16 +28,31 @@ public class Contato {
 	}
 	
 	public  boolean equals(Contato contato) {
-		Agenda agenda;
-		for (int i = 1; i < 101; i++) {
-			contato = agenda.getContatos(i);
-			if (agenda.getContatos(i) != null) {
-					if(nome.equals(this.get[i].getNome()) &  sobrenome.equals(this.ListaContatos[i].getSobrenome())){
-						return true;
-					}
-				  }
-				}
+		if (this.nome.equals(contato.nome) && this.sobrenome.equals(contato.sobrenome)) {
+			return true;
+		}
 		return false;
 	}
 	
+	public String toString(Agenda agenda, boolean favoritos) {
+		String contatoFormatado = "";
+		Contato contato;
+		if(favoritos) {
+			for (int i = 0; i < 10; i++) {
+			    contato = agenda.getContatoFavorito(i);
+			    if (contato != null) {
+			    contatoFormatado += "\n" + i + " - " + contato.nome + " " + contato.sobrenome;
+		    	}
+			}
+		} else {
+			for (int i = 0; i < 101; i++) {
+				contato = agenda.getContato(i);
+				if (contato != null) {
+				contatoFormatado += "\n" + i + " - " + contato.nome + " " + contato.sobrenome;
+				}
+			}
+		}
+		return contatoFormatado;
+	
+    }
 }

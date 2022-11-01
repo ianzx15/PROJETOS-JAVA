@@ -9,28 +9,36 @@ package agenda;
 public class Agenda {
 	
 	private static final int TAMANHO_AGENDA = 101;
+	private static final int TAMANHO_FAVORITOS = 11;
 	
 	private Contato[] ListaContatos; //apenas uma simplificacao de contato
-
+	private Contato[] ListaFavoritos;
 	/**
 	 * Cria uma agenda.
 	 */
 	public Agenda() {
 		this.ListaContatos = new Contato[TAMANHO_AGENDA];
+		this.ListaFavoritos = new Contato[TAMANHO_FAVORITOS];
 	}
 	
-	/**
-	 * Acessa a lista de contatos mantida.
-	 * @return O array de contatos.
-	 */
+	public Contato[] getListaContatos() {
+		return this.ListaContatos.clone();
+	}
+	
+	public Contato[] getListaFavoritos() {
+		return this.ListaFavoritos.clone();
+	}
 
 	/**
 	 * Acessa os dados de um contato específico.
 	 * @param posicao Posição do contato na agenda.
 	 * @return Dados do contato. Null se não há contato na posição.
 	 */
-	public Contato getContatos(int posicao) {
+	public Contato getContato(int posicao) {
 		return this.ListaContatos[posicao];
+	}
+	public Contato getContatoFavorito(int posicao) {
+		return this.ListaFavoritos[posicao];
 	}
 
 	/**
@@ -45,32 +53,16 @@ public class Agenda {
 			this.ListaContatos[posicao] = contato;
 	}
 	
-	public  boolean equals(String nome, String sobrenome) {
-		for (int i = 1; i < this.ListaContatos.length; i++) {
-			if (this.ListaContatos[i] != null) {
-					if(nome.equals(this.ListaContatos[i].getNome()) &  sobrenome.equals(this.ListaContatos[i].getSobrenome())){
-						return true;
-					}
-				  }
-				}
-		return false;
-	}
+	public void cadastraContato(int posicao, Contato contato) {
+		this.ListaContatos[posicao] = contato;
+}
 	
 	public String imprimeContato(int posicao) {
 		return "\nDados do contato:\n\n" + this.ListaContatos[posicao].getNome() 
 				+ " " + this.ListaContatos[posicao].getSobrenome() + "\n" + this.ListaContatos[posicao].getTelefone() ;
 	}
-	
-	public String toString(Agenda agenda) {
-		String contatoFormatado = "";
-		Contato contato;
-		for (int i = 0; i < 101; i++) {
-			contato = agenda.getContatos(i);
-			System.out.println(contato);
-			if (contato != null) {
-				contatoFormatado += "\n" + i + " - " + contato.getNome() + " " + contato.getSobrenome();
-			}
+	public void adicionaListaFavorito(Contato contato, int posicao) {
+		this.ListaFavoritos[posicao] = contato;
 	}
-		return contatoFormatado;
-}
+	
 }

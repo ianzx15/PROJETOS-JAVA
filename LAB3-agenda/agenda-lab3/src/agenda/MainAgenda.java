@@ -48,6 +48,8 @@ public class MainAgenda {
 						"(C)adastrar Contato\n" + 
 						"(L)istar Contatos\n" + 
 						"(E)xibir Contato\n" + 
+						"(F)avoritos\n" +
+						"(A)dicionar Favorito\n" +
 						"(S)air\n" + 
 						"\n" + 
 						"Opção> ");
@@ -72,6 +74,12 @@ public class MainAgenda {
 		case "E":
 			exibeContato(agenda, scanner);
 			break;
+		case "A":
+			adicionaFavorito(agenda);
+			break;
+		case "F":
+			listarFavoritos(agenda);
+			break;
 		case "S":
 			sai();
 			break;
@@ -87,10 +95,36 @@ public class MainAgenda {
 	 */
 	private static void listaContatos(Agenda agenda) {
 		System.out.println("\nLista de contatos: ");
-		System.out.println(agenda.toString(agenda));
+		Contato contato = new Contato();
+		System.out.println(contato.toString(agenda, false));
+	}
+	
+	public static void adicionaFavorito(Agenda agenda) {
+		System.out.println("\nContato> ");
+		Scanner sc = new Scanner(System.in);
+		Contato contato = agenda.getContato(sc.nextInt());
+		System.out.println("\nPosicao> ");
+		int posicaoLista = sc.nextInt();
+		boolean iguais = false;
+		for(Contato elemento : agenda.getListaFavoritos()) {
+			if ( elemento != null && elemento.equals(contato)) {
+				iguais = true;
+				break;
+			}
+		}
 		
+		if(iguais) {
+			System.out.println("CONTATO JÁ CADASTRADO");
+		} else {
+		agenda.adicionaListaFavorito(contato, posicaoLista);
+		System.out.println("CONTATO FAVORITADO NA POSIÇÃO " + posicaoLista);
+	  }
 	}
 
+	public static void listarFavoritos(Agenda agenda) {
+		Contato contato = new Contato();
+		System.out.println(contato.toString(agenda, true));
+	}
 	/**
 	 * Imprime os detalhes de um dos contatos da agenda. 
 	 * 
@@ -104,14 +138,13 @@ public class MainAgenda {
 		if (posicao > 100 || posicao < 1) {
 			System.out.println("POSIÇÃO INVÀLIDA");
 		
-		} else if (agenda.getContatos(posicao) == null) {
+		} else if (agenda.getContato(posicao) == null) {
 			System.out.println("POSIÇÃO INVÀLIDA!");
 		} else {
 			System.out.println(agenda.imprimeContato(posicao));
 			break;
-		
 		}
-		}
+	  }
 	}
 
 	/**
@@ -125,27 +158,33 @@ public class MainAgenda {
 			System.out.print("\nPosição na agenda> ");
 			int posicao = scanner.nextInt();
 			if (posicao > 0 & posicao < 101) {
-				
+				scanner.nextLine();
 				System.out.print("\nNome> ");
-				String nome = scanner.next();
+				String nome = scanner.nextLine();
 				if (nome.isEmpty()) {
 					System.out.println("CONTATO INVÁLIDO");
 				} else {
 					System.out.print("\nSobrenome> ");
-					String sobrenome = scanner.next();
+					String sobrenome = scanner.nextLine();
 					if (sobrenome.isEmpty()) {
 						System.out.println("CONTATO INVÁLIDO");
 					} else {
-						boolean iguais = agenda.equals(nome,sobrenome);
+						System.out.print("\nTelefone> ");
+						String telefone = scanner.nextLine();
+						Contato contato = new Contato(nome, sobrenome, telefone);
+						boolean iguais = false;
+						for(Contato elemento : agenda.getListaContatos()) {
+							if(elemento != null && elemento.equals(contato)) {
+								System.out.println("CONTATO JÁ CADASTRADO");
+								iguais = true;
+								break;
+							} 
+						}
 						if (iguais) {
-							System.out.println("CONTATO JÁ CADASTRADO");
+							break;
 						} else {
-							System.out.print("\nTelefone> ");
-							String telefone = scanner.next();
-							String numero = scanner.next();
-							telefone += " " + numero;
+							agenda.cadastraContato(posicao, contato);
 							System.out.println("CADASTRO REALIZADO");
-							agenda.cadastraContato(posicao, nome, sobrenome, telefone);
 							break;
 						}
 					}
