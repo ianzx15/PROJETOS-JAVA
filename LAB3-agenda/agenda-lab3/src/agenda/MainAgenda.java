@@ -100,20 +100,13 @@ public class MainAgenda {
 	}
 	
 	public static void adicionaFavorito(Agenda agenda) {
+		Validacao valid = new Validacao();
 		System.out.println("\nContato> ");
 		Scanner sc = new Scanner(System.in);
 		Contato contato = agenda.getContato(sc.nextInt());
 		System.out.println("\nPosicao> ");
 		int posicaoLista = sc.nextInt();
-		boolean iguais = false;
-		for(Contato elemento : agenda.getListaFavoritos()) {
-			if ( elemento != null && elemento.equals(contato)) {
-				iguais = true;
-				break;
-			}
-		}
-		
-		if(iguais) {
+		if(valid.validaContato(agenda, contato, true)) {
 			System.out.println("CONTATO JÁ CADASTRADO");
 		} else {
 		agenda.adicionaListaFavorito(contato, posicaoLista);
@@ -132,10 +125,11 @@ public class MainAgenda {
 	 * @param scanner Scanner para capturar qual contato.
 	 */
 	private static void exibeContato(Agenda agenda, Scanner scanner) {
+		Validacao valid = new Validacao();
 		while(true) {
-		System.out.print("\nQual contato> ");
+		System.out.print("\nContato> ");
 		int posicao = scanner.nextInt();
-		if (posicao > 100 || posicao < 1) {
+		if (!valid.validaPosicaoLista(posicao, 100)) {
 			System.out.println("POSIÇÃO INVÀLIDA");
 		
 		} else if (agenda.getContato(posicao) == null) {
@@ -154,10 +148,11 @@ public class MainAgenda {
 	 * @param scanner Scanner para pedir informações do contato.
 	 */
 	private static void cadastraContato(Agenda agenda, Scanner scanner) {
+		Validacao valid = new Validacao();
 		while (true){
 			System.out.print("\nPosição na agenda> ");
 			int posicao = scanner.nextInt();
-			if (posicao > 0 & posicao < 101) {
+			if (valid.validaPosicaoLista(posicao, 100)) {
 				scanner.nextLine();
 				System.out.print("\nNome> ");
 				String nome = scanner.nextLine();
@@ -172,15 +167,8 @@ public class MainAgenda {
 						System.out.print("\nTelefone> ");
 						String telefone = scanner.nextLine();
 						Contato contato = new Contato(nome, sobrenome, telefone);
-						boolean iguais = false;
-						for(Contato elemento : agenda.getListaContatos()) {
-							if(elemento != null && elemento.equals(contato)) {
-								System.out.println("CONTATO JÁ CADASTRADO");
-								iguais = true;
-								break;
-							} 
-						}
-						if (iguais) {
+						if (valid.validaContato(agenda, contato, false)) {
+							System.out.println("CONTATO JÁ CADASTRADO");
 							break;
 						} else {
 							agenda.cadastraContato(posicao, contato);

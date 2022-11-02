@@ -29,6 +29,14 @@ public class Agenda {
 		return this.ListaFavoritos.clone();
 	}
 
+	public Contato getContatoFavorito(int posicao) {
+		return this.ListaFavoritos[posicao];
+	}
+	
+	public void removeFavorito(int posicao) {
+		this.ListaFavoritos[posicao] = null;
+	}
+	
 	/**
 	 * Acessa os dados de um contato específico.
 	 * @param posicao Posição do contato na agenda.
@@ -37,9 +45,7 @@ public class Agenda {
 	public Contato getContato(int posicao) {
 		return this.ListaContatos[posicao];
 	}
-	public Contato getContatoFavorito(int posicao) {
-		return this.ListaFavoritos[posicao];
-	}
+	
 
 	/**
 	 * Cadastra um contato em uma posição. Um cadastro em uma posição que já existe sobrescreve o anterior. 
@@ -58,9 +64,18 @@ public class Agenda {
 }
 	
 	public String imprimeContato(int posicao) {
-		return "\nDados do contato:\n\n" + this.ListaContatos[posicao].getNome() 
+		for(Contato elemento: this.ListaFavoritos) {
+			if(elemento != null && elemento.equals(this.getContato(posicao))) {
+				return "\n" + "❤️ " + this.ListaContatos[posicao].getNome() 
+						+ " " + this.ListaContatos[posicao].getSobrenome() + "\n" + this.ListaContatos[posicao].getTelefone() ;
+
+			}
+			
+		}
+		return "\n" + this.ListaContatos[posicao].getNome() 
 				+ " " + this.ListaContatos[posicao].getSobrenome() + "\n" + this.ListaContatos[posicao].getTelefone() ;
 	}
+	
 	public void adicionaListaFavorito(Contato contato, int posicao) {
 		this.ListaFavoritos[posicao] = contato;
 	}
