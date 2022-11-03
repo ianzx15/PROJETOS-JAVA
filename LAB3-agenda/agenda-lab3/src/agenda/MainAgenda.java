@@ -51,6 +51,7 @@ public class MainAgenda {
 						"(F)avoritos\n" +
 						"(A)dicionar Favorito\n" +
 						"(S)air\n" + 
+						"(R)emover Favorito\n" +
 						"\n" + 
 						"Opção> ");
 		return scanner.next().toUpperCase();
@@ -75,10 +76,13 @@ public class MainAgenda {
 			exibeContato(agenda, scanner);
 			break;
 		case "A":
-			adicionaFavorito(agenda);
+			adicionaFavorito(agenda, scanner);
 			break;
 		case "F":
 			listarFavoritos(agenda);
+			break;
+		case "R":
+			removeFavorito(agenda, scanner);
 			break;
 		case "S":
 			sai();
@@ -99,22 +103,26 @@ public class MainAgenda {
 		System.out.println(contato.toString(agenda, false));
 	}
 	
-	public static void adicionaFavorito(Agenda agenda) {
+	private static void removeFavorito(Agenda agenda, Scanner sc) {
+		System.out.println("\nPosicao> ");
+		agenda.removeFavorito(sc.nextInt());
+	}
+	
+	private static void adicionaFavorito(Agenda agenda, Scanner sc) {
 		Validacao valid = new Validacao();
 		System.out.println("\nContato> ");
-		Scanner sc = new Scanner(System.in);
 		Contato contato = agenda.getContato(sc.nextInt());
 		System.out.println("\nPosicao> ");
 		int posicaoLista = sc.nextInt();
 		if(valid.validaContato(agenda, contato, true)) {
 			System.out.println("CONTATO JÁ CADASTRADO");
 		} else {
-		agenda.adicionaListaFavorito(contato, posicaoLista);
+		agenda.adicionaFavorito(contato, posicaoLista);
 		System.out.println("CONTATO FAVORITADO NA POSIÇÃO " + posicaoLista);
 	  }
 	}
 
-	public static void listarFavoritos(Agenda agenda) {
+	private static void listarFavoritos(Agenda agenda) {
 		Contato contato = new Contato();
 		System.out.println(contato.toString(agenda, true));
 	}

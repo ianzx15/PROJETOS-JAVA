@@ -9,7 +9,7 @@ package agenda;
 public class Agenda {
 	
 	private static final int TAMANHO_AGENDA = 101;
-	private static final int TAMANHO_FAVORITOS = 11;
+	private static final int TAMANHO_FAVORITOS = 12;
 	
 	private Contato[] ListaContatos; //apenas uma simplificacao de contato
 	private Contato[] ListaFavoritos;
@@ -22,11 +22,11 @@ public class Agenda {
 	}
 	
 	public Contato[] getListaContatos() {
-		return this.ListaContatos.clone();
+		return this.ListaContatos;
 	}
 	
 	public Contato[] getListaFavoritos() {
-		return this.ListaFavoritos.clone();
+		return this.ListaFavoritos;
 	}
 
 	public Contato getContatoFavorito(int posicao) {
@@ -36,6 +36,7 @@ public class Agenda {
 	public void removeFavorito(int posicao) {
 		this.ListaFavoritos[posicao] = null;
 	}
+	
 	
 	/**
 	 * Acessa os dados de um contato específico.
@@ -76,8 +77,10 @@ public class Agenda {
 				+ " " + this.ListaContatos[posicao].getSobrenome() + "\n" + this.ListaContatos[posicao].getTelefone() ;
 	}
 	
-	public void adicionaListaFavorito(Contato contato, int posicao) {
+	public void adicionaFavorito(Contato contato, int posicao) {
 		this.ListaFavoritos[posicao] = contato;
 	}
+
+	
 	
 }
