@@ -24,46 +24,73 @@ class AgendaTest {
 		
 	}
 	@Test
-	//adicionar nos limites
+	/**
+	 * adiciona contato nos limites
+	 */
 	void testAdicionaFavorito() {
-		agendaBase.adicionaFavorito(contatoBase, 10);
-		agendaBase.adicionaFavorito(agendaBase.getContato(100), 1);
-		assertTrue(agendaBase.getContatoFavorito(10).equals(contatoBase));
-		assertTrue(agendaBase.getContatoFavorito(1).equals(agendaBase.getContato(100)));
+		this.agendaBase.adicionaFavorito(this.contatoBase, 10);
+		this.agendaBase.adicionaFavorito(this.agendaBase.getContato(100), 1);
+		assertTrue(this.agendaBase.getContatoFavorito(10).equals(this.contatoBase));
+		assertTrue(this.agendaBase.getContatoFavorito(1).equals(this.agendaBase.getContato(100)));
 	}
 	
 	@Test
-	//adicionar em uma posição inexistente
+	/**
+	 * Sobrescreve contato favorito
+	 */
 	void testAdicionaFavorito1() {
-
-	}
-	
-	@Test
-	//sobrescrever contato favorito
-	void testAdicionaFavorito2() {
-		agendaBase.adicionaFavorito(contatoBase, 10);
-		agendaBase.adicionaFavorito(agendaBase.getContato(2), 10);
-		assertFalse(agendaBase.getContatoFavorito(10).equals(contatoBase));
+		this.agendaBase.adicionaFavorito(this.contatoBase, 10);
+		this.agendaBase.adicionaFavorito(this.agendaBase.getContato(2), 10);
+		assertFalse(this.agendaBase.getContatoFavorito(10).equals(this.contatoBase));
 	}
 	
 	
 	@Test
-	//remove favorito da posicao limite
+	/**
+	 * Remove favorito 
+	 */
 	void testRemoveFavorito() {
-		agendaBase.adicionaFavorito(contatoBase, 10);
-		agendaBase.removeFavorito(10);
-		assertTrue(agendaBase.getContatoFavorito(10) == null);
+		this.agendaBase.adicionaFavorito(this.contatoBase, 10);
+		this.agendaBase.removeFavorito(10);
+		assertTrue(this.agendaBase.getContatoFavorito(10) == null);
 	}
 
 	@Test
-	void testCadastraContatoIntStringStringString() {
+	/**
+	 * Cadastra contato.
+	 */
+	void testCadastraContato() {
+		Contato contato = new Contato("pepino", "fatiado", "(22) 48484848");
+		this.agendaBase.cadastraContato(32, contato);
+		this.agendaBase.cadastraContato(17, "cenoura", "ralada", "(21) 65656565");
+		assertTrue(this.agendaBase.getContato(17) != null);
+		assertTrue(this.agendaBase.getContato(32).equals(contato));
+	}	
+
+	@Test
+	/**
+	 * Sobrescrevendo contato.
+	 */
+	void testCadastraContato1() {
+		assertTrue(this.agendaBase.getContato(30).equals(this.contatoBase));
+		this.agendaBase.cadastraContato(30, "cenoura", "ralada", "(21) 65656565"); 
+		assertFalse(this.agendaBase.getContato(30).equals(this.contatoBase));
+	}
+	
+	@Test
+	/**
+	 * .Impede de cadastrar dois contatos iguais
+	 */
+	void testCadastraContato2() {
+		agendaBase.cadastraContato(31, "cebola", "frita", "(04) 52255252" );
+	assertNotEquals(agendaBase.getContato(30));
+
 	}
 
 	@Test
-	void testCadastraContatoIntContato() {
-	}
-
-	@Test
+	/**
+	 * 
+	 */
 	void testImprimeContato() {
 	}
 
