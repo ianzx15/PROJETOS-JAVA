@@ -24,7 +24,7 @@ class ContatoTest {
         agendaBase.adicionaFavorito(agendaBase.getContato(1),5);
 
     }
-	
+  
 	@Test
 	/**
 	 * verifica se existem contatos iguais.
@@ -32,7 +32,7 @@ class ContatoTest {
 	void testEqualsContato() {
 		assertTrue(this.contatoBase.equals(this.contatoBase));
 	}
-	
+
 	@Test
 	/**
 	 * verifica se os contatos são diferentes.
@@ -49,8 +49,16 @@ class ContatoTest {
 		assertEquals("batata assada", this.agendaBase.getContato(2).toString());
 	}
 	
-	
-	
-	
+	@Test
+	/**
+	 * Verifica se há dois contatos iguais
+	 */
+	void testExisteIguais() {
+		Contato contato = new Contato("acerola", "gelada", "(32) 32323232");
+		assertFalse(contato.existeIguais(agendaBase.getListaContatos()));
+		agendaBase.cadastraContato(77, "acerola", "gelada", "(32) 32323232");
+		assertTrue(contato.existeIguais(agendaBase.getListaContatos()));
+		
+	}
 
 }

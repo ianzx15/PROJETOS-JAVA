@@ -14,7 +14,6 @@ public class MainAgenda {
 
 	public static void main(String[] args) {
 		Agenda agenda = new Agenda();
-
 		System.out.println("Carregando agenda inicial");
 		try {
 			/*
@@ -103,7 +102,7 @@ public class MainAgenda {
 		for (int i = 0; i < 101; i++ ) {
 			contato = agenda.getContato(i);
 			if (contato != null) {
-				System.out.println(i + contato.toString());
+				System.out.println(i + " - " + contato.toString());
 			}
 		}
 	}
@@ -114,12 +113,11 @@ public class MainAgenda {
 	}
 	
 	private static void adicionaFavorito(Agenda agenda, Scanner sc) {
-		Validacao valid = new Validacao();
 		System.out.println("\nContato> ");
 		Contato contato = agenda.getContato(sc.nextInt());
 		System.out.println("\nPosicao> ");
 		int posicaoLista = sc.nextInt();
-		if(valid.validaContato(agenda, contato, true)) {
+		if(contato.existeIguais(agenda.getListaFavoritos())) {
 			System.out.println("CONTATO JÁ CADASTRADO");
 			return;
 		} 
@@ -132,7 +130,7 @@ public class MainAgenda {
 		for (int i = 0; i < 11; i++ ) {
 			contato = agenda.getContatoFavorito(i);
 			if (contato != null) {
-				System.out.println(i + "-" + contato.toString());
+				System.out.println(i + " - " + contato.toString());
 			}
 		}
 	}
@@ -143,17 +141,14 @@ public class MainAgenda {
 	 * @param scanner Scanner para capturar qual contato.
 	 */
 	private static void exibeContato(Agenda agenda, Scanner scanner) {
-		Validacao valid = new Validacao();
-		while(true) {
-		System.out.print("\nContato> ");
-		int posicao = scanner.nextInt();
-		if (!valid.validaPosicaoLista(posicao, 100) | agenda.getContato(posicao) == null) {
-			System.out.println("POSIÇÃO INVÀLIDA");
-		return;
-		} 
+		try {
+			System.out.print("\nContato> ");
+			int posicao = scanner.nextInt();
 			System.out.println(agenda.imprimeContato(posicao));
-			break;
-	  }
+			
+		} catch(RuntimeException erro){
+			System.out.println("POSIÇÃO INVÁLIDA");
+		}
 	}
 
 	/**
@@ -163,11 +158,10 @@ public class MainAgenda {
 	 * @param scanner Scanner para pedir informações do contato.
 	 */
 	private static void cadastraContato(Agenda agenda, Scanner scanner) {
-		Validacao valid = new Validacao();
 		while (true){
 			System.out.print("\nPosição na agenda> ");
 			int posicao = scanner.nextInt();
-			if (!valid.validaPosicaoLista(posicao, 100)) {
+			if (posicao > 101|| posicao < 1) {
 				System.out.println("POSIÇÃO INVÁLIDA");
 				return;
 			}
@@ -187,11 +181,12 @@ public class MainAgenda {
 			System.out.print("\nTelefone> ");
 			String telefone = scanner.nextLine();
 			Contato contato = new Contato(nome, sobrenome, telefone);
-			if (valid.validaContato(agenda, contato, false)) {
+			
+			if (contato.existeIguais(agenda.getListaContatos())) {
 				System.out.println("CONTATO JÁ CADASTRADO");
 				return;
 			} 
-			agenda.cadastraContato(posicao, contato);
+			agenda.cadastraContato(posicao, nome, sobrenome, telefone);
 			System.out.println("CADASTRO REALIZADO");
 			break;
 			}

@@ -40,4 +40,13 @@ public class Contato {
 		return  this.nome + " " + this.sobrenome;
 	
     }
+	
+	public boolean existeIguais(Contato[] contatos) {
+		for(Contato elemento : contatos) {
+			if ( elemento != null && elemento.equals(this)) {
+				return true;
+			}
+	}
+		return false;
+	}
 }

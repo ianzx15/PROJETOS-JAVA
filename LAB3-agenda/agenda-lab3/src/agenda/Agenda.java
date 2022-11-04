@@ -42,31 +42,38 @@ public class Agenda {
 	 * @param sobrenome Sobrenome do contato.
 	 * @param telefone Telefone do contato.
 	 */
-	public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
+	
+	public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) throws IllegalArgumentException {
+			
+		
 			Contato contato = new Contato(nome, sobrenome, telefone);
 			this.ListaContatos[posicao] = contato;
 	}
 	
-	public void cadastraContato(int posicao, Contato contato) {
-		this.ListaContatos[posicao] = contato;
-}
-	
-	public String imprimeContato(int posicao) {
-		for(Contato elemento: this.ListaFavoritos) {
-			if(elemento != null && elemento.equals(this.getContato(posicao))) {
-				return "\n" + "❤️ " + this.ListaContatos[posicao].getNome() 
-						+ " " + this.ListaContatos[posicao].getSobrenome() + "\n" + this.ListaContatos[posicao].getTelefone() ;
-
-			}
-			
+	public String imprimeContato(int posicao) throws RuntimeException {
+		Contato contato = this.ListaContatos[posicao];
+		
+		if (posicao >= 101 || posicao < 1 || contato == null) {
+			throw new RuntimeException("POSIÇÃO INVÀLIDA");
 		}
-		return "\n" + this.ListaContatos[posicao].getNome() 
-				+ " " + this.ListaContatos[posicao].getSobrenome() + "\n" + this.ListaContatos[posicao].getTelefone() ;
-	}
+			else {
+		for(Contato elemento: this.ListaFavoritos) {
+			if(elemento != null && elemento.equals(contato)) {
+				return "\n" + "❤️ " + contato.getNome() 
+						+ " " + contato.getSobrenome() 
+						+ "\n" + contato.getTelefone() ;
+			}
+		}
+		return "\n" + contato.getNome() 
+				+ " " + contato.getSobrenome() + "\n" + contato.getTelefone();
+		}
+	
+}
 	
 	public void adicionaFavorito(Contato contato, int posicao) {
 		this.ListaFavoritos[posicao] = contato;
 	}
+	
 
 	
 	
