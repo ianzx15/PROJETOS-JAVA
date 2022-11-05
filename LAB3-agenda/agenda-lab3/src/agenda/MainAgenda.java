@@ -32,9 +32,9 @@ public class MainAgenda {
 			escolha = menu(scanner);
 			comando(escolha, agenda, scanner);
 		}
-
 	}
 
+	
 	/**
 	 * Exibe o menu e captura a escolha do/a usuário/a.
 	 * 
@@ -55,6 +55,7 @@ public class MainAgenda {
 						"Opção> ");
 		return scanner.next().toUpperCase();
 	}
+	
 
 	/**
 	 * Interpreta a opção escolhida por quem está usando o sistema.
@@ -91,8 +92,9 @@ public class MainAgenda {
 		}
 	}
 
+	
 	/**
-	 * Imprime lista de contatos da agenda.
+	 * Imprime uma representação em lista de todos os contatos..
 	 * 
 	 * @param agenda A agenda sendo manipulada.
 	 */
@@ -107,11 +109,27 @@ public class MainAgenda {
 		}
 	}
 	
+	
+	/**
+	 * Remove um contato da lista de favoritos.
+	 * @param agenda o objeto que possui a lista de 
+	 * contatos favoritos
+	 * @param sc o objeto que permite capturar
+	 * a posição para remover o contato dos favoritos.
+	 */
 	private static void removeFavorito(Agenda agenda, Scanner sc) {
 		System.out.println("\nPosicao> ");
 		agenda.removeFavorito(sc.nextInt());
 	}
 	
+	
+	/**
+	 * Adiciona um contato à lista de favoritos.
+	 * @param agenda o objeto que possui a lista de
+	 *  contatos favoritos.
+	 * @param sc o objeto que permite capturar o contato
+	 * e a posição em que ele será colocado.
+	 */
 	private static void adicionaFavorito(Agenda agenda, Scanner sc) {
 		System.out.println("\nContato> ");
 		Contato contato = agenda.getContato(sc.nextInt());
@@ -125,6 +143,13 @@ public class MainAgenda {
 		System.out.println("CONTATO FAVORITADO NA POSIÇÃO " + posicaoLista);
 	}
 
+	
+	/**
+	 * Imprime uma representação em lista de todos
+	 * os contatos favoritados.
+	 * @param agenda o objeto que possui a lista de
+	 * contatos favoritos.
+	 */
 	private static void listarFavoritos(Agenda agenda) {
 		Contato contato = new Contato();
 		for (int i = 0; i < 11; i++ ) {
@@ -134,28 +159,32 @@ public class MainAgenda {
 			}
 		}
 	}
+	
+	
 	/**
 	 * Imprime os detalhes de um dos contatos da agenda. 
 	 * 
-	 * @param agenda A agenda.
-	 * @param scanner Scanner para capturar qual contato.
+	 * @param agenda o objeto que possui a lista de 
+	 * contatos.
+	 * @param sc o objeto que permite capturar o contato.
 	 */
 	private static void exibeContato(Agenda agenda, Scanner scanner) {
-		try {
 			System.out.print("\nContato> ");
 			int posicao = scanner.nextInt();
+			if (posicao >= 101 || posicao < 1 || agenda.getContato(posicao) == null) {
+				System.out.println("POSIÇÃO INVÁLIDA");
+				return;
+			}
 			System.out.println(agenda.imprimeContato(posicao));
-			
-		} catch(RuntimeException erro){
-			System.out.println("POSIÇÃO INVÁLIDA");
-		}
 	}
+			
 
 	/**
 	 * Cadastra um contato na agenda. 
 	 * 
-	 * @param agenda A agenda.
-	 * @param scanner Scanner para pedir informações do contato.
+	 * @param agenda o objeto que possui a lista de contatos.
+	 * @param scanner o objeto que permite capturar os atributos
+	 * do contato a ser criado.
 	 */
 	private static void cadastraContato(Agenda agenda, Scanner scanner) {
 		while (true){

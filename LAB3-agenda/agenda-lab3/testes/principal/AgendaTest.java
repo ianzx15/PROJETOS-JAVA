@@ -26,20 +26,27 @@ class AgendaTest {
 	}
 	@Test
 	/**
-	 * adiciona contato nos limites
+	 * adiciona contato no limite inferior
 	 */
-	void testAdicionaFavorito() {
-		agendaBase.adicionaFavorito(contatoBase, 10);
+	void testAdicionaFavorito1() {
 		agendaBase.adicionaFavorito(agendaBase.getContato(100), 1);
-		assertTrue(agendaBase.getContatoFavorito(10).equals(contatoBase));
 		assertTrue(agendaBase.getContatoFavorito(1).equals(agendaBase.getContato(100)));
+	}
+	
+	@Test
+	/**
+	 * adiciona contato no limite superior
+	 */
+	void testAdicionaFavorito2() {
+		agendaBase.adicionaFavorito(contatoBase, 10);
+		assertTrue(agendaBase.getContatoFavorito(10).equals(contatoBase));
 	}
 	
 	@Test
 	/**
 	 * Sobrescreve contato favorito
 	 */
-	void testAdicionaFavorito1() {
+	void testAdicionaFavorito3() {
 		agendaBase.adicionaFavorito(contatoBase, 10);
 		agendaBase.adicionaFavorito(agendaBase.getContato(2), 10);
 		assertFalse(agendaBase.getContatoFavorito(10).equals(contatoBase));
@@ -90,7 +97,9 @@ class AgendaTest {
 	 * Cadastra contato com nome vazio.
 	 */
 	void testCadastraContato3() {
-		
+		try {
+			agendaBase.cadastraContato(77, "", "sobrenome", "(22) 21212121");
+		} catch (RuntimeException erro){}
 	}
 	
 	@Test
@@ -98,7 +107,10 @@ class AgendaTest {
 	 * Cadastra contatos iguais.
 	 */
 	void testCadastraContato4() {
-		
+		try {
+			agendaBase.cadastraContato(89, "arroz", "feijao", "(45) 47474747");
+			agendaBase.cadastraContato(85, "arroz", "feijao", "(45) 47474747");
+		} catch (RuntimeException erro){}
 	}
 	
 	@Test
@@ -106,7 +118,9 @@ class AgendaTest {
 	 * Cadastra contato acima do limite.
 	 */
 	void testCadastraContato5() {
-		
+		try {
+			agendaBase.cadastraContato(102, "limao", "laranja", "(32) 10101010");
+		} catch (RuntimeException erro) {}
 	}
 	
 	@Test
@@ -114,7 +128,9 @@ class AgendaTest {
 	 * Cadastra contato abaixo do limte.
 	 */
 	void testCadastraContato6() {
-		
+		try {
+			agendaBase.cadastraContato(0, "limao", "laranja", "(32) 10101010");
+		} catch (RuntimeException erro) {}
 	}
 	
 	@Test
@@ -122,7 +138,8 @@ class AgendaTest {
 	 * Cadastra contato com telefone vazio.
 	 */
 	void testCadastraContato7() {
-		
+		agendaBase.cadastraContato(56, "limao", "laranja", "");
+		assertEquals("\nlimao laranja\n", agendaBase.imprimeContato(56));
 	}
 	
 	@Test
@@ -143,7 +160,7 @@ class AgendaTest {
 		assertNull(agendaBase.getContato(15));
 		try {
 			agendaBase.imprimeContato(15);
-		} catch (IllegalArgumentException error) {}
+		} catch (RuntimeException error) {}
 	}
 	
 	
@@ -174,7 +191,7 @@ class AgendaTest {
 		assertNull(agendaBase.getContato(0));
 		try {
 			agendaBase.getContato(0);
-		} catch (IllegalArgumentException erro) {}
+		} catch (RuntimeException erro) {}
 	}
 	
 	@Test
