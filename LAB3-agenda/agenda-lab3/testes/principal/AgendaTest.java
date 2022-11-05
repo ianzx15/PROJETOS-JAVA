@@ -22,8 +22,8 @@ class AgendaTest {
 		
 		this.contatoBase = new Contato("cebola", "frita", "(04) 52255252");
 		agendaBase.cadastraContato(30, "cebola", "frita", "(04) 52255252");
-		
 	}
+	
 	@Test
 	/**
 	 * adiciona contato no limite inferior
@@ -52,7 +52,6 @@ class AgendaTest {
 		assertFalse(agendaBase.getContatoFavorito(10).equals(contatoBase));
 	}
 	
-	
 	@Test
 	/**
 	 * Remove favorito 
@@ -71,7 +70,7 @@ class AgendaTest {
 		agendaBase.cadastraContato(1, "cenoura", "ralada", "(21) 65656565");
 		assertTrue(agendaBase.getContato(1) != null);
 	}	
-
+    
 	@Test
 	/**
 	 * Cadastra contato no maior limte.
@@ -79,12 +78,11 @@ class AgendaTest {
 	void testCadastraContato1() {
 		agendaBase.cadastraContato(100, "pepino", "fatiado", "(22) 48484848");
 		assertTrue(agendaBase.getContato(100) != null);
-		
 	}
 	
 	@Test
 	/**
-	 * Sobrescrevendo contato.
+	 * Sobrescreve contato.
 	 */
 	void testCadastraContato2() {
 		assertTrue(agendaBase.getContato(30).equals(contatoBase));
@@ -99,7 +97,8 @@ class AgendaTest {
 	void testCadastraContato3() {
 		try {
 			agendaBase.cadastraContato(77, "", "sobrenome", "(22) 21212121");
-		} catch (RuntimeException erro){}
+			fail("ENTRADA INVÁLIDA");
+		} catch (IllegalArgumentException erro){}
 	}
 	
 	@Test
@@ -110,7 +109,8 @@ class AgendaTest {
 		try {
 			agendaBase.cadastraContato(89, "arroz", "feijao", "(45) 47474747");
 			agendaBase.cadastraContato(85, "arroz", "feijao", "(45) 47474747");
-		} catch (RuntimeException erro){}
+			fail("CONTATO JÁ CADASTRADO");
+		} catch (IllegalArgumentException erro){}
 	}
 	
 	@Test
@@ -120,7 +120,8 @@ class AgendaTest {
 	void testCadastraContato5() {
 		try {
 			agendaBase.cadastraContato(102, "limao", "laranja", "(32) 10101010");
-		} catch (RuntimeException erro) {}
+			fail("POSIÇÃO INVÁLIDA");
+		} catch (IndexOutOfBoundsException erro) {}
 	}
 	
 	@Test
@@ -130,7 +131,8 @@ class AgendaTest {
 	void testCadastraContato6() {
 		try {
 			agendaBase.cadastraContato(0, "limao", "laranja", "(32) 10101010");
-		} catch (RuntimeException erro) {}
+			fail("POSIÇÃO INVÁLIDA");
+		} catch (IndexOutOfBoundsException erro) {}
 	}
 	
 	@Test
@@ -144,7 +146,7 @@ class AgendaTest {
 	
 	@Test
 	/**
-	 * Retorna o contato sem telefone cadastrado.
+	 * Verifica o contato sem telefone cadastrado.
 	 */
 	void testImprimeContato1() {
 		agendaBase.cadastraContato(66, "milho", "pipoca", "");
@@ -160,23 +162,21 @@ class AgendaTest {
 		assertNull(agendaBase.getContato(15));
 		try {
 			agendaBase.imprimeContato(15);
-		} catch (RuntimeException error) {}
+			fail("POSIÇÃO INVÁLIDA");
+		} catch (NullPointerException error) {}
 	}
-	
-	
 	
 	@Test
 	/**
-	 * Retorna o contato formatado 
+	 * Verifica o contato formatado 
 	 */
 	void testImprimeContato3() {
 		assertEquals("\nbatata assada\n(55) 22222222", agendaBase.imprimeContato(2));
 	}
-
 	
 	@Test
 	/**
-	 * Retorna o contato formatado se está favoritado.
+	 * Verifica o contato formatado que está favoritado.
 	 */
 	void testImprimeContato4() {
 		agendaBase.adicionaFavorito(contatoBase, 2);
@@ -189,9 +189,6 @@ class AgendaTest {
 	 */
 	void testImprimeContato5() {
 		assertNull(agendaBase.getContato(0));
-		try {
-			agendaBase.getContato(0);
-		} catch (RuntimeException erro) {}
 	}
 	
 	@Test
@@ -201,6 +198,7 @@ class AgendaTest {
 	void testImprimeContato6() {
 		try {
 			agendaBase.getContato(101);
-		} catch (RuntimeException erro) {}
+			fail("POSIÇÃO INVÁLIDA");
+		} catch (IndexOutOfBoundsException erro) {}
 	}
 }

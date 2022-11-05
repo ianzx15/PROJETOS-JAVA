@@ -22,7 +22,6 @@ class ContatoTest {
         agendaBase.adicionaFavorito(agendaBase.getContato(2),1);
         agendaBase.adicionaFavorito(agendaBase.getContato(100),10);
         agendaBase.adicionaFavorito(agendaBase.getContato(1),5);
-
     }
   
 	@Test
@@ -31,14 +30,6 @@ class ContatoTest {
 	 */
 	void testEqualsContato() {
 		assertTrue(this.contatoBase.equals(this.contatoBase));
-	}
-
-	@Test
-	/**
-	 * verifica se os contatos são diferentes.
-	 */
-	void testEqualsContato1() {
-		assertFalse(this.contatoBase.equals(this.agendaBase.getContato(100)));
 	}
 
 	@Test

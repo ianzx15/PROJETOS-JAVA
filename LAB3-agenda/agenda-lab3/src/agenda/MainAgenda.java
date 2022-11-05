@@ -112,9 +112,9 @@ public class MainAgenda {
 	
 	/**
 	 * Remove um contato da lista de favoritos.
-	 * @param agenda o objeto que possui a lista de 
+	 * @param agenda O objeto que possui a lista de 
 	 * contatos favoritos
-	 * @param sc o objeto que permite capturar
+	 * @param sc O objeto que permite capturar
 	 * a posição para remover o contato dos favoritos.
 	 */
 	private static void removeFavorito(Agenda agenda, Scanner sc) {
@@ -125,9 +125,9 @@ public class MainAgenda {
 	
 	/**
 	 * Adiciona um contato à lista de favoritos.
-	 * @param agenda o objeto que possui a lista de
+	 * @param agenda O objeto que possui a lista de
 	 *  contatos favoritos.
-	 * @param sc o objeto que permite capturar o contato
+	 * @param sc O objeto que permite capturar o contato
 	 * e a posição em que ele será colocado.
 	 */
 	private static void adicionaFavorito(Agenda agenda, Scanner sc) {
@@ -135,7 +135,10 @@ public class MainAgenda {
 		Contato contato = agenda.getContato(sc.nextInt());
 		System.out.println("\nPosicao> ");
 		int posicaoLista = sc.nextInt();
-		if(contato.existeIguais(agenda.getListaFavoritos())) {
+		if (posicaoLista > 10 || posicaoLista < 1) {
+			System.out.println("POSIÇÃO INVÁLIDA");
+			return;
+		} else if(contato.existeIguais(agenda.getListaFavoritos())) {
 			System.out.println("CONTATO JÁ CADASTRADO");
 			return;
 		} 
@@ -147,7 +150,7 @@ public class MainAgenda {
 	/**
 	 * Imprime uma representação em lista de todos
 	 * os contatos favoritados.
-	 * @param agenda o objeto que possui a lista de
+	 * @param agenda O objeto que possui a lista de
 	 * contatos favoritos.
 	 */
 	private static void listarFavoritos(Agenda agenda) {
@@ -164,9 +167,9 @@ public class MainAgenda {
 	/**
 	 * Imprime os detalhes de um dos contatos da agenda. 
 	 * 
-	 * @param agenda o objeto que possui a lista de 
+	 * @param agenda O objeto que possui a lista de 
 	 * contatos.
-	 * @param sc o objeto que permite capturar o contato.
+	 * @param sc O objeto que permite capturar o contato.
 	 */
 	private static void exibeContato(Agenda agenda, Scanner scanner) {
 			System.out.print("\nContato> ");
@@ -182,15 +185,15 @@ public class MainAgenda {
 	/**
 	 * Cadastra um contato na agenda. 
 	 * 
-	 * @param agenda o objeto que possui a lista de contatos.
-	 * @param scanner o objeto que permite capturar os atributos
+	 * @param agenda O objeto que possui a lista de contatos.
+	 * @param scanner O objeto que permite capturar os atributos
 	 * do contato a ser criado.
 	 */
 	private static void cadastraContato(Agenda agenda, Scanner scanner) {
 		while (true){
 			System.out.print("\nPosição na agenda> ");
 			int posicao = scanner.nextInt();
-			if (posicao > 101|| posicao < 1) {
+			if (posicao > 100|| posicao < 1) {
 				System.out.println("POSIÇÃO INVÁLIDA");
 				return;
 			}
@@ -200,13 +203,9 @@ public class MainAgenda {
 			if (nome.isEmpty()) {
 				System.out.println("CONTATO INVÁLIDO");
 				return;
-			} 
+			}
 			System.out.print("\nSobrenome> ");
 			String sobrenome = scanner.nextLine();
-			if (sobrenome.isEmpty()) {
-				System.out.println("CONTATO INVÁLIDO");
-				return;
-			} 
 			System.out.print("\nTelefone> ");
 			String telefone = scanner.nextLine();
 			Contato contato = new Contato(nome, sobrenome, telefone);

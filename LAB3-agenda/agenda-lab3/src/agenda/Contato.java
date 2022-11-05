@@ -13,6 +13,7 @@ public class Contato {
 	private String sobrenome;
 	private String telefone;
 	
+	
 	/**
 	 * Constrói um contato vazio.
 	 */
@@ -20,11 +21,12 @@ public class Contato {
 		
 	}
 	
+	
 	/**
 	 * Constrói um contato a partir do nome, sobrenome e telefone.
-	 * @param nome o nome do contato.
-	 * @param sobrenome o sobrenome do contato.
-	 * @param telefone o telefone do contato.
+	 * @param nome O nome do contato.
+	 * @param sobrenome O sobrenome do contato.
+	 * @param telefone O telefone do contato.
 	 */
 	public Contato(String nome, String sobrenome, String telefone) {
 		this.nome = nome;
@@ -32,29 +34,33 @@ public class Contato {
 		this.telefone = telefone;
 	}
 	
+	
 	/**
 	 * Retorna o nome do contato.
-	 * @return o nome do contato.
+	 * @return O nome do contato.
 	 */
 	public String getNome() {
 		return this.nome;
 	}
 	
+	
 	/**
 	 * Retorna o sobrenome do contato.
-	 * @return o sobrenome do contato.
+	 * @return O sobrenome do contato.
 	 */
 	public String getSobrenome() {
 		return this.sobrenome;
 	}
 	
+	
 	/**
 	 * Retorna o telefone do contato.
-	 * @return o telefone do contato.
+	 * @return O telefone do contato.
 	 */
 	public String getTelefone() {
 		return this.telefone;
 	}
+	
 	
 	/**
 	 * Compara dois objetos da classe Contato.
@@ -69,19 +75,20 @@ public class Contato {
 		return false;
 		}
 	
+	
 	/**
 	 * Retorna a string que representa os atributos do contato.
-	 * @return a string formatada de nome e sobrenome
+	 * @return A string formatada de nome e sobrenome
 	 */
 	@Override
 	public String toString() {
 		return  this.nome + " " + this.sobrenome;
-	
     }
+	
 	
 	/**
 	 * Verifica se existe um contato específico em uma lista de contatos.
-	 * @param contatos a lista de contatos.
+	 * @param contatos A lista de contatos.
 	 * @return true ou false.
 	 */
 	public boolean existeIguais(Contato[] contatos) {
