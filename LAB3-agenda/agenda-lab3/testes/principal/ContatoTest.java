@@ -28,7 +28,7 @@ class ContatoTest {
 	/**
 	 * verifica se existem contatos iguais.
 	 */
-	void testEqualsContato() {
+	void testEquals() {
 		assertTrue(this.contatoBase.equals(this.contatoBase));
 	}
 
@@ -42,14 +42,13 @@ class ContatoTest {
 	
 	@Test
 	/**
-	 * Verifica se há dois contatos iguais
+	 * Verifica se o contato já existe na lista
 	 */
 	void testExisteIguais() {
 		Contato contato = new Contato("acerola", "gelada", "(32) 32323232");
 		assertFalse(contato.existeIguais(agendaBase.getListaContatos()));
 		agendaBase.cadastraContato(77, "acerola", "gelada", "(32) 32323232");
 		assertTrue(contato.existeIguais(agendaBase.getListaContatos()));
-		
 	}
 
 }

@@ -97,7 +97,7 @@ public class Agenda {
 		Contato contato = new Contato(nome, sobrenome, telefone);
 			if (posicao > 100 || posicao < 1 ) {
 				throw new IndexOutOfBoundsException("POSIÇÃO INVÁLIDA");
-			} if(nome.isEmpty()) {
+			} if(nome.isBlank()) {
 				throw new IllegalArgumentException("CONTATO INVÁLIDO");
 			} if (contato.existeIguais(this.getListaContatos())){
 				throw new IllegalArgumentException("CONTATO JÁ CADASTRADO");

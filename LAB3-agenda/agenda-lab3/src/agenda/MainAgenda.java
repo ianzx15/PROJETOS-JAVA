@@ -200,7 +200,7 @@ public class MainAgenda {
 			scanner.nextLine();
 			System.out.print("\nNome> ");
 			String nome = scanner.nextLine();
-			if (nome.isEmpty()) {
+			if (nome.isBlank()) {
 				System.out.println("CONTATO INVÁLIDO");
 				return;
 			}

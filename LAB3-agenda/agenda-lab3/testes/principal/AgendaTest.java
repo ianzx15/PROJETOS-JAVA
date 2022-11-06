@@ -54,6 +54,16 @@ class AgendaTest {
 	
 	@Test
 	/**
+	 * Cadastra um contato como favorito
+	 */
+	void testAdicionaFavorito4(){
+		agendaBase.adicionaFavorito(contatoBase, 5);
+		assertTrue(agendaBase.getContatoFavorito(5).equals(contatoBase));
+	}
+	
+	
+	@Test
+	/**
 	 * Remove favorito 
 	 */
 	void testRemoveFavorito() {
