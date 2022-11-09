@@ -1,4 +1,4 @@
-package LULA;
+package lula;
 
 import java.util.ArrayList;
 
@@ -8,11 +8,17 @@ public class CAD_COMITIVA {
 	private int numPessoas;
 	private int contato;
 	
+	
+	
 	public CAD_COMITIVA(int id, String descricao, int numPessoas, int contato) {
 		this.id = id;
 		this.descricao = descricao;
 		this.numPessoas = numPessoas;
 		this.contato = contato;
+	}
+	
+	public int getNumPessoas() {
+		return this.numPessoas;
 	}
 	
 	public int getId() {
@@ -29,8 +35,10 @@ public class CAD_COMITIVA {
 	
 	@Override
 	public String toString() {
-		return "\nID: " + this.contato + "\nComitiva: " + this.descricao
+		return "ID: " + this.id + "\nComitiva: " + this.descricao
 				+ "\nIntegrantes: " + this.numPessoas + "\nContato: " + this.contato + "\n";
 	}
+	
+	
 	
 }

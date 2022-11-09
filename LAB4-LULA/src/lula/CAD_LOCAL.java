@@ -1,4 +1,4 @@
-package LULA;
+package lula;
 
 import java.util.ArrayList;
 
@@ -8,11 +8,17 @@ public class CAD_LOCAL {
 	private String nome;
 	private String identificador;
 	private int ramal;
+	private ArrayList<CAD_COMITIVA> visitas;
 	
 	public CAD_LOCAL(String identificador, String nome, int ramal) {
 		this.identificador = identificador;
 		this.nome = nome;
 		this.ramal = ramal;
+		this.visitas = new ArrayList<CAD_COMITIVA>();
+		}
+	
+	public ArrayList<CAD_COMITIVA> getListaVisitas() {
+		return this.visitas;
 	}
 	
 	public String getIdentificador() {
@@ -38,9 +44,8 @@ public class CAD_LOCAL {
 	 
 	 @Override
 	 public String toString() {
-		return this.identificador + " - " + this.nome + " - " + this.ramal;
+		return this.identificador + " - " + this.nome + " - " + this.ramal + "\n";
 		}
-	 
 	 
 	
 }
