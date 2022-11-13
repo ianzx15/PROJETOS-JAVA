@@ -1,6 +1,5 @@
 package ControleAlunos;
 
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class MainControle {
@@ -20,39 +19,55 @@ public class MainControle {
 		
 	}
 	
-	private static void comando(String opcao) {
+	private static void comando(String opcao, ControleAlunos alunos) {
 		switch (opcao) {
 		case "C":
-			cadastrarAluno();
+			cadastrarAluno(alunos);
 			break;
-		case "E":
-			exibirAluno();
-			break;
-		case "N":
-			criaGrupo();
-			break;
-		case "A": 
-			alocarAluno();
-			break;
-		case "O":
-			exibirGruposDoAluno();
-		case "S":
-			sair();
+//		case "E":
+//			exibirAluno();
+//			break;
+//		case "N":
+//			criaGrupo();
+//			break;
+//		case "A": 
+//			alocarAluno();
+//			break;
+//		case "O":
+//			exibirGruposDoAluno();
+//		case "S":
+//			sair();
 		default:
 			break;
 		}
 	}
 	
-	public void cadastrarAluno() {
+	public static void cadastrarAluno(ControleAlunos alunos) {
+		while (true) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Matrícula: ");
-		
+		String matricula = sc.nextLine();
+		System.out.println("NOME: ");
+		String nome = sc.nextLine();
+		System.out.println("Curso: ");
+		String curso = sc.nextLine();
+
+		try {
+			alunos.cadastrarAluno(matricula, nome, curso);
+		} catch (RuntimeException erro) {
+			System.out.println(erro.getMessage());
+			break;
+		}
+		System.out.println("CADASTRO REALIZADO!");
+		break;
+		}
 	}
 	
 	public static void main(String[] args) {
+		ControleAlunos alunos = new ControleAlunos();
 		while (true) {
 		Scanner sc = new Scanner(System.in);
-		comando(menu(sc));
+		comando(menu(sc), alunos);
 		}
 	}
 	
