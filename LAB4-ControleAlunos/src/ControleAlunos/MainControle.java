@@ -19,20 +19,21 @@ public class MainControle {
 		
 	}
 	
-	private static void comando(String opcao, ControleAlunos alunos) {
+	private static void comando(String opcao, Controle controle) {
+		Scanner scanner = new Scanner(System.in);
 		switch (opcao) {
 		case "C":
-			cadastrarAluno(alunos);
+			cadastrarAluno(controle, scanner);
 			break;
-//		case "E":
-//			exibirAluno();
-//			break;
-//		case "N":
-//			criaGrupo();
-//			break;
-//		case "A": 
-//			alocarAluno();
-//			break;
+		case "E":
+			exibirAluno(controle, scanner);
+			break;
+		case "N":
+			criaGrupo(controle, scanner);
+			break;
+		case "A": 
+			alocarOuPertinencia(controle, scanner);
+			break;
 //		case "O":
 //			exibirGruposDoAluno();
 //		case "S":
@@ -42,32 +43,71 @@ public class MainControle {
 		}
 	}
 	
-	public static void cadastrarAluno(ControleAlunos alunos) {
-		while (true) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Matrícula: ");
-		String matricula = sc.nextLine();
-		System.out.println("NOME: ");
-		String nome = sc.nextLine();
-		System.out.println("Curso: ");
-		String curso = sc.nextLine();
-
+	public static void cadastrarAluno(Controle controle, Scanner scanner) {
+			System.out.println("Matrícula: ");
+			String matricula = scanner.nextLine();
+			System.out.println("NOME: ");
+			String nome = scanner.nextLine();
+			System.out.println("Curso: ");
+			String curso = scanner.nextLine();
 		try {
-			alunos.cadastrarAluno(matricula, nome, curso);
-		} catch (RuntimeException erro) {
-			System.out.println(erro.getMessage());
-			break;
-		}
-		System.out.println("CADASTRO REALIZADO!");
-		break;
+			controle.cadastrarAluno(matricula, nome, curso);
+			System.out.println("CADASTRO REALIZADO!");
+		} catch (NullPointerException erro){
+			throw erro;
+		}		
+		  catch (IllegalArgumentException a) {
+			System.out.println(a.getMessage());
 		}
 	}
 	
+	public static void exibirAluno(Controle controle, Scanner scanner) {
+		System.out.println("Matrícula: ");
+		String matricula = scanner.next();
+		try {
+			System.out.println(controle.consultarAluno(matricula));
+		} catch(NullPointerException erro){
+			System.out.println(erro.getMessage());
+		}
+	}
+	
+	public static void criaGrupo(Controle controle, Scanner scanner){
+		System.out.println("Grupo: ");
+		String tema = scanner.next();
+		System.out.println("Tamanho: ");
+		int tamanho = scanner.nextInt();
+		try {
+			controle.cadastraGrupo(tema, tamanho);
+			System.out.println("CADASTRO REALIZADO!");
+		} catch(IllegalArgumentException erro){
+			System.out.println(erro.getMessage());
+		}
+	}
+	
+	public static void alocarOuPertinencia(Controle controle, Scanner scanner) {
+		System.out.println("(A)locar Aluno ou (P)ertinência a Grupo? ");
+		String escolha = scanner.next();
+		if (escolha.toUpperCase().equals("A")) {
+			System.out.println("Matrícula: ");
+			String matricula = scanner.next();
+			System.out.println("Grupo: ");
+			String grupo = scanner.next();
+			try {
+				controle.alocaAluno(matricula, grupo);
+			} catch (IllegalArgumentException erro){
+				System.out.println(erro.getMessage());
+			} catch (IndexOutOfBoundsException erro) {
+				System.out.println(erro.getMessage());
+			}
+		}
+	}
+	
+	
 	public static void main(String[] args) {
-		ControleAlunos alunos = new ControleAlunos();
+		Controle controle = new Controle();
 		while (true) {
 		Scanner sc = new Scanner(System.in);
-		comando(menu(sc), alunos);
+		comando(menu(sc), controle);
 		}
 	}
 	

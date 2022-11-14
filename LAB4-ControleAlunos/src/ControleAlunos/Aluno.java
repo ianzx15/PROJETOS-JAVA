@@ -9,6 +9,17 @@ public class Aluno {
 		this.matricula = matricula;
 		this.curso  = curso;
 	}
-
+	
+	public String getMatricula() {
+		return this.matricula;
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public String getCurso() {
+		return this.curso;
+	}
 	
 }
