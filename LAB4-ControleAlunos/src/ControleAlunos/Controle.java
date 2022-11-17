@@ -2,6 +2,7 @@ package ControleAlunos;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Controle {
 	
@@ -62,5 +63,17 @@ public class Controle {
 			throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
 		}
 		return grupo.getaAlunos().contains(aluno);
+	}
+	
+	public String  enumeraGrupos(String matricula) {
+		Aluno aluno = this.alunos.get(matricula);
+		String elemento = "";
+		for (Grupo grupo : this.grupos.values()) {
+			if (grupo.getaAlunos().contains(aluno)) {
+				elemento +=  "- " + grupo.getTema() + " " + grupo.getaAlunos().size()
+						+ "/" + grupo.getTamanho() + "\n";
+			}
+		}
+		return "Grupos: \n" + elemento;
 	}
 }

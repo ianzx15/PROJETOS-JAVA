@@ -35,10 +35,10 @@ public class MainControle {
 			alocarOuPertinencia(controle, scanner);
 			break;
 		case "O":
-			exibirGruposDoAluno();
+			exibirGruposDoAluno(controle, scanner);
 			break;
-//		case "S":
-//			sair();
+		case "S":
+			sair();
 		default:
 			break;
 		}
@@ -120,7 +120,12 @@ public class MainControle {
 	}
 	
 	public static void exibirGruposDoAluno(Controle controle, Scanner scanner) {
-		
+		System.out.println("Aluno: ");
+		System.out.println(controle.enumeraGrupos(scanner.next()));
+	}
+	
+	public static void sair() {
+		System.exit(0);
 	}
 	
 	public static void main(String[] args) {
