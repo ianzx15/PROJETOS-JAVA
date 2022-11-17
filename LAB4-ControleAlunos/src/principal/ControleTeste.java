@@ -58,4 +58,37 @@ class ControleTeste {
 	@Test
 	void alocaAluno1() {
 	}
+	//Alocando aluno em um grupo que não existe
+	@Test
+	void alocaAluno2() {
+	}
+	//Alocando aluno que não existe
+	@Test
+	void alocaAluno3() {
+	}
+	
+	//Alocando aluno que já foi alocado
+	@Test
+	void alocaAluno4() {
+	}
+	
+	//Alocando aluno acima do limite do grupo
+	@Test
+	void alocaAluno5() {
+	}
+	
+	//Aluno pertence ao grupo
+	@Test
+	void pertinencia1() {
+	}
+	
+	//Aluno não pertence ao grupo
+	@Test
+	void pertinencia2() {
+	}
+	
+	//Grupo não existe
+	@Test
+	void pertinencia3() {
+	}
 }

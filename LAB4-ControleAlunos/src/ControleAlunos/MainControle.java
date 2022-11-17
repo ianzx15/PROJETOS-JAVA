@@ -11,7 +11,7 @@ public class MainControle {
 						"(E)xibir Aluno\n" +
 						"(N)ovo Grupo\n" +
 						"(A)locar Aluno no Grupo e Verficar pertinência a Grupos\n" +
-						"(O)lhaí quais grupos o Aluno Tá" +
+						"(O)lhaí quais grupos o Aluno Tá\n" +
 						"(S)im, quero Fechar o Programa!" +
 						"\n" + 
 						"Opção> ");
@@ -34,8 +34,9 @@ public class MainControle {
 		case "A": 
 			alocarOuPertinencia(controle, scanner);
 			break;
-//		case "O":
-//			exibirGruposDoAluno();
+		case "O":
+			exibirGruposDoAluno();
+			break;
 //		case "S":
 //			sair();
 		default:
@@ -87,11 +88,13 @@ public class MainControle {
 	public static void alocarOuPertinencia(Controle controle, Scanner scanner) {
 		System.out.println("(A)locar Aluno ou (P)ertinência a Grupo? ");
 		String escolha = scanner.next();
+		String grupo;
+		String matricula;
 		if (escolha.toUpperCase().equals("A")) {
 			System.out.println("Matrícula: ");
-			String matricula = scanner.next();
+			matricula = scanner.next();
 			System.out.println("Grupo: ");
-			String grupo = scanner.next();
+			grupo = scanner.next();
 			try {
 				controle.alocaAluno(matricula, grupo);
 			} catch (IllegalArgumentException erro){
@@ -99,9 +102,26 @@ public class MainControle {
 			} catch (IndexOutOfBoundsException erro) {
 				System.out.println(erro.getMessage());
 			}
+		} else {
+			System.out.println("GRUPO: ");
+			grupo = scanner.next();
+			System.out.println("ALUNO: ");
+			matricula = scanner.next();
+			try {
+				if(controle.pertenceGrupo(grupo, matricula)) {
+					System.out.println("ALUNO PERTENCE AO GRUPO.");
+				} else { 
+				System.out.println("ALUNO NÃO PERTENCE AO GRUPO.");
+				}
+			}catch (IllegalArgumentException erro) {
+				System.out.println(erro.getMessage());
+			}
 		}
 	}
 	
+	public static void exibirGruposDoAluno(Controle controle, Scanner scanner) {
+		
+	}
 	
 	public static void main(String[] args) {
 		Controle controle = new Controle();

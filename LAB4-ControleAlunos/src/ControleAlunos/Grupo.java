@@ -4,28 +4,24 @@ import java.util.HashSet;
 
 public class Grupo {
 	private String tema;
-	private HashSet<Aluno> grupo;
+	private HashSet <Aluno> alunos;
 	private int tamanho;
 	
 	public Grupo (String tema, int tamanho) {
 		this.tema = tema;
-		this.grupo = new HashSet<Aluno>();	
+		this.alunos = new HashSet<Aluno>();	
 		this.tamanho = tamanho;
 	}
 	
 	public HashSet<Aluno> getaAlunos() {
-		return this.grupo;
+		return this.alunos;
 	}
 	
 	public int getTamanho() {
 		return this.tamanho;
 	}
-	//PROBLEMA 1 - NÃO LANÇA EXCEÇÃO
 	public void adicionaAoGrupo(Aluno aluno) {
-		if (this.grupo.size() > this.tamanho) {
-			throw new IndexOutOfBoundsException("GRUPO CHEIO!");
-		}
-		this.grupo.add(aluno);
+		this.alunos.add(aluno);
 	}
 	
 	

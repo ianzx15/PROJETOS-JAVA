@@ -46,15 +46,21 @@ public class Controle {
 			throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
 	  } else if (!this.alunos.containsKey(matricula)){
 		throw new IllegalArgumentException("ALUNO NÃO CADASTRADO."); 
-	  }
-		if (!grupo.getaAlunos().contains(this.alunos.get(matricula))) {
-			//PROBLEMA 1 - NÃO LANÇA EXCEÇÃO
-			try{
+	  } else if (!grupo.getaAlunos().contains(this.alunos.get(matricula)) &&
+				grupo.getaAlunos().size() < grupo.getTamanho()) {
 				grupo.adicionaAoGrupo(this.alunos.get(matricula));
 				System.out.println("ALUNO ALOCADO!");
-			} catch (IndexOutOfBoundsException erro){
-				System.out.println(erro.getMessage());
-			}
+	  } else {
+		  throw new ArrayIndexOutOfBoundsException("GRUPO CHEIO!");
+	  }
+	}
+	
+	public boolean pertenceGrupo(String tema, String matricula) {
+		Grupo grupo = this.grupos.get(tema);
+		Aluno aluno = this.alunos.get(matricula);
+		if (!this.grupos.containsKey(tema)) {
+			throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
 		}
+		return grupo.getaAlunos().contains(aluno);
 	}
 }
