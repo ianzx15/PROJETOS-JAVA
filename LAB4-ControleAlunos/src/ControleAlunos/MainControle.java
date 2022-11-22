@@ -96,7 +96,7 @@ public class MainControle {
 			System.out.println("Grupo: ");
 			grupo = scanner.next();
 			try {
-				controle.alocaAluno(matricula, grupo);
+				System.out.println(controle.alocaAluno(matricula, grupo));
 			} catch (IllegalArgumentException erro){
 				System.out.println(erro.getMessage());
 			} catch (IndexOutOfBoundsException erro) {

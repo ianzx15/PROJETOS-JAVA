@@ -41,19 +41,17 @@ public class Controle {
 		this.grupos.put(tema, grupo);
 	}
 
-	public void alocaAluno(String matricula, String tema) {
+	public  String alocaAluno(String matricula, String tema) {
 		Grupo grupo = this.grupos.get(tema);
 		if(!this.grupos.containsKey(tema)){
 			throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
 	  } else if (!this.alunos.containsKey(matricula)){
-		throw new IllegalArgumentException("ALUNO NÃO CADASTRADO."); 
-	  } else if (!grupo.getaAlunos().contains(this.alunos.get(matricula)) &&
-				grupo.getaAlunos().size() < grupo.getTamanho()) {
-				grupo.adicionaAoGrupo(this.alunos.get(matricula));
-				System.out.println("ALUNO ALOCADO!");
-	  } else {
+		throw new IllegalArgumentException("ALUNO NÃO CADASTRADO.");
+	  } else if (grupo.getaAlunos().size() >= grupo.getTamanho()){
 		  throw new ArrayIndexOutOfBoundsException("GRUPO CHEIO!");
-	  }
+	  } else 
+		grupo.adicionaAoGrupo(this.alunos.get(matricula));
+		return "ALUNO ALOCADO";
 	}
 	
 	public boolean pertenceGrupo(String tema, String matricula) {
@@ -61,6 +59,8 @@ public class Controle {
 		Aluno aluno = this.alunos.get(matricula);
 		if (!this.grupos.containsKey(tema)) {
 			throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
+		} else if (!this.alunos.containsKey(matricula)) {
+			throw new IllegalArgumentException("ALUNO NÃO CADASTRADO.");
 		}
 		return grupo.getaAlunos().contains(aluno);
 	}

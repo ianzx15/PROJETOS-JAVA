@@ -4,7 +4,7 @@ public class Aluno {
 	private String nome;
 	private String curso;
 	
-	public Aluno(String nome, String matricula, String curso) {
+	public Aluno(String matricula, String nome, String curso) {
 		this.nome = nome;
 		this.matricula = matricula;
 		this.curso  = curso;
