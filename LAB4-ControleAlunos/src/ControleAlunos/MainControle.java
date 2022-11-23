@@ -74,9 +74,9 @@ public class MainControle {
 	
 	public static void criaGrupo(Controle controle, Scanner scanner){
 		System.out.println("Grupo: ");
-		String tema = scanner.next();
+		String tema = scanner.nextLine();
 		System.out.println("Tamanho: ");
-		int tamanho = scanner.nextInt();
+		String tamanho = scanner.nextLine();
 		try {
 			controle.cadastraGrupo(tema, tamanho);
 			System.out.println("CADASTRO REALIZADO!");
@@ -98,8 +98,6 @@ public class MainControle {
 			try {
 				System.out.println(controle.alocaAluno(matricula, grupo));
 			} catch (IllegalArgumentException erro){
-				System.out.println(erro.getMessage());
-			} catch (IndexOutOfBoundsException erro) {
 				System.out.println(erro.getMessage());
 			}
 		} else {
@@ -123,6 +121,24 @@ public class MainControle {
 		System.out.println("Aluno: ");
 		System.out.println(controle.enumeraGrupos(scanner.next()));
 	}
+	
+	public static void registraRespostaAluno(Controle controle, Scanner scanner) {
+		 System.out.println("Matrícula: ");
+		 String matricula = scanner.next();
+		  try{
+			  controle.respostaAluno(matricula);
+		  } catch (IllegalArgumentException erro) {
+			  System.out.println(erro.getMessage());
+		  }
+		  
+		  System.out.println("ALUNO REGISTRADO!");
+	}
+	
+	public static void  imprimeRespostaAlunos(Controle controle, Scanner scanner) {
+		System.out.println("Alunos: \n" + controle.imprimeRespostaAluno());
+	}
+	
+	
 	
 	public static void sair() {
 		System.exit(0);

@@ -11,7 +11,7 @@ class ControleTeste {
 	private Controle controle = new Controle();
 	@BeforeEach
 	void preparaTeste() {
-		controle.cadastraGrupo("lista", 2);
+		controle.cadastraGrupo("lista", "2");
 		controle.cadastrarAluno("1", "banana", "frita");
 		controle.cadastrarAluno("2", "cebola", "cortada");
 		controle.cadastrarAluno("3", "molho", "branco");
@@ -103,10 +103,11 @@ class ControleTeste {
 		} catch (ArrayIndexOutOfBoundsException erro) {}
 	}
 	
-	//Aluno pertence ao grupo
+	//Pertinência  ao grupo
 	@Test
 	void pertinencia1() {
 		assertTrue(controle.pertenceGrupo("lista", "1"));
+		assertFalse(controle.pertenceGrupo("lista", "2"));
 	}
 	
 	//Aluno cadastrado não pertence ao grupo
@@ -118,8 +119,7 @@ class ControleTeste {
 		} catch (IllegalArgumentException erro) {}
 	}
 	
-	//Aluno pertence a grupo que não existe
-	@Test
+	//Pertinência a grupo que não existe	@Test
 	void pertinencia3() {
 		try {
 			controle.pertenceGrupo("tema", "1");
@@ -127,12 +127,35 @@ class ControleTeste {
 		} catch (IllegalArgumentException erro) {}
 	}
 	
-	//Aluno não cadastrado não pertence ao grupo 
-		@Test
-		void pertinencia4() {
-			try {
-				controle.pertenceGrupo("lista", "33");
-				fail("ALUNO NÃO CADASTRADO.");
-			} catch (IllegalArgumentException erro) {}
-		}
+	//Pertinência de aluno não cadastrado 
+	@Test
+	void pertinencia4() {
+		try {
+			controle.pertenceGrupo("lista", "33");
+			fail("ALUNO NÃO CADASTRADO.");
+		} catch (IllegalArgumentException erro) {}
+	}
+		
+	//Criando grupo sem restrição de tamanho
+	@Test
+	void criarGrupo1() {
+			controle.cadastraGrupo("conjuntos", "");
+			controle.alocaAluno("1", "conjuntos");
+			assertEquals("Grupos: \n- lista 1/2\n- conjuntos 1/\n",controle.enumeraGrupos("1"));
+	}
+	//Criando grupo com restrição de tamanho
+	@Test
+	void criarGrupo2() {
+			controle.cadastraGrupo("restrito", "2");
+			controle.alocaAluno("1", "restrito");
+			assertEquals("Grupos: \n- lista 1/2\n- restrito 1/2\n",controle.enumeraGrupos("1"));
+	}
+	//Criando grupo com nome repetido
+	@Test
+	void criarGrupo3() {
+		try{
+			controle.cadastraGrupo("lista", "22");
+			fail("GRUPO JÁ CADASTRADO!");
+		} catch (IllegalArgumentException erro) {}
+	}
 }

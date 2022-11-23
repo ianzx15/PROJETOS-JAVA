@@ -1,17 +1,18 @@
 package ControleAlunos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 
 public class Controle {
 	
+	private ArrayList<Aluno> alunosResponderam;
 	private HashMap<String, Aluno> alunos;
 	private HashMap<String, Grupo> grupos;
 	
 	public Controle() {
 		this.alunos = new HashMap<>();
 		this.grupos = new HashMap<>();
+		this.alunosResponderam = new ArrayList<>();
 	}
 	
 	public void cadastrarAluno(String matricula, String nome, String curso) throws IllegalArgumentException, NullPointerException{
@@ -33,8 +34,14 @@ public class Controle {
 				aluno.getCurso();
 	}
 	
-	public void cadastraGrupo(String tema, int tamanho) throws IllegalArgumentException {
-		Grupo grupo = new Grupo(tema, tamanho);
+	public void cadastraGrupo(String tema, String tamanho) throws IllegalArgumentException {
+		Grupo grupo;
+		if (tamanho.isEmpty()) {
+			grupo = new Grupo (tema);
+		} else {
+			grupo = new Grupo(tema, tamanho);
+		}
+		
 		if (this.grupos.containsKey(tema)) {
 			throw new IllegalArgumentException("GRUPO JÁ CADASTRADO!");
 		}
@@ -47,11 +54,12 @@ public class Controle {
 			throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
 	  } else if (!this.alunos.containsKey(matricula)){
 		throw new IllegalArgumentException("ALUNO NÃO CADASTRADO.");
-	  } else if (grupo.getaAlunos().size() >= grupo.getTamanho()){
+	  } else if (grupo.getaAlunos().size() >= grupo.getTamanho() && grupo.getTamanho() != 0){
 		  throw new ArrayIndexOutOfBoundsException("GRUPO CHEIO!");
-	  } else 
+	  } else {
 		grupo.adicionaAoGrupo(this.alunos.get(matricula));
 		return "ALUNO ALOCADO";
+	  }
 	}
 	
 	public boolean pertenceGrupo(String tema, String matricula) {
@@ -70,10 +78,35 @@ public class Controle {
 		String elemento = "";
 		for (Grupo grupo : this.grupos.values()) {
 			if (grupo.getaAlunos().contains(aluno)) {
+				if (grupo.getTamanho() == 0) {
 				elemento +=  "- " + grupo.getTema() + " " + grupo.getaAlunos().size()
-						+ "/" + grupo.getTamanho() + "\n";
+						+ "/\n";
+				} else {
+				elemento +=  "- " + grupo.getTema() + " " + grupo.getaAlunos().size()
+						+ "/" + grupo.getTamanho() +  "\n";
+				}
 			}
 		}
 		return "Grupos: \n" + elemento;
 	}
+	
+
+		public void respostaAluno(String matricula) {
+			if (!this.alunos.containsKey(matricula)) {
+				throw new IllegalArgumentException("ALUNO NÃO CADASTRADO");
+			}
+			this.alunosResponderam.add(this.alunos.get(matricula));
+			
+		}
+		
+		public String imprimeRespostaAluno() {
+			String alunos = "";
+			int indice = 0;
+			for (Aluno aluno : this.alunosResponderam) {
+				indice ++;
+				alunos += indice + ". " + aluno.getMatricula() + " - " + aluno.getNome()
+				+ " - " + aluno.getCurso() + "\n"; 
+			}
+			return alunos;
+		}
 }
