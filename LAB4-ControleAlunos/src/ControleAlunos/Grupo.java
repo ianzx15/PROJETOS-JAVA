@@ -1,6 +1,7 @@
 package ControleAlunos;
 
 import java.util.HashSet;
+import java.util.Objects;
 
 public class Grupo {
 	private String tema;
@@ -11,11 +12,34 @@ public class Grupo {
 		this.tema = tema;
 		this.alunosNoGrupo = new HashSet<Aluno>();	
 		this.tamanho = tamanho;
+		if (tema.isEmpty()) {
+			throw new IllegalArgumentException("ARGUMENTO INVÁLIDO.");
+		}
 	}
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(tema);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Grupo other = (Grupo) obj;
+		return Objects.equals(tema, other.tema);
+	}
+
 	public Grupo (String tema) {
 		this.tema = tema;
 		this.alunosNoGrupo = new HashSet<Aluno>();
+		if (tema.isEmpty()) {
+			throw new IllegalArgumentException("ARGUMENTO INVÁLIDO.");
+		}
 	}
 	
 	public HashSet<Aluno> getaAlunos() {

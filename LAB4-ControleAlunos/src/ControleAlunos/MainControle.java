@@ -12,7 +12,9 @@ public class MainControle {
 						"(N)ovo Grupo\n" +
 						"(A)locar Aluno no Grupo e Verficar pertinência a Grupos\n" +
 						"(O)lhaí quais grupos o Aluno Tá\n" +
-						"(S)im, quero Fechar o Programa!" +
+						"(S)im, quero Fechar o Programa!\n" +
+						"(R)egistrar Aluno que Respondeu\n" +
+						"(I)mprimir Alunos que Responderam" +
 						"\n" + 
 						"Opção> ");
 		return sc.next().toUpperCase();
@@ -37,6 +39,12 @@ public class MainControle {
 		case "O":
 			exibirGruposDoAluno(controle, scanner);
 			break;
+		case "R":
+			registraRespostaAluno(controle, scanner);
+			break;
+		case "I":
+			imprimeRespostaAlunos(controle, scanner);
+			break;
 		case "S":
 			sair();
 		default:
@@ -54,11 +62,9 @@ public class MainControle {
 		try {
 			controle.cadastrarAluno(matricula, nome, curso);
 			System.out.println("CADASTRO REALIZADO!");
-		} catch (NullPointerException erro){
-			throw erro;
 		}		
-		  catch (IllegalArgumentException a) {
-			System.out.println(a.getMessage());
+		  catch (IllegalArgumentException erro) {
+			System.out.println(erro.getMessage());
 		}
 	}
 	
@@ -124,21 +130,19 @@ public class MainControle {
 	
 	public static void registraRespostaAluno(Controle controle, Scanner scanner) {
 		 System.out.println("Matrícula: ");
-		 String matricula = scanner.next();
+		 String matricula = scanner.nextLine();
 		  try{
 			  controle.respostaAluno(matricula);
+			  System.out.println("ALUNO REGISTRADO!");
 		  } catch (IllegalArgumentException erro) {
 			  System.out.println(erro.getMessage());
 		  }
 		  
-		  System.out.println("ALUNO REGISTRADO!");
 	}
 	
 	public static void  imprimeRespostaAlunos(Controle controle, Scanner scanner) {
 		System.out.println("Alunos: \n" + controle.imprimeRespostaAluno());
 	}
-	
-	
 	
 	public static void sair() {
 		System.exit(0);

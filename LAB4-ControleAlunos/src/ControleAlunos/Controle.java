@@ -15,14 +15,12 @@ public class Controle {
 		this.alunosResponderam = new ArrayList<>();
 	}
 	
-	public void cadastrarAluno(String matricula, String nome, String curso) throws IllegalArgumentException, NullPointerException{
-		Aluno aluno = new Aluno(matricula, nome, curso);
+	public void cadastrarAluno(String matricula, String nome, String curso) {
+			Aluno aluno = new Aluno(matricula, nome, curso);
 		if (this.alunos.containsKey(matricula)) {
 			throw new IllegalArgumentException("MATRÍCULA JÁ CADASTRADA");
-		} else if(matricula.isEmpty() || nome.isEmpty() || curso.isEmpty()) {
-			throw new NullPointerException();
 		}
-			this.alunos.put(matricula, aluno);
+		this.alunos.put(matricula, aluno);
 	}
 	
 	public String consultarAluno(String matricula) {
@@ -34,7 +32,7 @@ public class Controle {
 				aluno.getCurso();
 	}
 	
-	public void cadastraGrupo(String tema, String tamanho) throws IllegalArgumentException {
+	public void cadastraGrupo(String tema, String tamanho) {
 		Grupo grupo;
 		if (tamanho.isEmpty()) {
 			grupo = new Grupo (tema);
@@ -80,7 +78,7 @@ public class Controle {
 			if (grupo.getaAlunos().contains(aluno)) {
 				if (grupo.getTamanho() == 0) {
 				elemento +=  "- " + grupo.getTema() + " " + grupo.getaAlunos().size()
-						+ "/\n";
+						+ "/...\n";
 				} else {
 				elemento +=  "- " + grupo.getTema() + " " + grupo.getaAlunos().size()
 						+ "/" + grupo.getTamanho() +  "\n";
@@ -90,10 +88,11 @@ public class Controle {
 		return "Grupos: \n" + elemento;
 	}
 	
-
 		public void respostaAluno(String matricula) {
 			if (!this.alunos.containsKey(matricula)) {
 				throw new IllegalArgumentException("ALUNO NÃO CADASTRADO");
+			} else if(matricula.isBlank()) {
+				throw new IllegalArgumentException("ARGUMENTO INVÁLIDO.");
 			}
 			this.alunosResponderam.add(this.alunos.get(matricula));
 			

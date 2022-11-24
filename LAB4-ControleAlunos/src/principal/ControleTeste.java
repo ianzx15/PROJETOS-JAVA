@@ -141,7 +141,7 @@ class ControleTeste {
 	void criarGrupo1() {
 			controle.cadastraGrupo("conjuntos", "");
 			controle.alocaAluno("1", "conjuntos");
-			assertEquals("Grupos: \n- lista 1/2\n- conjuntos 1/\n",controle.enumeraGrupos("1"));
+			assertEquals("Grupos: \n- lista 1/2\n- conjuntos 1/...\n",controle.enumeraGrupos("1"));
 	}
 	//Criando grupo com restrição de tamanho
 	@Test
