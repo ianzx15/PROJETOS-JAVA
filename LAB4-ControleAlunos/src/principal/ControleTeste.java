@@ -54,7 +54,7 @@ class ControleTeste {
 		try {
 			this.controle.consultarAluno("77");
 			fail("ALUNO NÃO CADASTRADO");
-		} catch (NullPointerException erro) {}
+		} catch (IllegalArgumentException erro) {}
 	}
 	
 	//Exibindo aluno
@@ -119,7 +119,8 @@ class ControleTeste {
 		} catch (IllegalArgumentException erro) {}
 	}
 	
-	//Pertinência a grupo que não existe	@Test
+	//Pertinência a grupo que não existe	
+	@Test
 	void pertinencia3() {
 		try {
 			controle.pertenceGrupo("tema", "1");

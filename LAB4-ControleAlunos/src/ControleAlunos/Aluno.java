@@ -11,9 +11,9 @@ public class Aluno {
 		this.nome = nome;
 		this.matricula = matricula;
 		this.curso  = curso;
-		if (matricula.isEmpty() || nome.isEmpty() || curso.isEmpty()) {
-			throw new IllegalArgumentException("ARGUMENTO INVÁLIDO.");
-		}
+		Validador.isArgumentoValido(curso);
+		Validador.isArgumentoValido(nome);
+		Validador.isArgumentoValido(matricula);
 	}
 	
 	public String getMatricula() {

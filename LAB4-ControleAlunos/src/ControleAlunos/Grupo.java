@@ -17,6 +17,13 @@ public class Grupo {
 		}
 	}
 	
+	
+	@Override
+	public String toString() {
+		//PRINTAR O ENUMERA GRUPOS PELO TO STRING
+		return "a";
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(tema);

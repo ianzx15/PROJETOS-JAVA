@@ -17,17 +17,13 @@ public class Controle {
 	
 	public void cadastrarAluno(String matricula, String nome, String curso) {
 			Aluno aluno = new Aluno(matricula, nome, curso);
-		if (this.alunos.containsKey(matricula)) {
-			throw new IllegalArgumentException("MATRÍCULA JÁ CADASTRADA");
-		}
-		this.alunos.put(matricula, aluno);
+			Validador.matriculaJaCadastrada(alunos, matricula);
+			this.alunos.put(matricula, aluno);
 	}
 	
 	public String consultarAluno(String matricula) {
 		Aluno aluno = this.alunos.get(matricula);
-		if (aluno == null) {
-			throw new NullPointerException("ALUNO NÃO CADASTRADO.");
-		}
+		Validador.alunoNaoCadastrado(this.alunos, matricula);
 		return "Aluno: " + aluno.getMatricula() + " - " + aluno.getNome() + " - " +
 				aluno.getCurso();
 	}
@@ -39,20 +35,15 @@ public class Controle {
 		} else {
 			grupo = new Grupo(tema, tamanho);
 		}
-		
-		if (this.grupos.containsKey(tema)) {
-			throw new IllegalArgumentException("GRUPO JÁ CADASTRADO!");
-		}
+		Validador.grupoJaCadastrado(this.grupos, tema);
 		this.grupos.put(tema, grupo);
 	}
 
 	public  String alocaAluno(String matricula, String tema) {
 		Grupo grupo = this.grupos.get(tema);
-		if(!this.grupos.containsKey(tema)){
-			throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
-	  } else if (!this.alunos.containsKey(matricula)){
-		throw new IllegalArgumentException("ALUNO NÃO CADASTRADO.");
-	  } else if (grupo.getaAlunos().size() >= grupo.getTamanho() && grupo.getTamanho() != 0){
+		Validador.grupoNaoCadastrado(this.grupos, tema);
+		Validador.alunoNaoCadastrado(alunos, matricula);
+	  if (grupo.getaAlunos().size() >= grupo.getTamanho() && grupo.getTamanho() != 0){
 		  throw new ArrayIndexOutOfBoundsException("GRUPO CHEIO!");
 	  } else {
 		grupo.adicionaAoGrupo(this.alunos.get(matricula));
@@ -63,11 +54,8 @@ public class Controle {
 	public boolean pertenceGrupo(String tema, String matricula) {
 		Grupo grupo = this.grupos.get(tema);
 		Aluno aluno = this.alunos.get(matricula);
-		if (!this.grupos.containsKey(tema)) {
-			throw new IllegalArgumentException("GRUPO NÃO CADASTRADO.");
-		} else if (!this.alunos.containsKey(matricula)) {
-			throw new IllegalArgumentException("ALUNO NÃO CADASTRADO.");
-		}
+		Validador.grupoNaoCadastrado(grupos, tema);
+		Validador.alunoNaoCadastrado(alunos, matricula);
 		return grupo.getaAlunos().contains(aluno);
 	}
 	
@@ -89,11 +77,8 @@ public class Controle {
 	}
 	
 		public void respostaAluno(String matricula) {
-			if (!this.alunos.containsKey(matricula)) {
-				throw new IllegalArgumentException("ALUNO NÃO CADASTRADO");
-			} else if(matricula.isBlank()) {
-				throw new IllegalArgumentException("ARGUMENTO INVÁLIDO.");
-			}
+			Validador.alunoNaoCadastrado(alunos, matricula);
+			Validador.isArgumentoValido(matricula);
 			this.alunosResponderam.add(this.alunos.get(matricula));
 			
 		}

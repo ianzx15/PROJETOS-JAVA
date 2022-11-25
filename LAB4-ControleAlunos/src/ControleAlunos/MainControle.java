@@ -73,7 +73,7 @@ public class MainControle {
 		String matricula = scanner.next();
 		try {
 			System.out.println(controle.consultarAluno(matricula));
-		} catch(NullPointerException erro){
+		} catch(IllegalArgumentException erro){
 			System.out.println(erro.getMessage());
 		}
 	}
