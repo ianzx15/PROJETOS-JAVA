@@ -70,7 +70,7 @@ public class MainControle {
 	
 	public static void exibirAluno(Controle controle, Scanner scanner) {
 		System.out.println("Matrícula: ");
-		String matricula = scanner.next();
+		String matricula = scanner.nextLine();
 		try {
 			System.out.println(controle.consultarAluno(matricula));
 		} catch(IllegalArgumentException erro){
@@ -96,11 +96,12 @@ public class MainControle {
 		String escolha = scanner.next();
 		String grupo;
 		String matricula;
+		scanner.nextLine();
 		if (escolha.toUpperCase().equals("A")) {
 			System.out.println("Matrícula: ");
-			matricula = scanner.next();
+			matricula = scanner.nextLine();
 			System.out.println("Grupo: ");
-			grupo = scanner.next();
+			grupo = scanner.nextLine();
 			try {
 				System.out.println(controle.alocaAluno(matricula, grupo));
 			} catch (IllegalArgumentException erro){
@@ -108,9 +109,9 @@ public class MainControle {
 			}
 		} else {
 			System.out.println("GRUPO: ");
-			grupo = scanner.next();
+			grupo = scanner.nextLine();
 			System.out.println("ALUNO: ");
-			matricula = scanner.next();
+			matricula = scanner.nextLine();
 			try {
 				if(controle.pertenceGrupo(grupo, matricula)) {
 					System.out.println("ALUNO PERTENCE AO GRUPO.");
@@ -125,7 +126,7 @@ public class MainControle {
 	
 	public static void exibirGruposDoAluno(Controle controle, Scanner scanner) {
 		System.out.println("Aluno: ");
-		System.out.println(controle.enumeraGrupos(scanner.next()));
+		System.out.println(controle.enumeraGrupos(scanner.nextLine()));
 	}
 	
 	public static void registraRespostaAluno(Controle controle, Scanner scanner) {

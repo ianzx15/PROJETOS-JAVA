@@ -29,6 +29,13 @@ public class Aluno {
 	}
 
 	@Override
+	public String toString() {
+		return ". " + this.getMatricula() + " - " + this.getNome()
+		+ " - " + this.getCurso() + "\n"; 
+	}
+	
+	
+	@Override
 	public int hashCode() {
 		return Objects.hash(matricula);
 	}

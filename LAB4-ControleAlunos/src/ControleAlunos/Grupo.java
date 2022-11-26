@@ -1,5 +1,12 @@
 package ControleAlunos;
 
+/**
+ * Controla a criação de grupos. Por meio dessa classe é possível
+ * criar grupos com tema, tamanho e hashset de objetos 
+ * do tipo Aluno.
+ * @author Ian Evangelista Rodrigues
+ */
+
 import java.util.HashSet;
 import java.util.Objects;
 
@@ -12,16 +19,23 @@ public class Grupo {
 		this.tema = tema;
 		this.alunosNoGrupo = new HashSet<Aluno>();	
 		this.tamanho = tamanho;
-		if (tema.isEmpty()) {
-			throw new IllegalArgumentException("ARGUMENTO INVÁLIDO.");
-		}
+		Validador.isArgumentoValido(tema);
 	}
 	
 	
+	public Grupo (String tema) {
+		this.tema = tema;
+		this.alunosNoGrupo = new HashSet<Aluno>();
+		Validador.isArgumentoValido(tema);
+	}
 	@Override
 	public String toString() {
-		//PRINTAR O ENUMERA GRUPOS PELO TO STRING
-		return "a";
+			if (this.getTamanho() == 0) {
+				return "- " + this.getTema() + " " + this.getaAlunos().size()
+						+ "/...\n";
+			}
+			return "- " + this.getTema() + " " + this.getaAlunos().size()
+					+ "/" + this.getTamanho() +  "\n";
 	}
 	
 	@Override
@@ -41,13 +55,6 @@ public class Grupo {
 		return Objects.equals(tema, other.tema);
 	}
 
-	public Grupo (String tema) {
-		this.tema = tema;
-		this.alunosNoGrupo = new HashSet<Aluno>();
-		if (tema.isEmpty()) {
-			throw new IllegalArgumentException("ARGUMENTO INVÁLIDO.");
-		}
-	}
 	
 	public HashSet<Aluno> getaAlunos() {
 		return this.alunosNoGrupo;
