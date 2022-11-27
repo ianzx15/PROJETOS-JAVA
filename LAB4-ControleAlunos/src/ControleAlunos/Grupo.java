@@ -12,9 +12,18 @@ import java.util.Objects;
 
 public class Grupo {
 	private String tema;
+
+	/**
+	 * Hashset de objetos do tipo Aluno que foram adicionados ao grupo.
+	 */
 	private HashSet <Aluno> alunosNoGrupo;
 	private String tamanho;
 	
+	/**
+	 * Constrói um grupo com tema e tamanho específicos.
+	 * @param tema O tema do grupo.
+	 * @param tamanho O tamanho do grupo.
+	 */
 	public Grupo (String tema, String tamanho) {
 		this.tema = tema;
 		this.alunosNoGrupo = new HashSet<Aluno>();	
@@ -22,12 +31,19 @@ public class Grupo {
 		Validador.isArgumentoValido(tema);
 	}
 	
-	
+	/**
+	 * Constrói um grupo com tema mas sem limite de tamanho.
+	 * @param tema O tema do grupo.
+	 */
 	public Grupo (String tema) {
 		this.tema = tema;
 		this.alunosNoGrupo = new HashSet<Aluno>();
 		Validador.isArgumentoValido(tema);
 	}
+	/**
+	 * Formata os dados de um grupo específico.
+	 * @return A string formatada com os dados do grupo.
+	 */
 	@Override
 	public String toString() {
 			if (this.getTamanho() == 0) {
@@ -38,11 +54,19 @@ public class Grupo {
 					+ "/" + this.getTamanho() +  "\n";
 	}
 	
+	/**
+	 * Retorna o hashcode do atribudo tema.
+	 * @return O hashcode do atributo tema.
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(tema);
 	}
 
+	/**
+	 * Verifica se dois objetos são iguais, com base no tema.
+	 * @return True ou false.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -55,7 +79,6 @@ public class Grupo {
 		return Objects.equals(tema, other.tema);
 	}
 
-	
 	public HashSet<Aluno> getaAlunos() {
 		return this.alunosNoGrupo;
 	}
@@ -71,6 +94,10 @@ public class Grupo {
 		return this.tema;
 	}
 	
+	/**
+	 * Adiciona um objeto do tipo Aluno ao atributo hashSet alunosNoGrupo do grupo.
+	 * @param aluno O aluno a ser adicionado.
+	 */
 	public void adicionaAoGrupo(Aluno aluno) {
 		this.alunosNoGrupo.add(aluno);
 	}
