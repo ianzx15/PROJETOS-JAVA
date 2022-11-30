@@ -18,6 +18,10 @@ public class Documento {
 		Validador.isTituloValido(titulo);
 	}
 
+	public String getTitulo() {
+		return this.titulo;
+	}
+	
 	@Override
 	public String toString() {
 		return "\nTítulo: " + titulo + "\nTamanho: " + tamanho + "\n";
