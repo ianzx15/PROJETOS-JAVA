@@ -34,5 +34,7 @@ public class DocumentoRepositorio {
 			}
 		}
 		
-		 
+		public int contarElementos(String titulo){
+			return this.documentos.get(titulo).getNumElementos();
+		}
 }

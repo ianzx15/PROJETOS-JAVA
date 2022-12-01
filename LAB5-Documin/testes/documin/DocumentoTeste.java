@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class DocumentoTeste {
@@ -17,7 +16,8 @@ class DocumentoTeste {
 	@Test
 	public void cadastraDoc1() {
 		try {
-			Documento doc = new Documento("", 1);
+			DocumentoController doc = new DocumentoController();
+			doc.criarDocumento("", 2);
 			fail("Título inválido");
 		} catch (IllegalArgumentException erro) {
 			assertEquals(erro.getMessage(), "Título inválido");
@@ -28,36 +28,50 @@ class DocumentoTeste {
 	@Test
 	public void cadastraDoc2() {
 		try {
-			Documento doc = new Documento("batata", 0);
+			DocumentoController doc = new DocumentoController();
+			doc.criarDocumento("batata", 0);
 			fail("Tamanho inválido");
 		} catch (IllegalArgumentException erro) {
 			assertEquals(erro.getMessage(), "Tamanho inválido");
 		}
 	}
 	
-	//Documento sem limite de tamanho
+	//Cadastra documento sem tamanho definido
 	@Test
 	public void cadastraDoc3() {
-			Documento doc = new Documento("batata");
-			 assertEquals("\nTítulo: batata" + "\nTamanho: 0\n", doc.toString() );
+		DocumentoController doc = new DocumentoController();
+		assertTrue(doc.criarDocumento("batata"));
 	}
 	
 	//Documento com limite de tamanho
 	@Test
 	public void cadastraDoc4() {
-			Documento doc = new Documento("batata", 1);
-			 assertEquals("\nTítulo: batata" + "\nTamanho: 1\n", doc.toString() );
+			DocumentoController doc = new DocumentoController();
+			 assertTrue(doc.criarDocumento("batata", 1));
 	}
 	
-	
-	
-	//Cadastra documento sem tamanho 
+	//Dois documentos com mesmo título
 	@Test
-	public void cadastraDoc() {
-		DocumentoController doc = new DocumentoController();
-		doc.criarDocumento("batata");
-		assertEquals("", doc.toString());
+	public void cadastraDoc5() {
+			DocumentoController doc = new DocumentoController();
+			doc.criarDocumento("batata", 1);
+			assertFalse(doc.criarDocumento("batata", 1));
+	}
+
+	//Remove um documento
+	@Test
+	public void removeDocumento1() {
+			DocumentoController doc = new DocumentoController();
+			doc.criarDocumento("batata", 1);
+			doc.removeDocumento("batata");
+			assertTrue(doc.criarDocumento("batata", 1));
 	}
 	
-
+	//Conta elementos de um documento sem elementos
+	@Test
+	public void contaElementos1() {
+			DocumentoController doc = new DocumentoController();
+			doc.criarDocumento("batata", 1);
+			assertEquals(0, doc.numElementos("batata"));
+	}
 }

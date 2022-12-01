@@ -1,14 +1,18 @@
 package documin;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class Documento {
 	private String titulo;
 	private int tamanho;
+	private HashSet<Elemento> elementos;
 	
 	public Documento(String titulo, int tamanho) {
 		this.titulo = titulo;
 		this.tamanho = tamanho;
+		
 		Validador.isTamanhoValido(tamanho, 1);
 		Validador.isTituloValido(titulo);
 	}
@@ -22,11 +26,9 @@ public class Documento {
 		return this.titulo;
 	}
 	
-	@Override
-	public String toString() {
-		return "\nTítulo: " + titulo + "\nTamanho: " + tamanho + "\n";
+	public int getNumElementos() {
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(titulo);
