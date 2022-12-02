@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.NoSuchElementException;
+
 import org.junit.jupiter.api.Test;
 
 class DocumentoTeste {
@@ -67,11 +69,44 @@ class DocumentoTeste {
 			assertTrue(doc.criarDocumento("batata", 1));
 	}
 	
+	//Remove um documento que não existe
+	@Test
+	public void removeDocumento2() {
+		try {
+			DocumentoController doc = new DocumentoController();
+			doc.criarDocumento("batata", 1);
+			doc.removeDocumento("cenoura");
+			fail("Argumento inválido");
+		} catch (NoSuchElementException erro) {}
+	}
+	
+	
 	//Conta elementos de um documento sem elementos
 	@Test
 	public void contaElementos1() {
 			DocumentoController doc = new DocumentoController();
-			doc.criarDocumento("batata", 1);
+			doc.criarDocumento("batata");
 			assertEquals(0, doc.numElementos("batata"));
 	}
+	
+	//Conta elementos de um documento sem elementos
+	@Test
+	public void contaElementos2() {
+			DocumentoController doc = new DocumentoController();
+			doc.criarDocumento("batata", 2);
+			assertEquals(2, doc.numElementos("batata"));
+	}
+	
+	//Conta elementos de um documento que não existe
+	@Test
+	public void contaElementos3() {
+		try {
+			DocumentoController doc = new DocumentoController();
+			doc.criarDocumento("batata");
+			doc.numElementos("beterraba");
+			fail("Argumento inválido");
+		} catch (NoSuchElementException erro) {}
+	}
+	
+	
 }

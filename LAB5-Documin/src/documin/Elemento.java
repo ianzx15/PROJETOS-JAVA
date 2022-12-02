@@ -10,8 +10,13 @@ public class Elemento {
 	private String valor;
 	private HashMap<String, String> propriedades;
 	
+	public String completa() {
+		return "";
+	}
 	
-	
+	public String resumida() {
+		return "";
+	}
 	
 	
 }

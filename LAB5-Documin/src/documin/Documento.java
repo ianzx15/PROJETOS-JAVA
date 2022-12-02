@@ -26,8 +26,11 @@ public class Documento {
 		return this.titulo;
 	}
 	
-	public int getNumElementos() {
+	public int getTamanho() {
+		return this.tamanho;
 	}
+	
+	
 	
 	@Override
 	public int hashCode() {
