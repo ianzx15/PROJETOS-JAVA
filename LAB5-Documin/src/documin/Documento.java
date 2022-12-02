@@ -1,18 +1,16 @@
 package documin;
 
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Documento {
 	private String titulo;
 	private int tamanho;
-	private HashSet<Elemento> elementos;
+	private ArrayList<Elementos> elementos;
 	
 	public Documento(String titulo, int tamanho) {
 		this.titulo = titulo;
 		this.tamanho = tamanho;
-		
 		Validador.isTamanhoValido(tamanho, 1);
 		Validador.isTituloValido(titulo);
 	}
@@ -27,7 +25,11 @@ public class Documento {
 	}
 	
 	public int getTamanho() {
-		return this.tamanho;
+		if(this.elementos == null) {
+			return 0;
+		}
+		
+		return this.elementos.size();
 	}
 	
 	

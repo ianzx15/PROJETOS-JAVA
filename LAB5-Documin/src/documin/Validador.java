@@ -8,6 +8,12 @@ public class Validador {
 		}
 	}
 	
+	 private static void isNull(String valor, String msg) {
+		 if (valor == null) {
+			 throw new NullPointerException(msg);
+		 }
+	 }
+	
 	private static void isRangeValido(int valor, int limite, String msg) {
 		if (limite > valor) {
 			throw new IllegalArgumentException(msg);

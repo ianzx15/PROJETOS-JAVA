@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Test;
 
 class DocumentoTeste {
-	
+	//FAZER TESTES NULOS
 	
 	
 	//Título em branco
@@ -89,12 +89,10 @@ class DocumentoTeste {
 			assertEquals(0, doc.numElementos("batata"));
 	}
 	
-	//Conta elementos de um documento sem elementos
+	//Conta elementos de um documento com dois elementos
 	@Test
 	public void contaElementos2() {
 			DocumentoController doc = new DocumentoController();
-			doc.criarDocumento("batata", 2);
-			assertEquals(2, doc.numElementos("batata"));
 	}
 	
 	//Conta elementos de um documento que não existe

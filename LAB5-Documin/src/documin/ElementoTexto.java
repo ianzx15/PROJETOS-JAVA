@@ -1,17 +1,16 @@
 package documin;
 
-import java.util.HashMap;
 
-public class Elemento {
+public class ElementoTexto implements Elementos{
 	/**
 	 * Valor que varia entre 1 e 5 indicando maior e menor prioriodade
 	 */
 	private int prioridade;
 	private String valor;
-	private HashMap<String, String> propriedades;
-	
 	public String completa() {
-		return "";
+		String format = "";
+		format += "Prioridade: " + this.prioridade + "\nValor: " + this.valor;
+		return format;
 	}
 	
 	public String resumida() {
