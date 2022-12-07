@@ -8,7 +8,11 @@ public class ElementoTexto implements Elementos{
 	private int prioridade;
 	private String valor;
 	
-
+	public ElementoTexto(int prioridade, String valor) {
+		this.prioridade = prioridade;
+		this.valor = valor;
+	}
+	
 	@Override
 	public void moverAcima() {
 		// TODO Auto-generated method stub

@@ -5,7 +5,6 @@ import java.util.HashMap;
 public class ElementoTitulo implements Elementos {
 
 	private String titulo;
-	
 	private int prioridade;
 	private String valor;
 	private HashMap<String, String> propriedades;

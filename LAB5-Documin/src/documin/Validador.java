@@ -28,6 +28,8 @@ public class Validador {
 		isValido(titulo, "Título inválido");
 	}
 	
-	
+	public static void isTituloNull(String titulo) {
+		isNull(titulo, "Título nulo");
+	}
 	
 }

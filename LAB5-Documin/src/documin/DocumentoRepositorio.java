@@ -11,6 +11,12 @@ public class DocumentoRepositorio {
 			this.documentos = new HashMap<String, Documento>();
 		}
 		
+		public int adicionarElemento(String tituloDoc, Elementos el ) {
+			ArrayList<Elementos> lista =  this.documentos.get(tituloDoc).getElementos();
+			lista.add(el);
+			return lista.indexOf(el);
+		}
+		
 		public boolean criarDocumento(String titulo) {
 			if (this.documentos.containsKey(titulo)) {
 				return false;
@@ -43,6 +49,10 @@ public class DocumentoRepositorio {
 				throw new NoSuchElementException();
 			}
 			return this.documentos.get(titulo).getTamanho();
+		}
+		
+		public Documento getDocumento(String tituloDoc){
+			return this.documentos.get(tituloDoc);
 		}
 		
 		public String[] exibirDocumento(String titulo) {

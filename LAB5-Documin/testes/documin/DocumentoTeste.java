@@ -11,8 +11,18 @@ import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Test;
 
 class DocumentoTeste {
-	//FAZER TESTES NULOS
-	
+	//FAZER MAIS TESTES NULOS
+
+
+	//Título nulo
+	@Test
+	public void cadastraDoc55() {
+		try {
+			DocumentoController doc = new DocumentoController();
+			doc.criarDocumento(null, 2);
+			fail("Título nulo");
+		} catch (NullPointerException erro) {}
+		}
 	
 	//Título em branco
 	@Test
@@ -106,5 +116,15 @@ class DocumentoTeste {
 		} catch (NoSuchElementException erro) {}
 	}
 	
+	//Testando a criação do elemento texto
+	@Test
+	public void criaTexto1() {
+		DocumentoController doc = new DocumentoController();
+		ElementoController el = new ElementoController();
+		doc.criarDocumento("batata", 2);
+		el.criarTexto("batata", "detentor dos meios de produção", 1 );
+		
+		
+	}
 	
 }

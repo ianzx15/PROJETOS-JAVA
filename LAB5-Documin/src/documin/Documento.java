@@ -11,13 +11,17 @@ public class Documento {
 	public Documento(String titulo, int tamanho) {
 		this.titulo = titulo;
 		this.tamanho = tamanho;
+		this.elementos = new ArrayList<Elementos>();
 		Validador.isTamanhoValido(tamanho, 1);
 		Validador.isTituloValido(titulo);
+		Validador.isTituloNull(titulo);
 	}
 	
 	public Documento (String titulo) {
 		this.titulo = titulo;
+		this.elementos = new ArrayList<Elementos>();
 		Validador.isTituloValido(titulo);
+		Validador.isTituloNull(titulo);
 	}
 
 	public String getTitulo() {
