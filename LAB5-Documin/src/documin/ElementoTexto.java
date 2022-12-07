@@ -7,14 +7,18 @@ public class ElementoTexto implements Elementos{
 	 */
 	private int prioridade;
 	private String valor;
-	public String completa() {
-		String format = "";
-		format += "Prioridade: " + this.prioridade + "\nValor: " + this.valor;
-		return format;
-	}
 	
-	public String resumida() {
-		return "";
+
+	@Override
+	public void moverAcima() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moverAbaixo() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

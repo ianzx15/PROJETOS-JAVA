@@ -1,17 +1,25 @@
 package documin;
 
+import java.util.HashMap;
+
 public class ElementoTermos implements Elementos {
 
+	private int prioridade;
+	private String valor;
+	private HashMap<String, String> propriedades;
+	
+	
+
 	@Override
-	public String completa() {
+	public void moverAcima() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
-	public String resumida() {
+	public void moverAbaixo() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }

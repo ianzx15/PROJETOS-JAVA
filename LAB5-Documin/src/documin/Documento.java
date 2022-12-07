@@ -28,10 +28,12 @@ public class Documento {
 		if(this.elementos == null) {
 			return 0;
 		}
-		
 		return this.elementos.size();
 	}
 	
+	public ArrayList<Elementos> getElementos() {
+		return this.elementos;
+	}
 	
 	
 	@Override

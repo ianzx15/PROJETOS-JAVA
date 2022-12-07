@@ -27,4 +27,7 @@ public class Validador {
 	public static void isTituloValido(String titulo) {
 		isValido(titulo, "Título inválido");
 	}
+	
+	
+	
 }

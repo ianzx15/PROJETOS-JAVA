@@ -1,5 +1,6 @@
 package documin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
@@ -44,7 +45,11 @@ public class DocumentoRepositorio {
 			return this.documentos.get(titulo).getTamanho();
 		}
 		
-//		public String[] exibirDocumento(String titulo) {
-//			??????????????????????????????
-//		}
+		public String[] exibirDocumento(String titulo) {
+			Documento obj = this.documentos.get(titulo);
+			String[] lista = new String[3];
+			lista[0] = obj.getTitulo();
+			lista[1] = Integer.toString(obj.getTamanho());
+			return lista;
+		}
 }
