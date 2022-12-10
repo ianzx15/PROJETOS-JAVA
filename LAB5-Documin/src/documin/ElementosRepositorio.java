@@ -7,7 +7,7 @@ public class ElementosRepositorio {
 	
 	
 	public int criarTexto(String tituloDoc, String valor, int prioridade) {
-		ElementoTexto texto = new ElementoTexto(prioridade, valor);
+		ElementoTexto texto = new ElementoTexto(valor, prioridade);
 		return doc.adicionarElemento(tituloDoc, texto);
 	}
 	

@@ -1,16 +1,13 @@
 package documin;
 
+import java.util.HashMap;
 
-public class ElementoTexto implements Elementos{
-	/**
-	 * Valor que varia entre 1 e 5 indicando maior e menor prioriodade
-	 */
-	private int prioridade;
-	private String valor;
+public class ElementoTexto extends ElementosAbstract{
+
 	
-	public ElementoTexto(int prioridade, String valor) {
-		this.prioridade = prioridade;
-		this.valor = valor;
+	public ElementoTexto(String valor, int prioridade) {
+		super(valor, prioridade);
+		
 	}
 	
 	@Override

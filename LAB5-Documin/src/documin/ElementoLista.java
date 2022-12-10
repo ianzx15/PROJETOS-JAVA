@@ -1,13 +1,12 @@
 package documin;
 
-import java.util.HashMap;
 
-public class ElementoLista implements Elementos{
+public class ElementoLista extends ElementosAbstract{
 
 	
-	private int prioridade;
-	private String valor;
-	private HashMap<String, String> propriedades; 
+	public ElementoLista(String valor, int prioridade) {
+		super(valor, prioridade);
+	}
 	
 	@Override
 	public void moverAcima() {
