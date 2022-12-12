@@ -7,7 +7,7 @@ public class Facade {
 	private DocumentoController documentoController;
 		
 	public Facade() {
-		
+		this.documentoController = new DocumentoController();
 	}
 	
 	public boolean criarDocumento(String titulo) {

@@ -120,10 +120,9 @@ class DocumentoTeste {
 	@Test
 	public void criaTexto1() {
 		DocumentoController doc = new DocumentoController();
-		ElementoController el = new ElementoController();
 		doc.criarDocumento("batata", 2);
-		el.criarTexto("batata", "detentor dos meios de produção", 1 );
-		
+		doc.criarTexto("batata", "legume", 3);
+		assertEquals(1, doc.criarTexto("batata", "detentor dos meios de produção", 1 ));
 		
 	}
 	

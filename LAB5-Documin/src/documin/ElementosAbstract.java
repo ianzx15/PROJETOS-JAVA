@@ -16,15 +16,6 @@ public abstract class ElementosAbstract implements Elementos {
 		this.prioridade = prioridade;
 	}
 	
-	public void moverAcima() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void moverAbaixo() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	
 }

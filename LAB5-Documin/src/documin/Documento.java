@@ -24,6 +24,7 @@ public class Documento {
 		Validador.isTituloNull(titulo);
 	}
 
+	
 	public String getTitulo() {
 		return this.titulo;
 	}
@@ -56,6 +57,38 @@ public class Documento {
 		Documento other = (Documento) obj;
 		return Objects.equals(titulo, other.titulo);
 	}
+	
+	public int criarTexto(String valor, int prioridade) {
+		ElementoTexto texto = new ElementoTexto(valor, prioridade);
+		this.elementos.add(texto);
+		return this.elementos.indexOf(texto);
+	}
+	
+//	public int criarTitulo(String tituloDoc, String valor, int prioridade, String separador, String charLista ) {
+//	}
+//	
+//	public int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
+//	}
+//	
+//	public int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
+//	}
+//	
+//	public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
+//	}
+//	
+//	public String pegarrepresentacaoResumida(String tituloDoc, int elementoPosicao) {
+//	}
+//	
+//	public boolean apagarElemento(String tituloDoc, int elementoPosicao) {
+//	}
+//	
 
+	public void moverParaBaixo(int elementoPosicao) {
+	}
+
+	public void moverParaAcima(int elementoPosicao) {
+		this.elementos.so
+		
+	}
 	
 }

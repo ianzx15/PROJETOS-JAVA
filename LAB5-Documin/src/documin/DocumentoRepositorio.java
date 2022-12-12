@@ -1,6 +1,5 @@
 package documin;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
@@ -11,11 +10,6 @@ public class DocumentoRepositorio {
 			this.documentos = new HashMap<String, Documento>();
 		}
 		
-		public int adicionarElemento(String tituloDoc, Elementos el ) {
-			ArrayList<Elementos> lista =  this.documentos.get(tituloDoc).getElementos();
-			lista.add(el);
-			return lista.indexOf(el);
-		}
 		
 		public boolean criarDocumento(String titulo) {
 			if (this.documentos.containsKey(titulo)) {
@@ -62,4 +56,14 @@ public class DocumentoRepositorio {
 			lista[1] = Integer.toString(obj.getTamanho());
 			return lista;
 		}
+		
+		public int criarTexto(String tituloDoc, String valor, int prioridade) {
+			return this.documentos.get(tituloDoc).criarTexto(valor, prioridade);
+		}
+
+
+		public void moverParaAcima(String tituloDoc, int elementoPosicao) {
+			this.documentos.get(tituloDoc).moverParaAcima(elementoPosicao);
+		}
+		
 }
