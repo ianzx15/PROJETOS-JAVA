@@ -61,9 +61,20 @@ public class DocumentoRepositorio {
 			return this.documentos.get(tituloDoc).criarTexto(valor, prioridade);
 		}
 
-
-		public void moverParaAcima(String tituloDoc, int elementoPosicao) {
-			this.documentos.get(tituloDoc).moverParaAcima(elementoPosicao);
+		public int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
+			return this.documentos.get(tituloDoc).criarTitulo(valor, prioridade, nivel, linkavel);
 		}
+
+		public int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
+			return this.documentos.get(tituloDoc).criarLista(valorLista, prioridade, separador, charLista);
+		}
+		
+		public int criarTermos(String tituloDoc, String valorLista, int prioridade, String separador, String ordem) {
+			return this.documentos.get(tituloDoc).criarTermos(valorLista, prioridade, separador, ordem);
+		}
+		
+//		public void moverParaAcima(String tituloDoc, int elementoPosicao) {
+//			this.documentos.get(tituloDoc).moverParaAcima(elementoPosicao);
+//		}
 		
 }

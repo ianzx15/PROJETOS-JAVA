@@ -25,16 +25,25 @@ public class DocumentoController {
 		return doc.criarTexto(tituloDocumento, valor, prioridade);
 	}
 	
-	public int criarTitulo(String tituloDocumento, String valor, int prioridade) {
-		return doc.criarTexto(tituloDocumento, valor, prioridade);
+	public int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
+		return doc.criarTitulo(tituloDoc, valor, prioridade, nivel, linkavel);
 	}
 	
-	public void moverParaCima(String tituloDoc, int elementoPosicao) {
-		return doc.moverParaAcima(tituloDoc, elementoPosicao);
+	public int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
+		return doc.criarLista(tituloDoc, valorLista, prioridade, separador, charLista);
 	}
-	public void moverParaBaixo(String tituloDoc, int elementoPosicao) {
-		return doc.moverParaBaixo(tituloDoc, elementoPosicao);
+	
+	public int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
+		return doc.criarTermos(tituloDoc, valorTermos, prioridade, separador, ordem);
 	}
+	
+	
+//	public void moverParaCima(String tituloDoc, int elementoPosicao) {
+//		return doc.moverParaAcima(tituloDoc, elementoPosicao);
+//	}
+//	public void moverParaBaixo(String tituloDoc, int elementoPosicao) {
+//		return doc.moverParaBaixo(tituloDoc, elementoPosicao);
+//	}
 
 	
 	

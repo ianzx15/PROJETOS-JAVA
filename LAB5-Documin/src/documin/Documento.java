@@ -64,14 +64,23 @@ public class Documento {
 		return this.elementos.indexOf(texto);
 	}
 	
-//	public int criarTitulo(String tituloDoc, String valor, int prioridade, String separador, String charLista ) {
-//	}
-//	
-//	public int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
-//	}
-//	
-//	public int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
-//	}
+	public int criarTitulo(String valor, int prioridade, int nivel, boolean linkavel) {
+		ElementoTitulo titulo = new ElementoTitulo(valor, prioridade, nivel, linkavel);
+		this.elementos.add(titulo);
+		return this.elementos.indexOf(titulo);
+	}
+	
+	public int criarLista(String valorLista, int prioridade, String separador, String charLista) {
+		ElementoLista lista = new ElementoLista(valorLista, prioridade, separador, charLista);
+		this.elementos.add(lista);
+		return this.elementos.indexOf(lista);
+	}
+	
+	public int criarTermos(String valorTermos, int prioridade, String separador, String ordem) {
+		ElementoTermos termos = new ElementoTermos(valorTermos, prioridade);
+		this.elementos.add(termos);
+		return this.elementos.indexOf(termos);
+	}
 //	
 //	public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
 //	}
@@ -83,12 +92,13 @@ public class Documento {
 //	}
 //	
 
-	public void moverParaBaixo(int elementoPosicao) {
-	}
 
-	public void moverParaAcima(int elementoPosicao) {
-		this.elementos.so
-		
-	}
+//	public void moverParaBaixo(int elementoPosicao) {
+//	}
+//
+//	public void moverParaAcima(int elementoPosicao) {
+//		this.elementos.so
+//		
+//	}
 	
 }

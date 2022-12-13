@@ -126,4 +126,47 @@ class DocumentoTeste {
 		
 	}
 	
+	//Testando a criação do elemento título
+	@Test
+	public void criaTitulo1() {
+		DocumentoController doc = new DocumentoController();
+		doc.criarDocumento("batata", 2);
+		doc.criarTitulo("batata", "legume", 3, 1, false);
+		assertEquals(1, doc.criarTitulo("batata", "detentor dos meios de produção", 1 , 2, false));
+		
+	}
+	
+	//Testando a criação do elemento lista
+	@Test
+	public void criaLista1() {
+		DocumentoController doc = new DocumentoController();
+		doc.criarDocumento("batata", 2);
+		doc.criarLista("batata", "legume", 3, "/", "-");
+		assertEquals(1, doc.criarLista("batata", "detentor dos meios de produção", 1 , "*", "$"));
+		
+	}
+	
+	//Testando a criação do elemento termos
+	@Test
+	public void criaTermos1() {
+		DocumentoController doc = new DocumentoController();
+		doc.criarDocumento("batata", 2);
+		doc.criarLista("batata", "legume", 3, "/", "TAMANHO");
+		assertEquals(1, doc.criarLista("batata", "detentor dos meios de produção", 1 , "*", "NENHUM"));
+		
+	}
+	
+	//Testando a criação de elementos de todos os tipos em um único documento
+	@Test
+	public void criaTodosElementos() {
+		DocumentoController doc = new DocumentoController();
+		doc.criarDocumento("batata", 2);
+		doc.criarLista("batata", "legume", 3, "/", "TAMANHO");
+		doc.criarTexto("batata", "A receita pede pelo menos...", 1);
+		doc.criarTitulo("batata", "Início", 0, 0, false);
+		doc.criarTermos("batata", "receitas práticas", 2, " ", "NENHUMA");
+		assertEquals(4, doc.criarLista("batata", "detentor dos meios de produção", 1 , "*", "NENHUM"));
+		
+	}
+	
 }

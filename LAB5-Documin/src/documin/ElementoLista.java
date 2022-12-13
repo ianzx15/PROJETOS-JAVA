@@ -3,21 +3,13 @@ package documin;
 
 public class ElementoLista extends ElementosAbstract{
 
+	private String separador;
+	private String charLista;
 	
-	public ElementoLista(String valor, int prioridade) {
+	public ElementoLista(String valor, int prioridade, String separador, String charLista) {
 		super(valor, prioridade);
+		this.separador = separador;
+		this.charLista = charLista;
 	}
 	
-	@Override
-	public void moverAcima() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void moverAbaixo() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

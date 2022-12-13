@@ -1,13 +1,14 @@
 package documin;
 
 public class ElementoTitulo extends ElementosAbstract{
-
-	private String titulo;
 	
-	public ElementoTitulo(String titulo, String valor, int prioridade) {
+	private int nivel;
+	private boolean linkavel;
+	
+	public ElementoTitulo(String valor, int prioridade, int nivel, boolean linkavel) {
 		super(valor, prioridade);
-		this.titulo = titulo;
+		this.linkavel = linkavel;
+		this.nivel = nivel;
 	}
-	
-	
+
 }
