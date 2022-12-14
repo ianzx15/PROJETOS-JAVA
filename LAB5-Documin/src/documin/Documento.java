@@ -6,12 +6,12 @@ import java.util.Objects;
 public class Documento {
 	private String titulo;
 	private int tamanho;
-	private ArrayList<Elementos> elementos;
+	private ArrayList<ElementosAbstract> elementos;
 	
 	public Documento(String titulo, int tamanho) {
 		this.titulo = titulo;
 		this.tamanho = tamanho;
-		this.elementos = new ArrayList<Elementos>();
+		this.elementos = new ArrayList<ElementosAbstract>();
 		Validador.isTamanhoValido(tamanho, 1);
 		Validador.isTituloValido(titulo);
 		Validador.isTituloNull(titulo);
@@ -19,7 +19,7 @@ public class Documento {
 	
 	public Documento (String titulo) {
 		this.titulo = titulo;
-		this.elementos = new ArrayList<Elementos>();
+		this.elementos = new ArrayList<ElementosAbstract>();
 		Validador.isTituloValido(titulo);
 		Validador.isTituloNull(titulo);
 	}
@@ -36,7 +36,7 @@ public class Documento {
 		return this.elementos.size();
 	}
 	
-	public ArrayList<Elementos> getElementos() {
+	public ArrayList<ElementosAbstract> getElementos() {
 		return this.elementos;
 	}
 	
@@ -81,16 +81,30 @@ public class Documento {
 		this.elementos.add(termos);
 		return this.elementos.indexOf(termos);
 	}
-//	
-//	public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
-//	}
-//	
+	public String pegarRepresentacaoCompleta(int elementoPosicao) {
+		ElementosAbstract elemento = this.elementos.get(elementoPosicao);
+		String string = "";
+		if(elemento instanceof ElementoTexto ) {
+			return string += elemento.toString();
+		} else if(elemento instanceof ElementoTitulo) {
+			if (((ElementoTitulo) elemento).getLinkavel() == true) {
+				return string += elemento.toString();
+			}
+			return string += ((ElementoTitulo) elemento).naoLinkavel();
+		} else if(elemento instanceof ElementoLista) {
+			return string += elemento.toString();
+		}
+		
+	}
+
+	
 //	public String pegarrepresentacaoResumida(String tituloDoc, int elementoPosicao) {
 //	}
 //	
 //	public boolean apagarElemento(String tituloDoc, int elementoPosicao) {
 //	}
 //	
+
 
 
 //	public void moverParaBaixo(int elementoPosicao) {

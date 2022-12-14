@@ -73,6 +73,10 @@ public class DocumentoRepositorio {
 			return this.documentos.get(tituloDoc).criarTermos(valorLista, prioridade, separador, ordem);
 		}
 		
+		public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
+			return this.documentos.get(tituloDoc).pegarRepresentacaoCompleta(elementoPosicao);
+		}
+		
 //		public void moverParaAcima(String tituloDoc, int elementoPosicao) {
 //			this.documentos.get(tituloDoc).moverParaAcima(elementoPosicao);
 //		}

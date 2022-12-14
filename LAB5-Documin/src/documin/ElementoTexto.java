@@ -1,6 +1,5 @@
 package documin;
 
-import java.util.HashMap;
 
 public class ElementoTexto extends ElementosAbstract{
 
@@ -11,16 +10,8 @@ public class ElementoTexto extends ElementosAbstract{
 	}
 	
 	@Override
-	public void moverAcima() {
-		// TODO Auto-generated method stub
-		
+	public String toString() {
+		return super.getValor();
 	}
-
-	@Override
-	public void moverAbaixo() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	
 }

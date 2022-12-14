@@ -2,7 +2,7 @@ package documin;
 
 import java.util.HashMap;
 
-public abstract class ElementosAbstract implements Elementos {
+public abstract class ElementosAbstract  {
 	/**
 	 * Valor que varia entre 1 e 5 indicando maior e menor prioriodade
 	 */
@@ -16,6 +16,15 @@ public abstract class ElementosAbstract implements Elementos {
 		this.prioridade = prioridade;
 	}
 	
+	public abstract String toString();
 	
+	public int getPrioridade() {
+		return this.prioridade;
+	}
 	
+	public String getValor() {
+		return this.valor;
+	}
+
+
 }

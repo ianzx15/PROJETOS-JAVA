@@ -11,6 +11,15 @@ import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Test;
 
 class DocumentoTeste {
+	/**
+	 * Não entendi o elemento texto, não possui nenhuma propriedade?
+	 * é possível so passar um valor nulo para não ter representacao?
+	 * 
+	 * 
+	 * Como é possível criar um método abstrato na super classe qual a necessidade de uma interface?
+	 */
+	
+	
 	//FAZER MAIS TESTES NULOS
 
 
@@ -168,5 +177,38 @@ class DocumentoTeste {
 		assertEquals(4, doc.criarLista("batata", "detentor dos meios de produção", 1 , "*", "NENHUM"));
 		
 	}
+	
+	
+	//Pegando representação completa de texto
+	@Test
+	public void representacaoCompleta1() {
+		DocumentoController doc = new DocumentoController();
+		doc.criarDocumento("batata", 2);
+		doc.criarTexto("batata", "legume", 3);
+		assertEquals("legume", doc.pegarRepresentacaoCompleta("batata", 0));
+		
+	}
+	
+	//Pegando representação completa de título linkavel
+	@Test
+	public void representacaoCompleta2() {
+		DocumentoController doc = new DocumentoController();
+		doc.criarDocumento("batata", 2);
+		doc.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		assertEquals("1. titulo1 titulo2--\n"
+				+ "1-TITULO1TITULO2", doc.pegarRepresentacaoCompleta("batata", 0));
+		
+	}
+	
+	//Pegando representação completa de título não linkavel
+	@Test
+	public void representacaoCompleta3() {
+		DocumentoController doc = new DocumentoController();
+		doc.criarDocumento("batata", 2);
+		doc.criarTitulo("batata", "titulo1", 2, 1, false);
+		assertEquals("1. titulo1", doc.pegarRepresentacaoCompleta("batata", 0));
+		
+	}
+	
 	
 }

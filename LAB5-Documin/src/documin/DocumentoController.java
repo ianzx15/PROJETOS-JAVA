@@ -37,6 +37,9 @@ public class DocumentoController {
 		return doc.criarTermos(tituloDoc, valorTermos, prioridade, separador, ordem);
 	}
 	
+	public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
+		return doc.pegarRepresentacaoCompleta(tituloDoc, elementoPosicao);
+	}
 	
 //	public void moverParaCima(String tituloDoc, int elementoPosicao) {
 //		return doc.moverParaAcima(tituloDoc, elementoPosicao);
