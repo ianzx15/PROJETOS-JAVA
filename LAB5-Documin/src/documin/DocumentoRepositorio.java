@@ -57,10 +57,12 @@ public class DocumentoRepositorio {
 			return lista;
 		}
 		
-		public int criarTexto(String tituloDoc, String valor, int prioridade) {
-			return this.documentos.get(tituloDoc).criarTexto(valor, prioridade);
+		public int adicionarElemento(String titulodoc, ElementosAbstract elemento) {
+			Documento obj = this.documentos.get(titulodoc);
+			return obj.adicionarElemento(elemento);
+			
 		}
-
+		
 		public int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
 			return this.documentos.get(tituloDoc).criarTitulo(valor, prioridade, nivel, linkavel);
 		}

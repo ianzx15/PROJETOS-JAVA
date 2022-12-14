@@ -21,21 +21,10 @@ public class DocumentoController {
 		return doc.contarElementos(titulo);
 	}
 	
-	public int criarTexto(String tituloDocumento, String valor, int prioridade) {
-		return doc.criarTexto(tituloDocumento, valor, prioridade);
+	public int adicionarElemento(String titulo, ElementosAbstract elemento) {
+		return doc.adicionarElemento(titulo, elemento);
 	}
 	
-	public int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
-		return doc.criarTitulo(tituloDoc, valor, prioridade, nivel, linkavel);
-	}
-	
-	public int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
-		return doc.criarLista(tituloDoc, valorLista, prioridade, separador, charLista);
-	}
-	
-	public int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
-		return doc.criarTermos(tituloDoc, valorTermos, prioridade, separador, ordem);
-	}
 	
 	public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
 		return doc.pegarRepresentacaoCompleta(tituloDoc, elementoPosicao);

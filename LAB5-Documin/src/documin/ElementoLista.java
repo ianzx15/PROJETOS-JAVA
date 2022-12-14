@@ -12,17 +12,14 @@ public class ElementoLista extends ElementosAbstract{
 		this.charLista = charLista;
 	}
 	
-	private String[] retornaValores() {
-		for (String[] el = super.getValor().split(separador)) {
-			
-		}
-	}
-	
-	
 	@Override
 	public String toString() {
 		String string = "";
-		return string += this.charLista + "";
+		for (String item : super.getValor().split(separador)) {
+			string += "-" + item + "\n";
+		}
+		return string;
 	}
+	
 	
 }

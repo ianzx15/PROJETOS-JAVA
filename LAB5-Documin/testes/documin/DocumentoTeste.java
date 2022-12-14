@@ -173,7 +173,7 @@ class DocumentoTeste {
 		doc.criarLista("batata", "legume", 3, "/", "TAMANHO");
 		doc.criarTexto("batata", "A receita pede pelo menos...", 1);
 		doc.criarTitulo("batata", "Início", 0, 0, false);
-		doc.criarTermos("batata", "receitas práticas", 2, " ", "NENHUMA");
+		doc.criarTermos("batata", "receitas práticas", 2, "/", "NENHUMA");
 		assertEquals(4, doc.criarLista("batata", "detentor dos meios de produção", 1 , "*", "NENHUM"));
 		
 	}
@@ -209,6 +209,30 @@ class DocumentoTeste {
 		assertEquals("1. titulo1", doc.pegarRepresentacaoCompleta("batata", 0));
 		
 	}
+	
+	//Pegando representação completa de lista
+	@Test
+	public void representacaoCompleta4() {
+		DocumentoController doc = new DocumentoController();
+		doc.criarDocumento("batata", 2);
+		doc.criarLista("batata", "a/b/c", 2, "/", "$");
+		assertEquals("-a\n"
+				+ "-b\n"
+				+ "-c\n", doc.pegarRepresentacaoCompleta("batata", 0));
+		
+	}
+	
+	//Pegando representação completa de termos
+	@Test
+	public void representacaoCompleta5() {
+		DocumentoController doc = new DocumentoController();
+		doc.criarDocumento("batata", 2);
+		doc.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		assertEquals("Total termos: 3\n"
+				+ "- legume, verdura, cereal", doc.pegarRepresentacaoCompleta("batata", 0));
+		
+	}
+	
 	
 	
 }

@@ -24,6 +24,10 @@ public class Documento {
 		Validador.isTituloNull(titulo);
 	}
 
+	public int adicionarElemento(ElementosAbstract elemento) {
+		this.elementos.add(elemento);
+		return this.elementos.indexOf(elemento);
+	}
 	
 	public String getTitulo() {
 		return this.titulo;
@@ -77,10 +81,11 @@ public class Documento {
 	}
 	
 	public int criarTermos(String valorTermos, int prioridade, String separador, String ordem) {
-		ElementoTermos termos = new ElementoTermos(valorTermos, prioridade);
+		ElementoTermos termos = new ElementoTermos(valorTermos, prioridade, separador, ordem);
 		this.elementos.add(termos);
 		return this.elementos.indexOf(termos);
 	}
+	
 	public String pegarRepresentacaoCompleta(int elementoPosicao) {
 		ElementosAbstract elemento = this.elementos.get(elementoPosicao);
 		String string = "";
@@ -93,8 +98,8 @@ public class Documento {
 			return string += ((ElementoTitulo) elemento).naoLinkavel();
 		} else if(elemento instanceof ElementoLista) {
 			return string += elemento.toString();
-		}
-		
+		} 
+			return elemento.toString();
 	}
 
 	
