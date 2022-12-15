@@ -11,24 +11,22 @@ public class ElementoTitulo extends ElementosAbstract{
 		this.nivel = nivel;
 	}
 	
-	public boolean getLinkavel() {
-		return this.linkavel;
-	}
-	
 	public int getNivel() {
 		return nivel;
 	}
+
 	
-	@Override
-	public String toString() {
+	public String pegarRepresentacaoCompleta() {
 		String string = new String();
+		if (this.linkavel == false) {
+			return string += this.nivel + ". " + super.getValor();
+		}
 		return string += this.nivel + ". " + super.getValor() + "--\n" 
 				+ this.nivel + "-" + super.getValor().toUpperCase().replace(" ", "");
 	}
 	
-	public String naoLinkavel() {
+	public String pegarRepresentacaoResumida() {
 		String string = new String();
-		return string += this.nivel + ". " + super.getValor();
+			return string += this.nivel + ". " + super.getValor();
 	}
-	
 }

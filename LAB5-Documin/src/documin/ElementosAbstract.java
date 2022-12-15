@@ -16,8 +16,9 @@ public abstract class ElementosAbstract  {
 		this.prioridade = prioridade;
 	}
 	
-	public abstract String toString();
-	
+	public abstract String pegarRepresentacaoCompleta();
+	public abstract String pegarRepresentacaoResumida();
+
 	public int getPrioridade() {
 		return this.prioridade;
 	}

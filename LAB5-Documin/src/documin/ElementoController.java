@@ -7,15 +7,19 @@ public class ElementoController {
 		return texto;
 	}
 	
-	public int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
-		return doc.criarTitulo(tituloDoc, valor, prioridade, nivel, linkavel);
+	public ElementoTitulo criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
+		ElementoTitulo titulo = new ElementoTitulo(valor, prioridade, nivel, linkavel);
+		return titulo;
 	}
 	
-	public int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
-		return doc.criarLista(tituloDoc, valorLista, prioridade, separador, charLista);
+	public ElementoLista criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
+		ElementoLista lista = new ElementoLista(valorLista, prioridade, separador, charLista);
+		return lista;
 	}
 	
-	public int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
-		return doc.criarTermos(tituloDoc, valorTermos, prioridade, separador, ordem);
+	public ElementoTermos criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
+		ElementoTermos termos = new ElementoTermos(valorTermos, prioridade, separador, ordem);
+		return termos;
 	}
+	
 }

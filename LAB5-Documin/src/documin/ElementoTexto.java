@@ -9,8 +9,12 @@ public class ElementoTexto extends ElementosAbstract{
 		
 	}
 	
-	@Override
-	public String toString() {
+	
+	public String pegarRepresentacaoCompleta() {
+		return super.getValor();
+	}
+	
+	public String pegarRepresentacaoResumida() {
 		return super.getValor();
 	}
 	

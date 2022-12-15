@@ -38,6 +38,10 @@ public class DocumentoRepositorio {
 			
 		}
 		
+		public ElementosAbstract getElemento(String tituloDoc, int indice) {
+			return this.documentos.get(tituloDoc).getElemento(indice);
+		}
+		
 		public int contarElementos(String titulo){
 			if (!this.documentos.containsKey(titulo)) {
 				throw new NoSuchElementException();
@@ -62,25 +66,4 @@ public class DocumentoRepositorio {
 			return obj.adicionarElemento(elemento);
 			
 		}
-		
-		public int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
-			return this.documentos.get(tituloDoc).criarTitulo(valor, prioridade, nivel, linkavel);
-		}
-
-		public int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
-			return this.documentos.get(tituloDoc).criarLista(valorLista, prioridade, separador, charLista);
-		}
-		
-		public int criarTermos(String tituloDoc, String valorLista, int prioridade, String separador, String ordem) {
-			return this.documentos.get(tituloDoc).criarTermos(valorLista, prioridade, separador, ordem);
-		}
-		
-		public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
-			return this.documentos.get(tituloDoc).pegarRepresentacaoCompleta(elementoPosicao);
-		}
-		
-//		public void moverParaAcima(String tituloDoc, int elementoPosicao) {
-//			this.documentos.get(tituloDoc).moverParaAcima(elementoPosicao);
-//		}
-		
 }

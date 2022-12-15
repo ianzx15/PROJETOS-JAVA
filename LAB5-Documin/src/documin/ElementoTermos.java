@@ -1,31 +1,44 @@
 package documin;
 
+import java.util.Arrays;
 
 public class ElementoTermos extends ElementosAbstract {
 
 	private String separador;
 	private String ordem;
+	private String[] lista;
 	
 	public ElementoTermos(String valor, int prioridade, String separador, String ordem) {
 		super(valor, prioridade);
-		this.separador = separador;
 		this.ordem = ordem;
+		this.separador = separador;
 	}
-
-	@Override
-	public String toString() {
+	
+	public void ordenar() {
+		if (ordem.toUpperCase() == "TAMANHO") {
+			String[] lista = super.getValor().split(separador);
+			Arrays.sort(lista, (a, b)->Integer.compare(a.length(), b.length()));
+		} 
+		
+	}
+	
+	public String pegarRepresentacaoCompleta() {
 		String string = "";
-		String[] lista = super.getValor().split(separador);
+		String[] lista = this.lista;
 		int tamanho = lista.length;
 		for (int i = 0 ; i < tamanho; i++) {
 			string += (i == tamanho -1) ? lista[i] : lista[i] + ", ";
-			
-//			if (i < lista.length) {
-//				string += lista[i] + ", ";
-//			} else {
-//				string += lista[i];
-//			}
 		}
 		return "Total termos: " + tamanho + "\n- " + string;
+	}
+	
+	public String pegarRepresentacaoResumida() {
+		String string = "";
+		String[] lista = super.getValor().split(separador);
+		int tamanho = lista.length -1;
+		for (int i = 0 ; i <= tamanho; i++) {
+			string += (i == tamanho ) ? lista[i] : lista[i] + " " + separador + " ";
+		}
+		return string;
 	}
 }

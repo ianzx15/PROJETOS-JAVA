@@ -25,10 +25,14 @@ public class DocumentoController {
 		return doc.adicionarElemento(titulo, elemento);
 	}
 	
-	
-	public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
-		return doc.pegarRepresentacaoCompleta(tituloDoc, elementoPosicao);
+	public Documento getDocumento(String tituloDoc) {
+		return doc.getDocumento(tituloDoc);
 	}
+	
+	public ElementosAbstract getElemento(String tituloDoc, int indice) {
+		return doc.getElemento(tituloDoc, indice);
+	}
+
 	
 //	public void moverParaCima(String tituloDoc, int elementoPosicao) {
 //		return doc.moverParaAcima(tituloDoc, elementoPosicao);
