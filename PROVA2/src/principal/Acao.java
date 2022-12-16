@@ -50,6 +50,11 @@ public class Acao {
 		return this.codigo;
 	}
 	
+	public String getData() {
+		return this.data;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(codigo);
@@ -67,15 +72,11 @@ public class Acao {
 		return codigo == other.codigo;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "Acao " + this.codigo + " - " + this.data + " - " + this.tituloDesafio + " - " + this.progresso;
 	}
 
-	public String getData() {
-		return this.data;
-	}
 	
 	
 }
