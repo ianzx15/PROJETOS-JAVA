@@ -9,9 +9,6 @@ import org.junit.jupiter.api.Test;
 class mainTeste {
 	
 	private MeuDesafioMinhaVida teste = new MeuDesafioMinhaVida();
-	@BeforeEach
-	void preparaTestes() {
-	}
 	
 	/**
 	 * Criando desafio
@@ -76,9 +73,12 @@ class mainTeste {
 	void progredirAcao1() {
 		teste.addDesafio("batata");
 		teste.addAcao(0, "15/12/2022", 44);
+		teste.addAcao(0, "12/12/2022", 32);
 		teste.progressoAcao(44);
 		teste.progressoAcao(44);
+		teste.progressoAcao(32);
 		assertEquals(20, teste.getProgresso(44));
+		assertEquals(10, teste.getProgresso(32));
 	}
 	
 	/**
@@ -128,7 +128,7 @@ class mainTeste {
 	 */
 
 	@Test
-	void progredirAcao5() {
+	void contarExecucao1() {
 		teste.addDesafio("batata");
 		teste.addAcao(0, "15/12/2022", 44);
 		teste.progressoAcao(44, 100);
@@ -138,6 +138,41 @@ class mainTeste {
 		assertEquals(2, teste.getExecucoes(0));
 	}
 	
+	/**
+	 * Obtendo execução por meio de duas ações
+	 */
+
+	@Test
+	void contarExecucao2() {
+		teste.addDesafio("batata");
+		teste.addAcao(0, "15/12/2022", 44);
+		teste.addAcao(0, "09/08/2022", 77);
+		teste.progressoAcao(44, 66);
+		teste.progressoAcao(44, 56);
+		teste.progressoAcao(77, 98);
+		teste.progressoAcao(77, 22);
+		assertEquals(2, teste.getExecucoes(0));
+	}
 	
+	/**
+	 * Listando ações
+	 */
+
+	@Test
+	void listarAcoes() {
+		teste.addDesafio("batata");
+		teste.addAcao(0, "15/12/2022", 44);
+		teste.addAcao(0, "13/11/2022", 29);
+		teste.addAcao(0, "13/11/2022", 22);
+
+		teste.addDesafio("legume");
+		teste.addAcao(1, "12/5/2022", 9);
+		
+		assertEquals("Acao 29 - 13/11/2022 - batata - 0\n"
+				+ "Acao 44 - 15/12/2022 - batata - 0\n"
+				+ "Acao 9 - 12/5/2022 - legume - 0\n"
+				+ "Acao 22 - 13/11/2022 - batata - 0\n", teste.listarAcao());
+		
+	}
 	
 }

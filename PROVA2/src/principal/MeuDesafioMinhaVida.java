@@ -17,7 +17,11 @@ public class MeuDesafioMinhaVida {
 	
 	public void addAcao(int idDesafio, String data, int codigo) {
 		this.desafio.getTitulo(idDesafio);
-		this.acao.addAcao(idDesafio, data, codigo);
+		this.acao.addAcao(idDesafio, data, codigo, this.desafio.getTitulo(idDesafio));
+	}
+	
+	public String listarAcao() {
+		return this.acao.listarAcao();
 	}
 	
 	public void progressoAcao(int codigo) {

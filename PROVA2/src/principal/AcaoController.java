@@ -4,8 +4,8 @@ public class AcaoController {
 	
 	private AcaoRepositorio rep = new AcaoRepositorio();
 	
-	public void addAcao(int idDesafio, String data, int codigo) {
-		rep.addAcao(idDesafio, data, codigo);
+	public void addAcao(int idDesafio, String data, int codigo, String titulo) {
+		rep.addAcao(idDesafio, data, codigo, titulo);
 	}
 	
 	public boolean progressoAcao(int codigo) {
@@ -24,5 +24,8 @@ public class AcaoController {
 		return this.rep.getProgresso(codigo);
 	}
 
+	public String listarAcao() {
+		return rep.listarAcao();
+	}
 	
 }

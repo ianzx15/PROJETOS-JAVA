@@ -7,11 +7,13 @@ public class Acao {
 	private int progresso;
 	private int codigo;
 	private int idDesafio;
+	private String tituloDesafio;
 	
-	public Acao(int idDesafio, String data, int codigo) {
+	public Acao(int idDesafio, String data, int codigo, String tituloDesafio) {
 		this.codigo = codigo;
 		this.data = data;
 		this.idDesafio = idDesafio;
+		this.tituloDesafio = tituloDesafio;
 	}
 	
 	public int getProgresso() {
@@ -22,7 +24,9 @@ public class Acao {
 		return this.idDesafio;
 	}
 	
-	
+	public String getTitulo() {
+		return this.tituloDesafio;
+	}
 	public boolean progressoAcao() {
 		if(this.progresso <= 100) {
 		this.progresso += 10;
@@ -63,6 +67,15 @@ public class Acao {
 		return codigo == other.codigo;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Acao " + this.codigo + " - " + this.data + " - " + this.tituloDesafio + " - " + this.progresso;
+	}
+
+	public String getData() {
+		return this.data;
+	}
 	
 	
 }
