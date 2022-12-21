@@ -22,7 +22,7 @@ public class ElementoTermos extends ElementosAbstract {
 		} 
 		
 	}
-	
+	//ESSA LISTA NÃO É INICIADA
 	public String pegarRepresentacaoCompleta() {
 		String string = "";
 		String[] lista = this.lista;
