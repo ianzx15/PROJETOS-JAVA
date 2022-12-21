@@ -6,6 +6,7 @@ public class ElementoTermos extends ElementosAbstract {
 
 	private String separador;
 	private String ordem;
+	//PQ ESSA LISTA EXISTE????????
 	private String[] lista;
 	
 	public ElementoTermos(String valor, int prioridade, String separador, String ordem) {
