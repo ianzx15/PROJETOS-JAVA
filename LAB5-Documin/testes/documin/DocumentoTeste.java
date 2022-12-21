@@ -150,7 +150,8 @@ class DocumentoTeste {
 	//Testando a criação do elemento termos sem ordenação
 	@Test
 	 void criaTermos1() {
-		assertEquals(0, fac.criarTermos("batata", "receitas práticas", 1 , "*", "NENHUM"));
+		fac.criarTermos("batata", "detentor dos meios de produção", 1 , "/", "NENHUMA");
+		assertEquals("detentor / dos / meios / de / produção", fac.pegarRepresentacaoCompleta("batata", 0));
 	}
 	
 	//Testando a criação do elemento termos ordenados por tamanho

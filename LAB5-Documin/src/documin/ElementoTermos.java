@@ -6,13 +6,13 @@ public class ElementoTermos extends ElementosAbstract {
 
 	private String separador;
 	private String ordem;
-	//PQ ESSA LISTA EXISTE????????
-	private String[] lista;
+	private String lista;
 	
 	public ElementoTermos(String valor, int prioridade, String separador, String ordem) {
 		super(valor, prioridade);
 		this.ordem = ordem;
 		this.separador = separador;
+		this.lista = super.getValor().replace(" ", separador);
 	}
 	
 	public void ordenar() {
@@ -25,7 +25,7 @@ public class ElementoTermos extends ElementosAbstract {
 	//ESSA LISTA NÃO É INICIADA
 	public String pegarRepresentacaoCompleta() {
 		String string = "";
-		String[] lista = this.lista;
+		String[] lista = this.lista.split(this.separador);
 		int tamanho = lista.length;
 		for (int i = 0 ; i < tamanho; i++) {
 			string += (i == tamanho -1) ? lista[i] : lista[i] + ", ";

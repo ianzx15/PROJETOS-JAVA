@@ -9,7 +9,6 @@ public class ElementoTexto extends ElementosAbstract{
 		
 	}
 	
-	
 	public String pegarRepresentacaoCompleta() {
 		return super.getValor();
 	}
