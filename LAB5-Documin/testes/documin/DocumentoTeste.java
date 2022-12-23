@@ -19,6 +19,7 @@ class DocumentoTeste {
 	}
 	
 	//FAZER MAIS TESTES NULOS
+	//TESTES CRIAR E EXIBIR COMPLETO E RESUMIDOS ESTÃO REDUNDANTES
 
 
 	//Título nulo
@@ -147,20 +148,6 @@ class DocumentoTeste {
 		
 	}
 	
-	//Testando a criação do elemento termos sem ordenação
-	@Test
-	 void criaTermos1() {
-		fac.criarTermos("batata", "detentor dos meios de produção", 1 , "/", "NENHUMA");
-		assertEquals("detentor / dos / meios / de / produção", fac.pegarRepresentacaoCompleta("batata", 0));
-	}
-	
-	//Testando a criação do elemento termos ordenados por tamanho
-	@Test
-	 void criaTermos2() {
-		fac.criarTermos("batata", "detentor dos meios de produção", 1 , "/", "TAMANHO");
-		assertEquals("de / dos / meios / detentor / produção", fac.pegarRepresentacaoResumida("batata", 0));
-		
-	}
 	
 	//Testando a criação de elementos de todos os tipos em um único documento
 	@Test
@@ -168,7 +155,7 @@ class DocumentoTeste {
 		fac.criarLista("batata", "legume", 3, "/", "TAMANHO");
 		fac.criarTexto("batata", "A receita pede pelo menos...", 1);
 		fac.criarTitulo("batata", "Início", 0, 0, false);
-		fac.criarTermos("batata", "receitas práticas", 2, "/", "NENHUMA");
+		fac.criarTermos("batata", "receitas/práticas", 2, "/", "NENHUMA");
 		assertEquals(4, fac.criarLista("batata", "detentor dos meios de produção", 1 , "*", "NENHUM"));
 		
 	}
@@ -209,7 +196,7 @@ class DocumentoTeste {
 		
 	}
 	
-	//Pegando representação completa de termos
+	//Pegando representação completa de termos sem ordenação
 	@Test
 	 void representacaoCompleta5() {
 		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
@@ -218,23 +205,38 @@ class DocumentoTeste {
 		
 	}
 	
+	//Pegando representação completa de termos por tamanho
+	@Test
+	 void representacaoCompleta6() {
+		fac.criarTermos("batata", "detentor/dos/meios/de produção", 1 , "/", "TAMANHO");
+		assertEquals("Total termos: 5\n"
+				+ "- de, dos, meios, detentor, produção", fac.pegarRepresentacaoCompleta("batata", 0));
+		
+	}
+		
+	//Pegando representação completa de termos por ordem alfabetica
+	@Test
+	 void representacaoCompleta7() {
+		fac.criarTermos("batata", "detentor/dos/meios/de/produção", 1 , "/", "ALFABÉTICA");
+		assertEquals("Total termos: 5\n"
+				+ "- de, detentor, dos, meios, produção", fac.pegarRepresentacaoCompleta("batata", 0));
+	}
+	
 	
 	//Pegando representação resumida de lista
 	@Test
 	 void representacaoResumida1() {
-		Facade fac = new Facade();
 		fac.criarDocumento("batata", 2);
 		fac.criarLista("batata", "a/b/c", 2, "/", "$");
 		assertEquals("a, b, c", fac.pegarRepresentacaoResumida("batata", 0));
 		
 	}
 	
-	//Pegando representação resumida de termos
+	//Pegando representação resumida de termos sem ordenação
 	@Test
 	 void representacaoResumida2() {
 		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
 		assertEquals("legume / verdura / cereal", fac.pegarRepresentacaoResumida("batata", 0));
-		
 	}
 	
 	//Pegando representação resumida de texto
@@ -251,6 +253,20 @@ class DocumentoTeste {
 		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
 		assertEquals("1. titulo1 titulo2", fac.pegarRepresentacaoResumida("batata", 0));
 		
+	}
+	
+	//Pegando representação resumida de termos por tamanho
+	@Test
+	 void representacaoResumida5() {
+		fac.criarTermos("batata", "legume/verdura/carne", 1, "/", "TAMANHO");
+		assertEquals("carne / legume / verdura", fac.pegarRepresentacaoResumida("batata", 0));
+	}
+	
+	//Pegando representação resumida de termos por ordem alfabetica
+	@Test
+	 void representacaoResumida6() {
+		fac.criarTermos("batata", "legume/batata/carne", 1, "/", "ALFABÉTICA");
+		assertEquals("batata / carne / legume", fac.pegarRepresentacaoResumida("batata", 0));
 	}
 	
 	//Removendo elemento 

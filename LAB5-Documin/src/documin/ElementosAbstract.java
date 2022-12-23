@@ -26,6 +26,7 @@ public abstract class ElementosAbstract  {
 	public String getValor() {
 		return this.valor;
 	}
+	
 
 
 }
