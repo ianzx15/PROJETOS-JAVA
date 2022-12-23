@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Documento {
 	private String titulo;
 	private int tamanho;
+	private boolean isAtalho = false;
 	private ArrayList<ElementosAbstract> elementos;
 	
 	public Documento(String titulo, int tamanho) {
@@ -25,10 +26,18 @@ public class Documento {
 		Validador.isTituloNull(titulo);
 	}
 	
+	public boolean getIsAtalho() {
+		return this.isAtalho;
+	}
+	
+	public void setIsAtalho(boolean boo) {
+		this.isAtalho = boo;
+	}
+	
 	public ElementosAbstract getElemento(int indice) {
 		return this.elementos.get(indice);
 	}
-
+	
 	public boolean apagarElemento(ElementosAbstract el) {
 		return this.elementos.remove(el);
 	}
@@ -73,9 +82,20 @@ public class Documento {
 		Documento other = (Documento) obj;
 		return Objects.equals(titulo, other.titulo);
 	}
-	
 
+	public int getMediaElementos() {
+		int num = 0;
+		for(ElementosAbstract el : this.elementos) {
+			num += el.getPrioridade();
+		}
+		if (this.elementos.size() == 0) {
+			return 0;
+		}
+		return num / this.elementos.size();
+	}
 
-	
+	public ArrayList<ElementosAbstract> getElementos() {
+		return this.elementos;
+	}
 	
 }

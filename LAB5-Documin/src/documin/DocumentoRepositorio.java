@@ -62,8 +62,15 @@ public class DocumentoRepositorio {
 		}
 		
 		public int adicionarElemento(String titulodoc, ElementosAbstract elemento) {
+			if (this.documentos.get(titulodoc).getIsAtalho() == true) {
+				throw new IllegalStateException();
+			}
 			Documento obj = this.documentos.get(titulodoc);
 			return obj.adicionarElemento(elemento);
 			
 		}
+
+
+		
+
 }

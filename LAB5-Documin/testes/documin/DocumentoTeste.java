@@ -127,37 +127,66 @@ class DocumentoTeste {
 	//Testando a criação do elemento texto
 	@Test
 	void criaTexto1() {
-		fac.criarTexto("batata", "legume", 3);
-		assertEquals(1, fac.criarTexto("batata", "detentor dos meios de produção", 1 ));
+		assertEquals(0, fac.criarTexto("batata", "detentor dos meios de produção", 1 ));
 		
 	}
 	
 	//Testando a criação do elemento título
 	@Test
 	 void criaTitulo1() {
-		fac.criarTitulo("batata", "legume", 3, 1, false);
-		assertEquals(1, fac.criarTitulo("batata", "detentor dos meios de produção", 1 , 2, false));
+		assertEquals(0, fac.criarTitulo("batata", "detentor dos meios de produção", 1 , 2, false));
 		
 	}
 	
 	//Testando a criação do elemento lista
 	@Test
 	 void criaLista1() {
-		fac.criarLista("batata", "legume", 3, "/", "-");
-		assertEquals(1, fac.criarLista("batata", "detentor dos meios de produção", 1 , "*", "$"));
-		
+		assertEquals(0, fac.criarLista("batata", "detentor dos meios de produção", 1 , "*", "$"));
 	}
 	
-	
-	//Testando a criação de elementos de todos os tipos em um único documento
+	//Testando a criação do elemento Atalho
 	@Test
-	 void criaTodosElementos() {
-		fac.criarLista("batata", "legume", 3, "/", "TAMANHO");
+	void criaAtalho1() {
+		fac.criarDocumento("batata", 1);
+		fac.criarDocumento("legume", 2);
+		fac.criarTexto("batata", "aaaaa", 2);
+		assertEquals(1, fac.criarAtalho("batata", "legume"));
+	}
+	
+	//Testando a criação do elemento atalho de um elemento que já é atalho
+	@Test
+	void criaAtalho2() {
+		fac.criarDocumento("batata", 1);
+		fac.criarDocumento("legume", 2);
+		fac.criarDocumento("verdura", 1);
+		assertEquals(0, fac.criarAtalho("batata", "legume"));
+		try{
+			assertEquals(0, fac.criarAtalho("legume", "batata"));
+			fail ("Elemento é um atalho");
+		} catch (IllegalStateException erro) {}
+
+	}
+	
+	//Testando a criação do elemento atalho de um elemento que possui um atalho
+		@Test
+		void criaAtalho3() {
+			fac.criarDocumento("batata", 1);
+			fac.criarDocumento("legume", 2);
+			fac.criarDocumento("verdura", 1);
+			assertEquals(0, fac.criarAtalho("batata", "legume"));
+			try {
+				assertEquals(0, fac.criarAtalho("verdura", "batata"));
+				fail("Elemento já possui um atalho");
+			} catch (IllegalStateException erro) {}
+		}
+	
+	//Testando a criação de elementos de mesmo tipo
+	@Test
+	 void criaMesmoTipo() {
 		fac.criarTexto("batata", "A receita pede pelo menos...", 1);
-		fac.criarTitulo("batata", "Início", 0, 0, false);
+		fac.criarTexto("batata", "dessa vez usaremos apenas...", 2);
 		fac.criarTermos("batata", "receitas/práticas", 2, "/", "NENHUMA");
-		assertEquals(4, fac.criarLista("batata", "detentor dos meios de produção", 1 , "*", "NENHUM"));
-		
+		assertEquals("dessa vez usaremos apenas...", fac.pegarRepresentacaoResumida("batata", 1));
 	}
 	
 	
@@ -296,5 +325,6 @@ class DocumentoTeste {
 		assertEquals("legume" ,fac.pegarRepresentacaoResumida("batata", 0));
 		assertEquals("1. titulo1 titulo2", fac.pegarRepresentacaoResumida("batata", 1));
 	}
+	
 	
 }

@@ -21,5 +21,17 @@ public class ElementoController {
 		ElementoTermos termos = new ElementoTermos(valorTermos, prioridade, separador, ordem);
 		return termos;
 	}
+
+	public ElementosAbstract criarAtalho(Documento tituloDocReferenciado) {
+		for (ElementosAbstract el : tituloDocReferenciado.getElementos()) {
+			if (el.getClass().equals(Atalho.class)){
+				throw new IllegalStateException();
+			}
+		}
+		tituloDocReferenciado.setIsAtalho(true);
+		Atalho atalho = new Atalho(tituloDocReferenciado);
+		return atalho;
+	}
+
 	
 }

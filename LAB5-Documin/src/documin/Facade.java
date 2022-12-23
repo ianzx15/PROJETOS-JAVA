@@ -21,15 +21,19 @@ public class Facade {
 	}
 	
 	public int criarTexto(String tituloDoc, String valor, int prioridade) {
-		return documento.adicionarElemento(tituloDoc, this.elemento.criarTexto(valor, prioridade));
+		return this.documento.adicionarElemento(tituloDoc, this.elemento.criarTexto(valor, prioridade));
 	}
 	
 	public int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
-		return documento.adicionarElemento(tituloDoc, this.elemento.criarLista(tituloDoc, valorLista, prioridade, separador, charLista));
+		return this.documento.adicionarElemento(tituloDoc, this.elemento.criarLista(tituloDoc, valorLista, prioridade, separador, charLista));
 	}
 	
 	public int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
-		return documento.adicionarElemento(tituloDoc, this.elemento.criarTermos(tituloDoc, valorTermos, prioridade, separador, ordem));
+		return this.documento.adicionarElemento(tituloDoc, this.elemento.criarTermos(tituloDoc, valorTermos, prioridade, separador, ordem));
+	}
+	
+	public int criarAtalho(String tituloDoc, String tituloDocReferenciado) {
+		return this.documento.adicionarElemento(tituloDoc, this.elemento.criarAtalho(this.documento.getDocumento(tituloDocReferenciado)));
 	}
 	
 	public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
@@ -54,10 +58,6 @@ public class Facade {
 		this.documento.getDocumento(tituloDoc).moverParaBaixo(elementoPosicao);
 	}
 	
-	
-//
-//	public int criarAtalho(String tituloDoc, String tituloDocReferenciado) {
-//	}
 //	
 //	public int criarVisaoCompleta(String tituloDoc) {
 //	}
