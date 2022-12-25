@@ -5,10 +5,12 @@ public class Facade {
 	
 	private DocumentoController documento;
 	private ElementoController elemento;
+	private VisaoController visao;
 		
 	public Facade() {
 		this.documento= new DocumentoController();
 		this.elemento = new ElementoController();
+		this.visao = new VisaoController();
 	}
 	
 	public boolean criarDocumento(String titulo, int tamanho) {
@@ -48,7 +50,6 @@ public class Facade {
 		return this.documento.getDocumento(tituloDoc).apagarElemento(this.documento.getDocumento(tituloDoc).getElemento(elementoPosicao));
 	}
 	
-	
 	//TESTAR QUANDO O ELEMENTO É EMPURRADO PARA UMA POSICAO INEXISTENTE 
 	public void moverParaCima(String tituloDoc, int elementoPosicao) {
 		this.documento.getDocumento(tituloDoc).moverParaCima(elementoPosicao);
@@ -58,20 +59,23 @@ public class Facade {
 		this.documento.getDocumento(tituloDoc).moverParaBaixo(elementoPosicao);
 	}
 	
-//	
-//	public int criarVisaoCompleta(String tituloDoc) {
-//	}
-//	
-//	public int criarVisaoResumida(String tituloDoc) {
-//	}
-//	
-//	public int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
-//	}
-//	
-//	public int criarVisaoTitulo(String tituloDoc) {
-//	}
-//	
-//	public String[] exibirVisao(int visaoId) {
-//	}
-//	
+	public int criarVisaoCompleta(String tituloDoc) {
+		return this.visao.criarVisaoCompleta(this.documento.getDocumento(tituloDoc));
+	}
+	
+	public int criarVisaoResumida(String tituloDoc) {
+		return this.visao.criarVisaoResumida(this.documento.getDocumento(tituloDoc));
+	}
+	
+	public int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
+		return this.visao.criarVisaoPrioritaria(this.documento.getDocumento(tituloDoc), prioridade);
+	}
+	
+	public int criarVisaoTitulo(String tituloDoc) {
+		return this.visao.criarVisaoTitulo(this.documento.getDocumento(tituloDoc));
+	}
+	
+	public String[] exibirVisao(int visaoId) {
+		return this.visao.exibirVisao(visaoId);
+	}
 }

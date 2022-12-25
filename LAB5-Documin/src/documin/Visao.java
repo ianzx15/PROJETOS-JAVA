@@ -1,13 +1,22 @@
 package documin;
 
+import java.util.ArrayList;
+
 public class Visao {
 
-	public String completa() {
-		String format = "";
-		format += "Prioridade: " + this.prioridade + "\nValor: " + this.valor;
-		return format;
+	private ArrayList<String[]> visoes;
+	
+	public Visao() {
+		this.visoes = new ArrayList<String[]>();
 	}
 	
-	public String resumida() {
+	public int addVisao(String[] visao) {
+		this.visoes.add(visao);
+		return this.visoes.indexOf(visao);
 	}
+	
+	public String[] exibirVisao(int visaoId) {
+		return this.visoes.get(visaoId);
+	}
+	
 }

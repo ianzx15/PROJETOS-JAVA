@@ -326,5 +326,65 @@ class DocumentoTeste {
 		assertEquals("1. titulo1 titulo2", fac.pegarRepresentacaoResumida("batata", 1));
 	}
 	
+	//Gerando visao completa de um documento
+	@Test
+	 void documentoCompleto1() {
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		assertEquals(0, fac.criarVisaoCompleta("batata"));
+		assertEquals(1, fac.criarVisaoResumida("batata"));
+
+	}
 	
+	//Gerando visao resumida de um documento
+	@Test
+	 void documentoCompleto2() {
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		assertEquals(0, fac.criarVisaoResumida("batata"));
+	}
+	
+	//Gerando visao prioritária de um documento
+	@Test
+	void documentoCompleto3() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		assertEquals(0, fac.criarVisaoPrioritaria("batata",2));
+	}
+	//Gerando visao dos títulos de um documento
+	@Test
+	void documentoCompleto4() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		assertEquals(0, fac.criarVisaoTitulo("batata"));
+	}
+	
+	//Gerando mais de uma visão de documento
+	@Test
+	void documentoCompleto5() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		assertEquals(0, fac.criarVisaoTitulo("batata"));
+		assertEquals(1, fac.criarVisaoCompleta("batata"));
+		assertEquals(2, fac.criarVisaoPrioritaria("batata", 1));
+		assertEquals(3, fac.criarVisaoResumida("batata"));
+	}
+	
+	//Exibindo visões
+	@Test
+	void exibeVisao1() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		//PRECISO AINDA GARANTIR QUE A VISAO EXIBIDA É A CORRETA
+		fac.criarVisaoCompleta("batata");
+		fac.criarVisaoPrioritaria("batata", 1);
+		fac.exibirVisao(0);
+		
+	}
 }
