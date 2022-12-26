@@ -1,7 +1,6 @@
 package documin;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class ElementoTermos extends ElementosAbstract {
 
@@ -34,7 +33,7 @@ public class ElementoTermos extends ElementosAbstract {
 		for (int i = 0 ; i < tamanho; i++) {
 			string += (i == tamanho -1) ? lista[i] : lista[i] + ", ";
 		}
-		return "Total termos: " + tamanho + "\n- " + string;
+		return "Total termos: " + tamanho + "\n- " + string + "\n";
 	}
 	
 	public String pegarRepresentacaoResumida() {
@@ -44,6 +43,6 @@ public class ElementoTermos extends ElementosAbstract {
 		for (int i = 0 ; i <= tamanho; i++) {
 			string += (i == tamanho ) ? lista[i] : lista[i] + " " + separador + " ";
 		}
-		return string;
+		return string + "\n";
 	}
 }

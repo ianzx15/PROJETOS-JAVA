@@ -14,8 +14,8 @@ public class Validador {
 		 }
 	 }
 	
-	private static void isRangeValido(int valor, int limite, String msg) {
-		if (limite > valor) {
+	private static void isRangeValido(int tamanho, int limite, String msg) {
+		if (limite >= tamanho) {
 			throw new IllegalArgumentException(msg);
 		}
 	}

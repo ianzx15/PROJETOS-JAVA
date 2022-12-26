@@ -10,11 +10,11 @@ public class ElementoTexto extends ElementosAbstract{
 	}
 	
 	public String pegarRepresentacaoCompleta() {
-		return super.getValor();
+		return super.getValor() + "\n";
 	}
 	
 	public String pegarRepresentacaoResumida() {
-		return super.getValor();
+		return super.getValor()+ "\n";
 	}
 	
 }

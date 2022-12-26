@@ -14,7 +14,7 @@ public class Documento {
 		this.titulo = titulo;
 		this.tamanho = tamanho;
 		this.elementos = new ArrayList<ElementosAbstract>();
-		Validador.isTamanhoValido(tamanho, 1);
+		Validador.isTamanhoValido(tamanho, 0);
 		Validador.isTituloValido(titulo);
 		Validador.isTituloNull(titulo);
 	}

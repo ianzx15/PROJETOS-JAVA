@@ -22,11 +22,11 @@ public class ElementoTitulo extends ElementosAbstract{
 			return string += this.nivel + ". " + super.getValor();
 		}
 		return string += this.nivel + ". " + super.getValor() + "--\n" 
-				+ this.nivel + "-" + super.getValor().toUpperCase().replace(" ", "");
+				+ this.nivel + "-" + super.getValor().toUpperCase().replace(" ", "") + "\n";
 	}
 	
 	public String pegarRepresentacaoResumida() {
 		String string = new String();
-			return string += this.nivel + ". " + super.getValor();
+			return string += this.nivel + ". " + super.getValor() + "\n";
 	}
 }

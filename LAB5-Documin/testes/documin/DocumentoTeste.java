@@ -15,29 +15,23 @@ class DocumentoTeste {
 	private Facade fac = new Facade();
 	@BeforeEach
 	void preparacao() {
-		fac.criarDocumento("batata", 2);
+		fac.criarDocumento("batata");
 	}
-	
-	//FAZER MAIS TESTES NULOS
-	//TESTES CRIAR E EXIBIR COMPLETO E RESUMIDOS ESTÃO REDUNDANTES
-
 
 	//Título nulo
 	@Test
 	 void cadastraDoc6() {
 		try {
-			DocumentoController doc = new DocumentoController();
-			doc.criarDocumento(null, 2);
+			fac.criarDocumento(null, 2);
 			fail("Título nulo");
 		} catch (NullPointerException erro) {}
 		}
 	
-	//Título em branco
+	//Título vazio
 	@Test
 	 void cadastraDoc1() {
 		try {
-			DocumentoController doc = new DocumentoController();
-			doc.criarDocumento("", 2);
+			fac.criarDocumento("", 2);
 			fail("Título inválido");
 		} catch (IllegalArgumentException erro) {
 			assertEquals(erro.getMessage(), "Título inválido");
@@ -48,8 +42,7 @@ class DocumentoTeste {
 	@Test
 	 void cadastraDoc2() {
 		try {
-			DocumentoController doc = new DocumentoController();
-			doc.criarDocumento("batata", 0);
+			fac.criarDocumento("batata2", 0);
 			fail("Tamanho inválido");
 		} catch (IllegalArgumentException erro) {
 			assertEquals(erro.getMessage(), "Tamanho inválido");
@@ -59,70 +52,159 @@ class DocumentoTeste {
 	//Cadastra documento sem tamanho definido
 	@Test
 	 void cadastraDoc3() {
-		DocumentoController doc = new DocumentoController();
-		assertTrue(doc.criarDocumento("batata"));
+		assertTrue(fac.criarDocumento("batata2"));
 	}
 	
 	//Documento com limite de tamanho
 	@Test
 	 void cadastraDoc4() {
-			DocumentoController doc = new DocumentoController();
-			 assertTrue(doc.criarDocumento("batata", 1));
+			 assertTrue(fac.criarDocumento("batata1", 1));
 	}
 	
 	//Dois documentos com mesmo título
 	@Test
 	 void cadastraDoc5() {
-			DocumentoController doc = new DocumentoController();
-			doc.criarDocumento("batata", 1);
-			assertFalse(doc.criarDocumento("batata", 1));
+			fac.criarDocumento("legume");
+			assertFalse(fac.criarDocumento("legume"));
 	}
 
+	//Título em branco
+	@Test
+	 void cadastraDoc7() {
+		try {
+			fac.criarDocumento("  ", 2);
+			fail("Título inválido");
+		} catch (IllegalArgumentException erro) {
+			assertEquals(erro.getMessage(), "Título inválido");
+		}
+	}
+	
+	//Exibe um documento
+	@Test
+	 void exibeDocumento1() {
+			fac.criarDocumento("legume", 3);
+			fac.criarTitulo("legume", "teste", 2, 3, false);
+			fac.criarTexto("legume", "valor", 1);
+			assertEquals(2, fac.exibirDocumento("legume").length);
+	}
+	
+	//Exibe um documento com titulo vazio
+	@Test
+	 void exibeDocumento2() {
+		try {
+			fac.criarDocumento("legume", 3);
+			fac.criarTitulo("legume", "teste", 2, 3, false);
+			fac.criarTexto("legume", "valor", 1);
+			fac.exibirDocumento("  ");
+			fail("Título inválido");
+		} catch (IllegalArgumentException erro) {
+			assertEquals(erro.getMessage(), "Título inválido");
+		}
+	}
+	
+	//Exibe um documento com titulo nulo
+	@Test
+	 void exibeDocumento3() {
+		try {
+			fac.criarDocumento("legume", 3);
+			fac.criarTitulo("legume", "teste", 2, 3, false);
+			fac.criarTexto("legume", "valor", 1);
+			fac.exibirDocumento(null);
+			fail("Título nulo");
+		} catch (NullPointerException erro) {
+			assertEquals(erro.getMessage(), "Título nulo");
+		}
+	}
+	
+	
 	//Remove um documento
 	@Test
 	 void removeDocumento1() {
-			DocumentoController doc = new DocumentoController();
-			doc.criarDocumento("batata", 1);
-			doc.removeDocumento("batata");
-			assertTrue(doc.criarDocumento("batata", 1));
+			fac.removerDocumento("batata");
+			assertTrue(fac.criarDocumento("batata", 1));
 	}
 	
 	//Remove um documento que não existe
 	@Test
 	 void removeDocumento2() {
 		try {
-			DocumentoController doc = new DocumentoController();
-			doc.criarDocumento("batata", 1);
-			doc.removeDocumento("cenoura");
+			fac.criarDocumento("batata", 1);
+			fac.removerDocumento("cenoura");
 			fail("Argumento inválido");
 		} catch (NoSuchElementException erro) {}
+	}
+	
+	//Remove documento com título em branco
+	@Test
+	 void removeDocumento3() {
+		try {
+			fac.removerDocumento("  ");
+			fail("Título inválido");
+		} catch (IllegalArgumentException erro) {
+			assertEquals(erro.getMessage(), "Título inválido");
+		}
+	}
+	
+	//Remove documento nulo
+	@Test
+	 void removeDocumento4() {
+		try {
+			fac.removerDocumento(null);
+			fail("Título nulo");
+		} catch (NullPointerException erro) {
+			assertEquals(erro.getMessage(), "Título nulo");
+		}
 	}
 	
 	
 	//Conta elementos de um documento sem elementos
 	@Test
 	 void contaElementos1() {
-			DocumentoController doc = new DocumentoController();
-			doc.criarDocumento("batata");
-			assertEquals(0, doc.numElementos("batata"));
+			assertEquals(0, fac.contarElementos("batata"));
 	}
 	
-	//Conta elementos de um documento com dois elementos
+	
+	//Conta elementos de um documento 
 	@Test
 	 void contaElementos2() {
-			DocumentoController doc = new DocumentoController();
+			fac.criarDocumento("batata", 3);
+			fac.criarTexto("batata", "A receita pede pelo menos...", 1);
+			fac.criarTexto("batata", "dessa vez usaremos apenas...", 2);
+			fac.criarTermos("batata", "receitas/práticas", 2, "/", "NENHUMA");
+			assertEquals(3, fac.contarElementos("batata"));
 	}
 	
 	//Conta elementos de um documento que não existe
 	@Test
 	 void contaElementos3() {
 		try {
-			DocumentoController doc = new DocumentoController();
-			doc.criarDocumento("batata");
-			doc.numElementos("beterraba");
+			fac.contarElementos("beterraba");
 			fail("Argumento inválido");
 		} catch (NoSuchElementException erro) {}
 	}
+	
+	//Contando elementos de um documento nulo
+	@Test
+	 void contaElementos4() {
+		try {
+			fac.contarElementos(null);
+			fail("Título nulo");
+		} catch (NullPointerException erro) {
+			assertEquals(erro.getMessage(), "Título nulo");
+		}
+	}
+	
+	//Contando elementos de um documento com título em branco
+	@Test
+	 void contaElementos5() {
+		try {
+			fac.contarElementos("   ");
+			fail("Título inválido");
+		} catch (IllegalArgumentException erro) {
+			assertEquals(erro.getMessage(), "Título inválido");
+		}
+	}	
+	
 	
 	//Testando a criação do elemento texto
 	@Test
@@ -147,7 +229,6 @@ class DocumentoTeste {
 	//Testando a criação do elemento Atalho
 	@Test
 	void criaAtalho1() {
-		fac.criarDocumento("batata", 1);
 		fac.criarDocumento("legume", 2);
 		fac.criarTexto("batata", "aaaaa", 2);
 		assertEquals(1, fac.criarAtalho("batata", "legume"));
@@ -156,7 +237,6 @@ class DocumentoTeste {
 	//Testando a criação do elemento atalho de um elemento que já é atalho
 	@Test
 	void criaAtalho2() {
-		fac.criarDocumento("batata", 1);
 		fac.criarDocumento("legume", 2);
 		fac.criarDocumento("verdura", 1);
 		assertEquals(0, fac.criarAtalho("batata", "legume"));
@@ -170,7 +250,6 @@ class DocumentoTeste {
 	//Testando a criação do elemento atalho de um elemento que possui um atalho
 		@Test
 		void criaAtalho3() {
-			fac.criarDocumento("batata", 1);
 			fac.criarDocumento("legume", 2);
 			fac.criarDocumento("verdura", 1);
 			assertEquals(0, fac.criarAtalho("batata", "legume"));
@@ -186,7 +265,7 @@ class DocumentoTeste {
 		fac.criarTexto("batata", "A receita pede pelo menos...", 1);
 		fac.criarTexto("batata", "dessa vez usaremos apenas...", 2);
 		fac.criarTermos("batata", "receitas/práticas", 2, "/", "NENHUMA");
-		assertEquals("dessa vez usaremos apenas...", fac.pegarRepresentacaoResumida("batata", 1));
+		assertEquals("dessa vez usaremos apenas...\n", fac.pegarRepresentacaoResumida("batata", 1));
 	}
 	
 	
@@ -194,7 +273,7 @@ class DocumentoTeste {
 	@Test
 	 void representacaoCompleta1() {
 		fac.criarTexto("batata", "legume", 3);
-		assertEquals("legume", fac.pegarRepresentacaoCompleta("batata", 0));
+		assertEquals("legume\n", fac.pegarRepresentacaoCompleta("batata", 0));
 		
 	}
 	
@@ -203,7 +282,7 @@ class DocumentoTeste {
 	 void representacaoCompleta2() {
 		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
 		assertEquals("1. titulo1 titulo2--\n"
-				+ "1-TITULO1TITULO2", fac.pegarRepresentacaoCompleta("batata", 0));
+				+ "1-TITULO1TITULO2\n", fac.pegarRepresentacaoCompleta("batata", 0));
 		
 	}
 	
@@ -230,7 +309,7 @@ class DocumentoTeste {
 	 void representacaoCompleta5() {
 		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
 		assertEquals("Total termos: 3\n"
-				+ "- legume, verdura, cereal", fac.pegarRepresentacaoCompleta("batata", 0));
+				+ "- legume, verdura, cereal\n", fac.pegarRepresentacaoCompleta("batata", 0));
 		
 	}
 	
@@ -239,7 +318,7 @@ class DocumentoTeste {
 	 void representacaoCompleta6() {
 		fac.criarTermos("batata", "detentor/dos/meios/de produção", 1 , "/", "TAMANHO");
 		assertEquals("Total termos: 5\n"
-				+ "- de, dos, meios, detentor, produção", fac.pegarRepresentacaoCompleta("batata", 0));
+				+ "- de, dos, meios, detentor, produção\n", fac.pegarRepresentacaoCompleta("batata", 0));
 		
 	}
 		
@@ -248,14 +327,13 @@ class DocumentoTeste {
 	 void representacaoCompleta7() {
 		fac.criarTermos("batata", "detentor/dos/meios/de/produção", 1 , "/", "ALFABÉTICA");
 		assertEquals("Total termos: 5\n"
-				+ "- de, detentor, dos, meios, produção", fac.pegarRepresentacaoCompleta("batata", 0));
+				+ "- de, detentor, dos, meios, produção\n", fac.pegarRepresentacaoCompleta("batata", 0));
 	}
 	
 	
 	//Pegando representação resumida de lista
 	@Test
 	 void representacaoResumida1() {
-		fac.criarDocumento("batata", 2);
 		fac.criarLista("batata", "a/b/c", 2, "/", "$");
 		assertEquals("a, b, c", fac.pegarRepresentacaoResumida("batata", 0));
 		
@@ -265,14 +343,14 @@ class DocumentoTeste {
 	@Test
 	 void representacaoResumida2() {
 		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
-		assertEquals("legume / verdura / cereal", fac.pegarRepresentacaoResumida("batata", 0));
+		assertEquals("legume / verdura / cereal\n", fac.pegarRepresentacaoResumida("batata", 0));
 	}
 	
 	//Pegando representação resumida de texto
 	@Test
 	 void representacaoResumida3() {
 		fac.criarTexto("batata", "legume", 3);
-		assertEquals("legume", fac.pegarRepresentacaoResumida("batata", 0));
+		assertEquals("legume\n", fac.pegarRepresentacaoResumida("batata", 0));
 		
 	}
 	
@@ -280,7 +358,7 @@ class DocumentoTeste {
 	@Test
 	 void representacaoResumida4() {
 		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
-		assertEquals("1. titulo1 titulo2", fac.pegarRepresentacaoResumida("batata", 0));
+		assertEquals("1. titulo1 titulo2\n", fac.pegarRepresentacaoResumida("batata", 0));
 		
 	}
 	
@@ -288,14 +366,14 @@ class DocumentoTeste {
 	@Test
 	 void representacaoResumida5() {
 		fac.criarTermos("batata", "legume/verdura/carne", 1, "/", "TAMANHO");
-		assertEquals("carne / legume / verdura", fac.pegarRepresentacaoResumida("batata", 0));
+		assertEquals("carne / legume / verdura\n", fac.pegarRepresentacaoResumida("batata", 0));
 	}
 	
 	//Pegando representação resumida de termos por ordem alfabetica
 	@Test
 	 void representacaoResumida6() {
 		fac.criarTermos("batata", "legume/batata/carne", 1, "/", "ALFABÉTICA");
-		assertEquals("batata / carne / legume", fac.pegarRepresentacaoResumida("batata", 0));
+		assertEquals("batata / carne / legume\n", fac.pegarRepresentacaoResumida("batata", 0));
 	}
 	
 	//Removendo elemento 
@@ -311,8 +389,8 @@ class DocumentoTeste {
 		fac.criarTexto("batata", "legume", 3);
 		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
 		fac.moverParaCima("batata", 0);
-		assertEquals("1. titulo1 titulo2" ,fac.pegarRepresentacaoResumida("batata", 1));
-		assertEquals("legume", fac.pegarRepresentacaoResumida("batata", 0));
+		assertEquals("1. titulo1 titulo2\n" ,fac.pegarRepresentacaoResumida("batata", 1));
+		assertEquals("legume\n", fac.pegarRepresentacaoResumida("batata", 0));
 	}
 	
 	//Movendo elemento para baixo
@@ -322,9 +400,13 @@ class DocumentoTeste {
 		fac.criarTexto("batata", "legume", 3);
 		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
 		fac.moverParaBaixo("batata", 1);
-		assertEquals("legume" ,fac.pegarRepresentacaoResumida("batata", 0));
-		assertEquals("1. titulo1 titulo2", fac.pegarRepresentacaoResumida("batata", 1));
+		assertEquals("legume\n" ,fac.pegarRepresentacaoResumida("batata", 0));
+		assertEquals("1. titulo1 titulo2\n", fac.pegarRepresentacaoResumida("batata", 1));
 	}
+	
+	
+	
+	
 	
 	//Gerando visao completa de um documento
 	@Test
@@ -332,7 +414,6 @@ class DocumentoTeste {
 		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
 		assertEquals(0, fac.criarVisaoCompleta("batata"));
 		assertEquals(1, fac.criarVisaoResumida("batata"));
-
 	}
 	
 	//Gerando visao resumida de um documento
@@ -374,17 +455,56 @@ class DocumentoTeste {
 		assertEquals(3, fac.criarVisaoResumida("batata"));
 	}
 	
-	//Exibindo visões
+	//Removendo elemento 
 	@Test
-	void exibeVisao1() {
-		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
-		fac.criarTexto("batata", "legume", 3);
-		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
-		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
-		//PRECISO AINDA GARANTIR QUE A VISAO EXIBIDA É A CORRETA
-		fac.criarVisaoCompleta("batata");
-		fac.criarVisaoPrioritaria("batata", 1);
-		fac.exibirVisao(0);
-		
+	 void removeElemento1() {
+		fac.criarTexto("batata", "A receita pede pelo menos...", 1);
+		fac.criarTexto("batata", "dessa vez usaremos apenas...", 2);
+		fac.criarTermos("batata", "receitas/práticas", 2, "/", "NENHUMA");
+		fac.apagarElemento("batata", 1);
+		assertEquals("receitas / práticas\n", fac.pegarRepresentacaoResumida("batata", 1));
 	}
+	
+	//Removendo elemento de documento nulo
+	@Test
+	 void removeElemento2() {
+	 try{ 
+		 fac.criarTexto("batata", "A receita pede pelo menos...", 1);
+		fac.criarTexto("batata", "dessa vez usaremos apenas...", 2);
+		fac.criarTermos("batata", "receitas/práticas", 2, "/", "NENHUMA");
+		fac.apagarElemento(null, 1);
+		fail("Título nulo");
+		} catch(NullPointerException erro) {
+			assertEquals(erro.getMessage(), "Título nulo");
+		}
+	}
+		
+	//Removendo elemento de documento com título de espaços em branco
+	@Test
+	 void removeElemento3() {
+	 try{ 
+		 fac.criarTexto("batata", "A receita pede pelo menos...", 1);
+		fac.criarTexto("batata", "dessa vez usaremos apenas...", 2);
+		fac.criarTermos("batata", "receitas/práticas", 2, "/", "NENHUMA");
+		fac.apagarElemento("  ", 1);
+		fail("Título inválido");
+		} catch(IllegalArgumentException erro) {
+			assertEquals(erro.getMessage(), "Título inválido");
+		}
+	}
+		
+	//Removendo elemento de documento vazio
+	@Test
+	 void removeElemento4() {
+	 try{ 
+		 fac.criarTexto("batata", "A receita pede pelo menos...", 1);
+		fac.criarTexto("batata", "dessa vez usaremos apenas...", 2);
+		fac.criarTermos("batata", "receitas/práticas", 2, "/", "NENHUMA");
+		fac.apagarElemento("", 1);
+		fail("Título inválido");
+		} catch(IllegalArgumentException erro) {
+			assertEquals(erro.getMessage(), "Título inválido");
+		}
+		}
+	
 }

@@ -14,9 +14,24 @@ public class Facade {
 	}
 	
 	public boolean criarDocumento(String titulo, int tamanho) {
+		return this.documento.criarDocumento(titulo, tamanho);
+	}
+	
+	public boolean criarDocumento(String titulo) {
 		return this.documento.criarDocumento(titulo);
 	}
 	
+	public void removerDocumento(String titulo) {
+		this.documento.removeDocumento(titulo);
+	}
+	
+	public int contarElementos(String titulo) {
+		return this.documento.contarElementos(titulo);
+	}
+	
+	public String[] exibirDocumento(String titulo) {
+		return this.documento.exibirDocumento(titulo);
+	}
 	
 	public int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
 		return this.documento.adicionarElemento(tituloDoc, this.elemento.criarTitulo(tituloDoc, valor, prioridade, nivel, linkavel));
@@ -50,7 +65,6 @@ public class Facade {
 		return this.documento.getDocumento(tituloDoc).apagarElemento(this.documento.getDocumento(tituloDoc).getElemento(elementoPosicao));
 	}
 	
-	//TESTAR QUANDO O ELEMENTO É EMPURRADO PARA UMA POSICAO INEXISTENTE 
 	public void moverParaCima(String tituloDoc, int elementoPosicao) {
 		this.documento.getDocumento(tituloDoc).moverParaCima(elementoPosicao);
 	}

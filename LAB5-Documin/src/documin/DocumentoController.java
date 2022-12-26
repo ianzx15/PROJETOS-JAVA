@@ -17,7 +17,7 @@ public class DocumentoController {
 		doc.removerDocumento(titulo);
 	}
 	
-	public int numElementos(String titulo) {
+	public int contarElementos(String titulo) {
 		return doc.contarElementos(titulo);
 	}
 	
@@ -33,15 +33,9 @@ public class DocumentoController {
 		return doc.getElemento(tituloDoc, indice);
 	}
 
+	public String[] exibirDocumento(String titulo) {
+		return doc.exibirDocumento(titulo);
+		
+	}
 
-	
-//	public void moverParaCima(String tituloDoc, int elementoPosicao) {
-//		return doc.moverParaAcima(tituloDoc, elementoPosicao);
-//	}
-//	public void moverParaBaixo(String tituloDoc, int elementoPosicao) {
-//		return doc.moverParaBaixo(tituloDoc, elementoPosicao);
-//	}
-
-	
-	
 }
