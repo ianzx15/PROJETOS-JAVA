@@ -16,7 +16,6 @@ public class Visao {
 	}
 	
 	public String[] exibirVisao(int visaoId) {
-		
 		return this.visoes.get(visaoId);
 	}
 	

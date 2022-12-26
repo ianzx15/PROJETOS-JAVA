@@ -6,6 +6,8 @@ public class VisaoController {
 	private Visao visao = new Visao();
 	
 	public int criarVisaoCompleta(Documento doc) {
+		Validador.isTituloValido(doc.getTitulo());
+		Validador.isTituloNull(doc.getTitulo());
 		ArrayList<ElementosAbstract> el = doc.getElementos();
 		String[] string = new String[el.size()];
 		for(int i = 0; i < el.size(); i ++){
@@ -15,6 +17,8 @@ public class VisaoController {
 	}
 	
 	public int criarVisaoResumida(Documento doc) {
+		Validador.isTituloValido(doc.getTitulo());
+		Validador.isTituloNull(doc.getTitulo());
 		ArrayList<ElementosAbstract> el = doc.getElementos();
 		String[] string = new String[el.size()];
 		for(int i = 0; i < el.size(); i ++){
@@ -24,6 +28,8 @@ public class VisaoController {
 	}
 	
 	public int criarVisaoPrioritaria(Documento doc, int prioridade) {
+		Validador.isTituloValido(doc.getTitulo());
+		Validador.isTituloNull(doc.getTitulo());
 		ArrayList<ElementosAbstract> el = new ArrayList<>();
 		for (ElementosAbstract item : doc.getElementos()) {
 			if (item.getPrioridade() >= prioridade) {
@@ -42,6 +48,8 @@ public class VisaoController {
 	}
 	
 	public int criarVisaoTitulo(Documento doc) {
+		Validador.isTituloValido(doc.getTitulo());
+		Validador.isTituloNull(doc.getTitulo());
 		ArrayList<ElementosAbstract> el = new ArrayList<>();
 		for (ElementosAbstract item : doc.getElementos()) {
 			if (item.getClass().equals(ElementoTitulo.class)) {

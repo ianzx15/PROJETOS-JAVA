@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 
+
+
 public class Documento {
 	private String titulo;
 	private int tamanho;

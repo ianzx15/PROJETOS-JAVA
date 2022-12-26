@@ -33,7 +33,7 @@ public class ElementoLista extends ElementosAbstract{
 		String[] lista = super.getValor().split(separador);
 		int tamanhoLista = super.getValor().split(separador).length -1;
 		for (int i = 0; i <= tamanhoLista; i++) {
-			string += (i == tamanhoLista) ? lista[i] : lista[i] + ", "  ;
+			string += (i == tamanhoLista) ? lista[i] + "\n" : lista[i] + ", "  ;
 		}
 		return string;
 	}

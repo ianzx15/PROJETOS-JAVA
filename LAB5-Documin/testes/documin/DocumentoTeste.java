@@ -258,7 +258,7 @@ class DocumentoTeste {
 				fail("Elemento já possui um atalho");
 			} catch (IllegalStateException erro) {}
 		}
-	
+
 	//Testando a criação de elementos de mesmo tipo
 	@Test
 	 void criaMesmoTipo() {
@@ -335,7 +335,7 @@ class DocumentoTeste {
 	@Test
 	 void representacaoResumida1() {
 		fac.criarLista("batata", "a/b/c", 2, "/", "$");
-		assertEquals("a, b, c", fac.pegarRepresentacaoResumida("batata", 0));
+		assertEquals("a, b, c\n", fac.pegarRepresentacaoResumida("batata", 0));
 		
 	}
 	
@@ -410,7 +410,7 @@ class DocumentoTeste {
 	
 	//Gerando visao completa de um documento
 	@Test
-	 void documentoCompleto1() {
+	 void criarVisao1() {
 		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
 		assertEquals(0, fac.criarVisaoCompleta("batata"));
 		assertEquals(1, fac.criarVisaoResumida("batata"));
@@ -418,14 +418,14 @@ class DocumentoTeste {
 	
 	//Gerando visao resumida de um documento
 	@Test
-	 void documentoCompleto2() {
+	 void criarVisao2() {
 		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
 		assertEquals(0, fac.criarVisaoResumida("batata"));
 	}
 	
 	//Gerando visao prioritária de um documento
 	@Test
-	void documentoCompleto3() {
+	void criarVisao3() {
 		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
 		fac.criarTexto("batata", "legume", 3);
 		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
@@ -434,7 +434,7 @@ class DocumentoTeste {
 	}
 	//Gerando visao dos títulos de um documento
 	@Test
-	void documentoCompleto4() {
+	void criarVisao4() {
 		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
 		fac.criarTexto("batata", "legume", 3);
 		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
@@ -444,7 +444,7 @@ class DocumentoTeste {
 	
 	//Gerando mais de uma visão de documento
 	@Test
-	void documentoCompleto5() {
+	void criarVisao5() {
 		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
 		fac.criarTexto("batata", "legume", 3);
 		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
@@ -455,6 +455,131 @@ class DocumentoTeste {
 		assertEquals(3, fac.criarVisaoResumida("batata"));
 	}
 	
+	//Gerando visão do titulo de um documento nulo
+	@Test
+	void criarVisao6() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		
+		try{
+			fac.criarVisaoTitulo(null);
+			fail("Título nulo");
+		} catch(NullPointerException erro) {
+			assertEquals(erro.getMessage(), "Título nulo");
+		}
+	}
+	
+	//Gerando visão do título de um documento com nome em branco
+	@Test
+	void criarVisao7() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		try{
+			fac.criarVisaoTitulo("  ");
+			fail("Título inválido");
+		} catch(IllegalArgumentException erro) {
+			assertEquals(erro.getMessage(), "Título inválido");
+		}
+	}
+	
+	//Gerando visão completa de um documento nulo
+	@Test
+	void criarVisao8() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		
+		try{
+			fac.criarVisaoCompleta(null);
+			fail("Título nulo");
+		} catch(NullPointerException erro) {
+			assertEquals(erro.getMessage(), "Título nulo");
+		}
+	}
+	
+	//Gerando visão completa de um documento com nome em branco
+	@Test
+	void criarVisao9() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		try{
+			fac.criarVisaoCompleta("  ");
+			fail("Título inválido");
+		} catch(IllegalArgumentException erro) {
+			assertEquals(erro.getMessage(), "Título inválido");
+		}
+	}
+		
+		
+	//Gerando visão resumida de um documento nulo
+	@Test
+	void criarVisao10() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		
+		try{
+			fac.criarVisaoResumida(null);
+			fail("Título nulo");
+		} catch(NullPointerException erro) {
+			assertEquals(erro.getMessage(), "Título nulo");
+		}
+	}
+	
+	//Gerando visão resumida de um documento com nome em branco
+	@Test
+	void criarVisao11() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		try{
+			fac.criarVisaoResumida("  ");
+			fail("Título inválido");
+		} catch(IllegalArgumentException erro) {
+			assertEquals(erro.getMessage(), "Título inválido");
+		}
+	}
+
+	//Gerando visão prioritária de um documento nulo
+	@Test
+	void criarVisao12() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		
+		try{
+			fac.criarVisaoPrioritaria(null, 2);
+			fail("Título nulo");
+		} catch(NullPointerException erro) {
+			assertEquals(erro.getMessage(), "Título nulo");
+		}
+	}
+	
+	//Gerando visão prioritária de um documento com nome em branco
+	@Test
+	void criarVisao13() {
+		fac.criarTitulo("batata", "alface cenoura", 2, 1, true);
+		fac.criarTexto("batata", "legume", 3);
+		fac.criarTermos("batata", "legume/verdura/cereal", 1, "/", "NENHUM");
+		fac.criarTitulo("batata", "titulo1 titulo2", 2, 1, true);
+		try{
+			fac.criarVisaoPrioritaria("  ", 3);
+			fail("Título inválido");
+		} catch(IllegalArgumentException erro) {
+			assertEquals(erro.getMessage(), "Título inválido");
+		}
+	}
+		
 	//Removendo elemento 
 	@Test
 	 void removeElemento1() {
@@ -506,5 +631,29 @@ class DocumentoTeste {
 			assertEquals(erro.getMessage(), "Título inválido");
 		}
 		}
-	
+		
+	//Exibindo representação completa de um atalho
+	@Test
+	void exibeAtalho1() {
+		fac.criarDocumento("legume", 2);
+		fac.criarLista("legume", "abacaxi/uva", 5, "/", "-");
+		fac.criarTexto("legume", "texto", 4);
+		fac.criarTexto("legume", "teste", 2);
+		fac.criarAtalho("batata", "legume");
+		assertEquals("-abacaxi\n"
+				+ "-uva\n"
+				+ "texto\n",fac.pegarRepresentacaoCompleta("batata", 0));
+	}
+	//Exibindo representação resumida de um atalho
+	@Test
+	void exibeAtalho2() {
+		fac.criarDocumento("legume", 2);
+		fac.criarLista("legume", "abacaxi/uva", 5, "/", "-");
+		fac.criarTexto("legume", "texto", 4);
+		fac.criarTexto("legume", "teste", 2);
+		fac.criarAtalho("batata", "legume");
+		assertEquals("abacaxi, uva\n"
+				+ "texto\n", fac.pegarRepresentacaoResumida("batata", 0));
+	}
+
 }

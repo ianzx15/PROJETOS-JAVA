@@ -14,7 +14,7 @@ public class ElementoTexto extends ElementosAbstract{
 	}
 	
 	public String pegarRepresentacaoResumida() {
-		return super.getValor()+ "\n";
+		return super.getValor() + "\n";
 	}
 	
 }
