@@ -20,7 +20,7 @@ public class Atalho extends ElementosAbstract{
 	 * @param doc O Objeto do tipo Documento.
 	 */
 	public Atalho(Documento doc) {
-		super(doc.getTitulo(), doc.getMediaElementos());
+		super(doc.getTitulo(), (int) Math.ceil(doc.getMediaElementos()));
 		this.doc = doc;
 	}
 	/**

@@ -2,35 +2,26 @@ package documin;
 
 public class ElementoController {
 	
+	private ElementosRepositório el = new ElementosRepositório();
+	
 	public ElementoTexto criarTexto(String valor, int prioridade) {
-		ElementoTexto texto = new ElementoTexto(valor, prioridade);
-		return texto;
+		return el.criarTexto(valor, prioridade);
 	}
 	
 	public ElementoTitulo criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
-		ElementoTitulo titulo = new ElementoTitulo(valor, prioridade, nivel, linkavel);
-		return titulo;
+		return el.criarTitulo(tituloDoc, valor, prioridade, nivel, linkavel);
 	}
 	
 	public ElementoLista criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
-		ElementoLista lista = new ElementoLista(valorLista, prioridade, separador, charLista);
-		return lista;
+		return el.criarLista(tituloDoc, valorLista, prioridade, separador, charLista);
 	}
 	
 	public ElementoTermos criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
-		ElementoTermos termos = new ElementoTermos(valorTermos, prioridade, separador, ordem);
-		return termos;
+		return el.criarTermos(tituloDoc, valorTermos, prioridade, separador, ordem);
 	}
 
 	public ElementosAbstract criarAtalho(Documento tituloDocReferenciado) {
-		for (ElementosAbstract el : tituloDocReferenciado.getElementos()) {
-			if (el.getClass().equals(Atalho.class)){
-				throw new IllegalStateException();
-			}
-		}
-		tituloDocReferenciado.setIsAtalho(true);
-		Atalho atalho = new Atalho(tituloDocReferenciado);
-		return atalho;
+		return el.criarAtalho(tituloDocReferenciado);
 	}
 
 	

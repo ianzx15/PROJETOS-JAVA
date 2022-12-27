@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class DocumentoTeste {
+public class DocumentoTeste {
 	private Facade fac = new Facade();
 	@BeforeEach
 	void preparacao() {
@@ -259,6 +259,7 @@ class DocumentoTeste {
 			} catch (IllegalStateException erro) {}
 		}
 
+		
 	//Testando a criação de elementos de mesmo tipo
 	@Test
 	 void criaMesmoTipo() {
